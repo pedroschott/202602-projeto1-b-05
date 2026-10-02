@@ -76,7 +76,18 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 | Rodrigo Araújo Rigotto | Usuário a confirmar | A combinar com o squad |
 | Vinicius Gorini | Usuário a confirmar | A combinar com o squad |
 
-Os usuários do GitHub dos demais integrantes e os papéis aguardam confirmação. Não foram enviados convites. Professor indicado no roteiro: `@profcristianodemacedoneto`.
+Os usuários do GitHub dos demais integrantes e os papéis aguardam confirmação. Professor indicado no roteiro: `@profcristianodemacedoneto`.
+
+### Contatos para colaboração
+
+| Pessoa | E-mail |
+| --- | --- |
+| Rodrigo Araújo Rigotto | Rodrigo.A.Rigotto@gmail.com |
+| Sophia | sophiacardosomiranda@gmail.com |
+
+Sophia foi incluída como contato para colaboração. A lista de contatos não atribui autoria ou papel no projeto.
+
+**Convites:** na última verificação, os convites do professor e de Vinicius haviam sido enviados e aguardavam aceite. O status dos convites de Rodrigo e Sophia ainda precisa ser confirmado. O acesso ao quadro privado do GitHub Projects é separado do acesso ao repositório.
 
 ## 9. Entregas
 
