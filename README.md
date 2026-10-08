@@ -73,7 +73,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 | Integrante | GitHub | Papel principal |
 | --- | --- | --- |
 | Pedro Marcondes Dombeck Schott | [@pedroschott](https://github.com/pedroschott) | A combinar com o squad |
-| Rodrigo Araújo Rigotto | Usuário a confirmar | A combinar com o squad |
+| Rodrigo Araújo Rigotto |  [@rodrigorigotto](https://github.com/rodrigorigotto)  | A combinar com o squad |
 | Vinicius Gorini | Usuário a confirmar | A combinar com o squad |
 
 Os usuários do GitHub dos demais integrantes e os papéis aguardam confirmação. Professor indicado no roteiro: `@profcristianodemacedoneto`.
@@ -82,7 +82,7 @@ Os usuários do GitHub dos demais integrantes e os papéis aguardam confirmaçã
 
 | Pessoa | E-mail |
 | --- | --- |
-| Rodrigo Araújo Rigotto | Rodrigo.A.Rigotto@gmail.com |
+| Rodrigo Araújo Rigotto | rodrigo.a.rigotto@gmail.com |
 | Sophia | sophiacardosomiranda@gmail.com |
 
 Sophia foi incluída como contato para colaboração. A lista de contatos não atribui autoria ou papel no projeto.
