@@ -21,6 +21,7 @@ O recorte proposto é a falta de informação durante a espera e a dificuldade p
 
 - **Persona:** Lucas Azevedo, 31 anos, técnico de manutenção de Betim no primeiro ciclo da Bulbe; personagem fictício proposto para o exercício
 - **Mapa de jornada:** [docs/jornada.md](docs/jornada.md)
+- **Contribuições individuais:** [Vinicius — Renata Alves](docs/personas/vinicius-gorini.md) e [Pedro — Célia Martins](docs/personas/pedro-schott.md), propostas para consolidação pelo squad
 
 ## 3. Solução
 
