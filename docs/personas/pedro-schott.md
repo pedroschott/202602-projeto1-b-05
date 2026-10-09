@@ -115,20 +115,3 @@ se a pessoa consegue:
 O teste avalia acesso e compreensão do fluxo, não redução
 de inadimplência ou entrega real de mensagens.
 
-## 5. Consolidação com o grupo
-
-A persona de [Vinicius](vinicius-gorini.md), Renata, concentra-se
-na compreensão dos componentes da cobrança e da economia.
-Célia traz um recorte complementar: acesso à fatura, atualização
-de contato e autonomia quando a comunicação falha.
-
-Esta proposta deverá ser comparada com as demais contribuições
-para definir as duas personas consolidadas e a jornada final do squad.
-
-## Fontes de contexto
-
-- [Persona e jornada individual de Vinicius](vinicius-gorini.md): referência de estrutura.
-- [Mapa de jornada do squad](../jornada.md): evidências históricas e recorte do primeiro ciclo.
-- [Como funciona a Bulbe](https://bulbeenergia.com.br/como-funciona/), consultado em 09/10/2026: a empresa descreve energia por assinatura sem instalação de placas no imóvel e apresenta sua fatura e canais de atendimento.
-
-A biografia e a jornada de Célia foram criadas para o exercício.
