@@ -1,6 +1,6 @@
 # Persona e jornada individual — Mariana Alves
 
-**Autor:** contribuição individual — Persona 5  
+**Autor:** Pedro Padilha — contribuição individual  
 **Status:** proposta individual para consolidação pelo squad.
 
 > Persona fictícia criada para o exercício. Biografia, hábitos, pensamentos e emoções são hipóteses, não resultados de entrevistas, testes ou observação de clientes da Bulbe.
