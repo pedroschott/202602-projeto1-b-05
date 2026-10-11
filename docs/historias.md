@@ -6,6 +6,7 @@
 | --- | --- | --- | --- | --- |
 | HU01 | Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar. | #3 | Alta (proposta) | #5 |
 | HU02 | Como cliente da Bulbe que não recebeu o aviso da primeira fatura, quero localizar a cobrança e consultar seu vencimento pelo app/site para organizar o pagamento sem depender da mensagem de WhatsApp. | #2 | Alta (proposta) | #9 |
+| HU03 | Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento. | Acompanhamento da jornada e compreensão da primeira cobrança | Média (proposta individual; priorização pendente) | A definir |
 
 ## HU01 — Entender os valores da primeira fatura
 
@@ -87,3 +88,37 @@ Conferir navegação, dados, situações da fatura, carregamento, falhas e apres
 - História: [#9](https://github.com/pedroschott/202602-projeto1-b-05/issues/9)
 
 Wireframe, protótipo e implementação ainda não foram executados. A consolidação das personas e a priorização coletiva do MVP permanecem pendentes.
+
+## HU03 — Acompanhar a contratação e entender a primeira fatura
+
+**Status:** proposta individual; aguarda alinhamento com as duas personas consolidadas e confirmação de entrada no MVP.  
+**Responsável:** contribuição individual — Persona 5  
+**Persona de origem:** [Mariana Alves](personas/mariana-alves.md)  
+**Momento da jornada:** período de espera, recebimento e conferência da primeira fatura  
+**Oportunidade de origem:** acompanhamento claro da adesão e compreensão da primeira cobrança  
+**Tela proposta:** Acompanhe sua adesão / Entenda sua primeira fatura
+
+### História
+
+Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento.
+
+### Critérios de aceite
+
+- [ ] Permitir consultar o status atual da contratação e apresentar o próximo passo quando essa informação estiver disponível.
+- [ ] Quando a primeira fatura estiver disponível, mostrar valor total, vencimento e referência da cobrança.
+- [ ] Explicar os principais componentes da fatura em linguagem simples.
+- [ ] Informar a base usada para comparar a economia; se não houver dados suficientes, deixar isso explícito.
+- [ ] Apresentar as informações em layout legível pelo celular.
+- [ ] Exibir estados de carregamento e falha de consulta, com opção de tentar novamente.
+- [ ] Não inventar datas, valores, status ou economias que não estejam presentes nos dados.
+- [ ] Permitir acessar as informações sem depender exclusivamente de uma mensagem de WhatsApp.
+
+### Indicador e validação
+
+Indicador pretendido: compreensão da primeira fatura e apoio ao pagamento da primeira cobrança. A hipótese é que o acompanhamento claro e a explicação dos valores reduzam dúvidas. Nenhum impacto foi medido.
+
+Em um teste com protótipo, verificar se a pessoa consegue encontrar o status da adesão, identificar o valor e vencimento da primeira fatura e explicar os principais componentes e a base da economia. O teste avalia compreensão e navegação, não comprova redução de inadimplência.
+
+### Observação de consolidação
+
+Esta história é uma proposta individual e pode se sobrepor à HU01, que já aborda a explicação dos valores e da economia, e à HU02, que aborda localizar a primeira fatura sem o aviso. O squad deve comparar as necessidades e decidir se a HU03 acrescenta um fluxo distinto ou se seus critérios devem ser incorporados às histórias existentes antes da definição final do MVP.
