@@ -21,7 +21,7 @@ O recorte proposto é a falta de informação durante a espera e a dificuldade p
 
 - **Persona:** Lucas Azevedo, 31 anos, técnico de manutenção de Betim no primeiro ciclo da Bulbe; personagem fictício proposto para o exercício
 - **Mapa de jornada:** [docs/jornada.md](docs/jornada.md)
-- **Contribuições individuais:** [Vinicius — Renata Alves](docs/personas/vinicius-gorini.md), [Rodrigo - Marina Tavares](docs/personas/rodrigo-rigotto.md), [Pedro — Célia Martins](docs/personas/pedro-schott.md) e [Pedro Padilha — Mariana Alves](docs/personas/mariana-alves.md), propostas para consolidação pelo squad
+- **Contribuições individuais:** [Pedro Schott — Célia Martins](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana Alves](docs/personas/pedro-padilha.md), [Sophia Miranda - Rafael Moreira](docs/personas/sophia-miranda.md) [Rodrigo - Marina Tavares](docs/personas/rodrigo-rigotto.md) e [Vinicius — Renata Alves](docs/personas/vinicius-gorini.md), propostas para consolidação pelo squad
 
 ## 3. Solução
 
@@ -75,20 +75,9 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 | --- | --- | --- |
 | Pedro Marcondes Dombeck Schott | [@pedroschott](https://github.com/pedroschott) | A combinar com o squad |
 | Rodrigo Araújo Rigotto |  [@rodrigorigotto](https://github.com/rodrigorigotto)  | A combinar com o squad |
+| Sophia Cardoso Miranda | [@sophiacmiranda](https://github.com/sophiacmiranda) | A combinar com o squad |
 | Vinicius Gorini | Usuário a confirmar | A combinar com o squad |
-
-Os usuários do GitHub dos demais integrantes e os papéis aguardam confirmação. Professor indicado no roteiro: `@profcristianodemacedoneto`.
-
-### Contatos para colaboração
-
-| Pessoa | E-mail |
-| --- | --- |
-| Rodrigo Araújo Rigotto | rodrigo.a.rigotto@gmail.com |
-| Sophia | sophiacardosomiranda@gmail.com |
-
-Sophia foi incluída como contato para colaboração. A lista de contatos não atribui autoria ou papel no projeto.
-
-**Convites:** na última verificação, os convites do professor e de Vinicius haviam sido enviados e aguardavam aceite. O status dos convites de Rodrigo e Sophia ainda precisa ser confirmado. O acesso ao quadro privado do GitHub Projects é separado do acesso ao repositório.
+| Pedro Padilha | Usuário a confirmar | A combinar com o squad |
 
 ## 9. Entregas
 
