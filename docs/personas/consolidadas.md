@@ -117,11 +117,15 @@ E3 registra pouca transparência dos custos e da economia na fatura antiga; E4 i
 
 No futuro protótipo, verificar se uma pessoa identifica total, vencimento, componentes, base da economia e orientação aplicável às cobranças. Não prometer economia nem inferir impacto real em pagamento ou churn.
 
+## Próximos trabalhos individuais
+
+Cada um dos cinco integrantes deverá desenvolver uma jornada própria e a tela correspondente, orientadas pelas duas personas consolidadas. Este documento consolida os perfis e não substitui esses cinco trabalhos individuais.
+
 ## Indicador e fontes
 
 O indicador principal pretendido é **pagamento da primeira fatura**. Compreensão, acesso e acompanhamento são aspectos a avaliar no protótipo; ainda não há impacto medido.
 
-- [Evidências E0–E5, oportunidades O1–O3 e jornadas](../jornada.md).
+- [Evidências E0–E5, oportunidades O1–O3 e mapa inicial](../jornada.md).
 - [Etapa 2 — Projeto Bulbe Energia](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit).
 - [Aula 19](https://docs.google.com/presentation/d/1v_punRor5o8ZU-v9BN9I9VhaWDtIEyXWVMFbYb-s_Fg/edit), slides 4–8 e 14–20.
 
