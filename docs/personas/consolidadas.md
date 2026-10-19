@@ -5,6 +5,18 @@
 
 As personas são fictícias. Biografia, hábitos, pensamentos e emoções são hipóteses para o exercício, sem entrevistas ou validação com clientes. A consolidação agrupa necessidades recorrentes nas cinco propostas; repetição entre propostas não equivale a frequência medida na base da Bulbe.
 
+## Como as cinco propostas originaram dois perfis
+
+| Contribuição individual | Necessidades identificadas | Aproveitamento na consolidação |
+| --- | --- | --- |
+| [Pedro Schott — Célia Martins](pedro-schott.md) | Localizar a fatura sem aviso, conferir contatos e situação do pagamento. | Cláudia: autonomia para acessar a cobrança e acompanhar o primeiro ciclo. |
+| [Sophia Miranda — Rafael Moreira](sophia-miranda.md) | Consultar por canal reconhecível, sem depender de links ou mensagens; acompanhar adesão e pagamento. | Cláudia: confiança no caminho de acesso e consulta por iniciativa própria. |
+| [Pedro Padilha — Mariana Alves](pedro-padilha.md) | Acompanhar contratação e próximo passo; compreender valores e economia pelo celular. | Cláudia: acompanhamento. Renata: linguagem simples e compreensão da economia. |
+| [Rodrigo Rigotto — Marina Tavares](rodrigo-rigotto.md) | Entender a relação entre Cemig e Bulbe e esclarecer a impressão de pagamento em dobro. | Renata: compreender as cobranças antes de pagar e decidir permanecer. |
+| [Vinicius Gorini — Renata Alves](vinicius-gorini.md) | Conferir componentes da fatura e base de comparação da economia. | Renata: explicação verificável dos valores. |
+
+O uso do celular, a busca por economia e a necessidade de informação clara são pontos comuns. O primeiro perfil enfatiza **acompanhar e acessar**; o segundo, **compreender e conferir**. Uma mesma pessoa pode apresentar as duas necessidades, e cada persona pode gerar várias histórias. Idades e ocupações dão contexto narrativo e não definem segmentos comprovados.
+
 ## P1 — Cláudia Martins: acompanhar e acessar
 
 - **Idade:** 46 anos.
