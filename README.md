@@ -1,6 +1,6 @@
 # Primeiro Ciclo
 
-> Proposta de solução do Squad 05, Turma B. Persona fictícia e escopo inicial para revisão do squad.
+> Proposta de solução do Squad 05, Turma B. Personas fictícias consolidadas e escopo inicial para revisão do squad.
 
 > Projeto em Ciência de Dados I · Ibmec BH · 2º semestre de 2026
 > Cliente: **Bulbe Energia** · Turma **B** · Squad **05**
@@ -17,11 +17,22 @@ O recorte proposto é a falta de informação durante a espera e a dificuldade p
 - **Evidência:** até 20 dias sem comunicação; cerca de 20% de falha no WhatsApp; baixa transparência da fatura antiga (slides 7 e 18)
 - **Indicador que a solução pretende mover:** pagamento da 1ª fatura, sem meta numérica ou impacto medido nesta fase
 
-## 2. Persona e jornada
+## 2. Personas e jornadas
 
-- **Persona:** Lucas Azevedo, 31 anos, técnico de manutenção de Betim no primeiro ciclo da Bulbe; personagem fictício proposto para o exercício
-- **Mapa de jornada:** [docs/jornada.md](docs/jornada.md)
-- **Contribuições individuais:** [Pedro Schott — Célia Martins](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana Alves](docs/personas/pedro-padilha.md), [Sophia Miranda - Rafael Moreira](docs/personas/sophia-miranda.md) [Rodrigo - Marina Tavares](docs/personas/rodrigo-rigotto.md) e [Vinicius — Renata Alves](docs/personas/vinicius-gorini.md), propostas para consolidação pelo squad
+As cinco propostas individuais foram comparadas pelas necessidades recorrentes e consolidadas em dois perfis complementares para revisão do squad:
+
+| Persona | Necessidade central | Contribuições que fundamentam o perfil |
+| --- | --- | --- |
+| **P1 — Cláudia Martins**, 46 anos, costureira de Ribeirão das Neves | Acompanhar a contratação e encontrar a primeira fatura sem depender de avisos por WhatsApp. | Célia e Rafael, com acompanhamento trazido por Mariana. |
+| **P2 — Renata Alves**, 39 anos, assistente administrativa de Contagem | Compreender valores, relação entre Cemig e Bulbe e base da economia antes de pagar. | Renata, Marina e Mariana. |
+
+O uso do celular, a busca por economia e a necessidade de informação clara aparecem nas propostas. Os perfis sintetizam **acompanhar e acessar** e **compreender e conferir**; uma mesma persona pode gerar várias histórias.
+
+- **Descrição completa e matriz de consolidação:** [docs/personas/consolidadas.md](docs/personas/consolidadas.md)
+- **Jornadas das duas personas e evidências:** [docs/jornada.md](docs/jornada.md)
+- **Contribuições individuais preservadas:** [Pedro Schott — Célia](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana](docs/personas/pedro-padilha.md), [Sophia Miranda — Rafael](docs/personas/sophia-miranda.md), [Rodrigo Rigotto — Marina](docs/personas/rodrigo-rigotto.md) e [Vinicius Gorini — Renata](docs/personas/vinicius-gorini.md).
+
+As personas são fictícias e ainda não foram validadas com clientes. A consolidação documental foi preparada por **Vinicius Gorini (@viniciusgorini)** a partir das cinco contribuições, para revisão coletiva.
 
 ## 3. Solução
 
@@ -76,7 +87,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 | Pedro Marcondes Dombeck Schott | [@pedroschott](https://github.com/pedroschott) | A combinar com o squad |
 | Rodrigo Araújo Rigotto |  [@rodrigorigotto](https://github.com/rodrigorigotto)  | A combinar com o squad |
 | Sophia Cardoso Miranda | [@sophiacmiranda](https://github.com/sophiacmiranda) | A combinar com o squad |
-| Vinicius Gorini | Usuário a confirmar | A combinar com o squad |
+| Vinicius Gorini | [@viniciusgorini](https://github.com/viniciusgorini) | A combinar com o squad |
 | Pedro Padilha | Usuário a confirmar | A combinar com o squad |
 
 ## 9. Entregas
