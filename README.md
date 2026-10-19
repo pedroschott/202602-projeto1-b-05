@@ -17,11 +17,19 @@ O recorte proposto é a falta de informação durante a espera e a dificuldade p
 - **Evidência:** até 20 dias sem comunicação; cerca de 20% de falha no WhatsApp; baixa transparência da fatura antiga (slides 7 e 18)
 - **Indicador que a solução pretende mover:** pagamento da 1ª fatura, sem meta numérica ou impacto medido nesta fase
 
-## 2. Persona e jornada
+## 2. Personas consolidadas
 
-- **Persona:** Lucas Azevedo, 31 anos, técnico de manutenção de Betim no primeiro ciclo da Bulbe; personagem fictício proposto para o exercício
-- **Mapa de jornada:** [docs/jornada.md](docs/jornada.md)
-- **Contribuições individuais:** [Pedro Schott — Célia Martins](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana Alves](docs/personas/pedro-padilha.md), [Sophia Miranda - Rafael Moreira](docs/personas/sophia-miranda.md) [Rodrigo - Marina Tavares](docs/personas/rodrigo-rigotto.md) e [Vinicius — Renata Alves](docs/personas/vinicius-gorini.md), propostas para consolidação pelo squad
+As duas personas fictícias orientam a solução para o primeiro ciclo do cliente da Bulbe:
+
+- **Cláudia Martins**, 46 anos, costureira autônoma de Ribeirão das Neves: precisa acompanhar a contratação e encontrar a primeira fatura sem depender dos avisos por WhatsApp.
+- **Renata Alves**, 39 anos, assistente administrativa de Contagem: precisa compreender os valores, a relação entre Cemig e Bulbe e a base da economia antes de pagar.
+
+[Conheça as duas personas completas](docs/personas/consolidadas.md).
+
+Os perfis são propostas para revisão do squad e ainda não foram validados com clientes.
+
+- **Mapa de jornada existente:** [docs/jornada.md](docs/jornada.md)
+- **Contribuições individuais:** [Pedro Schott — Célia Martins](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana Alves](docs/personas/pedro-padilha.md), [Sophia Miranda — Rafael Moreira](docs/personas/sophia-miranda.md), [Rodrigo Rigotto — Marina Tavares](docs/personas/rodrigo-rigotto.md) e [Vinicius Gorini — Renata Alves](docs/personas/vinicius-gorini.md).
 
 ## 3. Solução
 
