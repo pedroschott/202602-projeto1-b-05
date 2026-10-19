@@ -7,6 +7,7 @@
 | HU01 | Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar. | #3 | Alta (proposta) | #5 |
 | HU02 | Como cliente da Bulbe que não recebeu o aviso da primeira fatura, quero localizar a cobrança e consultar seu vencimento pelo app/site para organizar o pagamento sem depender da mensagem de WhatsApp. | #2 | Alta (proposta) | #9 |
 | HU03 | Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento. | Acompanhamento da jornada e compreensão da primeira cobrança | Média (proposta individual; priorização pendente) | A definir |
+| HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
 
 ## HU01 — Entender os valores da primeira fatura
 
@@ -122,3 +123,39 @@ Em um teste com protótipo, verificar se a pessoa consegue encontrar o status da
 ### Observação de consolidação
 
 Esta história é uma proposta individual e pode se sobrepor à HU01, que já aborda a explicação dos valores e da economia, e à HU02, que aborda localizar a primeira fatura sem o aviso. O squad deve comparar as necessidades e decidir se a HU03 acrescenta um fluxo distinto ou se seus critérios devem ser incorporados às histórias existentes antes da definição final do MVP.
+
+## HU04 — Conferir a primeira fatura e a relação com a Cemig
+
+**Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
+**Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
+**Persona de origem:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
+**Momento da jornada:** chegada da 1ª fatura, decisão e pagamento  
+**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3), com apoio de [#1](https://github.com/pedroschott/202602-projeto1-b-05/issues/1) e [#2](https://github.com/pedroschott/202602-projeto1-b-05/issues/2)  
+**Tela proposta:** Entenda sua fatura
+
+### História
+
+Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança, sem medo de estar pagando duas vezes ou de não ter o benefício contratado.
+
+### Critérios de aceite
+
+- [ ] Mostrar valor total e vencimento no topo da tela, sem rolar.
+- [ ] Apresentar cada componente com nome, valor e explicação em linguagem simples.
+- [ ] Explicar o que continua sendo pago à Cemig durante a espera, o que é cobrado pela Bulbe e o próximo passo, usando apenas as orientações disponíveis (E4).
+- [ ] Não afirmar nem negar pagamento em dobro sem regra de faturamento confirmada; nesse caso, direcionar ao atendimento.
+- [ ] Informar os períodos comparados e a base usada para calcular a economia.
+- [ ] Sem dados suficientes ou com períodos não comparáveis, informar que a comparação está indisponível, sem exibir valor de economia.
+- [ ] Mostrar orientação de pagamento e acesso ao atendimento próximos à explicação.
+- [ ] Carregar dados fictícios em JSON via fetch.
+- [ ] Exibir carregamento, falha e opção de tentar novamente.
+- [ ] Funcionar em largura de 360 px sem rolagem horizontal.
+
+### Indicador e validação
+
+Indicador pretendido: pagamento da primeira fatura. A hipótese é que entender a cobrança, sua relação com a conta da Cemig e a base da economia ajude o cliente a pagar com menos dúvidas. Nenhum impacto foi medido; o dado de inadimplência de 32,4% (E0) é apenas contexto.
+
+Em um teste com protótipo, verificar se a pessoa identifica, sem ajuda, total, vencimento, componentes, base da economia e a orientação aplicável à conta da Cemig. O teste não promete economia nem comprova redução de inadimplência ou churn.
+
+### Observação de consolidação
+
+Esta história se sobrepõe à HU01 e à HU03 na explicação dos valores e da economia. O que ela acrescenta é a relação entre a cobrança da Bulbe e a conta da Cemig durante a espera. O squad deve decidir se a HU04 segue como história própria ou se esse critério entra na HU01.
