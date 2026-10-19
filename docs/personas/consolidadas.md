@@ -1,6 +1,7 @@
 # Personas consolidadas do squad
 
-**Preparação:** Vinicius Gorini (@viniciusgorini).
+**Discussão e definição:** realizadas coletivamente pelo grupo, a partir das cinco contribuições individuais.
+**Envio:** Vinícius Gorini (@viniciusgorini).
 **Status:** proposta consolidada para revisão coletiva.
 
 As personas são fictícias. Biografia, hábitos, pensamentos e emoções são hipóteses para o exercício, sem entrevistas ou validação com clientes. A consolidação agrupa necessidades recorrentes nas cinco propostas; repetição entre propostas não equivale a frequência medida na base da Bulbe.
