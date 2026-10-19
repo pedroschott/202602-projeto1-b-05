@@ -17,7 +17,7 @@ O recorte proposto é a falta de informação durante a espera e a dificuldade p
 - **Evidência:** até 20 dias sem comunicação; cerca de 20% de falha no WhatsApp; baixa transparência da fatura antiga (slides 7 e 18)
 - **Indicador que a solução pretende mover:** pagamento da 1ª fatura, sem meta numérica ou impacto medido nesta fase
 
-## 2. Personas e jornadas
+## 2. Personas consolidadas
 
 As cinco propostas individuais foram comparadas pelas necessidades recorrentes e consolidadas em dois perfis complementares para revisão do squad:
 
@@ -29,7 +29,9 @@ As cinco propostas individuais foram comparadas pelas necessidades recorrentes e
 O uso do celular, a busca por economia e a necessidade de informação clara aparecem nas propostas. Os perfis sintetizam **acompanhar e acessar** e **compreender e conferir**; uma mesma persona pode gerar várias histórias.
 
 - **Descrição completa e matriz de consolidação:** [docs/personas/consolidadas.md](docs/personas/consolidadas.md)
-- **Jornadas das duas personas e evidências:** [docs/jornada.md](docs/jornada.md)
+- **Evidências e mapa inicial do projeto:** [docs/jornada.md](docs/jornada.md)
+
+Cada um dos cinco integrantes deverá desenvolver sua própria jornada e a tela correspondente. A consolidação em duas personas orienta esses trabalhos; não define uma jornada por persona.
 - **Contribuições individuais preservadas:** [Pedro Schott — Célia](docs/personas/pedro-schott.md), [Pedro Padilha — Mariana](docs/personas/pedro-padilha.md), [Sophia Miranda — Rafael](docs/personas/sophia-miranda.md), [Rodrigo Rigotto — Marina](docs/personas/rodrigo-rigotto.md) e [Vinicius Gorini — Renata](docs/personas/vinicius-gorini.md).
 
 As personas são fictícias e ainda não foram validadas com clientes. A consolidação documental foi preparada por **Vinicius Gorini (@viniciusgorini)** a partir das cinco contribuições, para revisão coletiva.
