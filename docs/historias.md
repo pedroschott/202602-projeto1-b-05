@@ -4,51 +4,68 @@
 
 | ID | História | Oportunidade de origem | Prioridade | Issue |
 | --- | --- | --- | --- | --- |
-| HU01 | Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar. | #3 | Alta (proposta) | #5 |
+| HU01 | Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar. | #3 (com apoio de #2) | Alta (proposta) | #5 |
 | HU02 | Como cliente da Bulbe que não recebeu o aviso da primeira fatura, quero localizar a cobrança e consultar seu vencimento pelo app/site para organizar o pagamento sem depender da mensagem de WhatsApp. | #2 | Alta (proposta) | #9 |
-| HU03 | Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento. | Acompanhamento da jornada e compreensão da primeira cobrança | Média (proposta individual; priorização pendente) | A definir |
+| HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
+| HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
 
-## HU01 — Entender os valores da primeira fatura
+## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
-**Status:** proposta individual; aguarda alinhamento com as duas personas consolidadas e confirmação de entrada no MVP.
-**Responsável:** Vinicius Gorini (@viniciusgorini)
-**Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)
-**Momento da jornada:** recebimento e conferência da primeira fatura
-**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3)
-**Tela proposta:** Entenda sua fatura
+**Status:** reformulação alinhada à orientação do professor relatada por Vinicius; priorização coletiva no MVP a confirmar.  
+**Responsável:** Vinicius Gorini (@viniciusgorini)  
+**Prioridade proposta:** Alta  
+**Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
+**Momento da jornada:** recebimento e conferência da primeira fatura  
+**Oportunidade principal:** [#3 — compreensão da cobrança](https://github.com/pedroschott/202602-projeto1-b-05/issues/3), com apoio de [#2 — acesso à informação e à fatura](https://github.com/pedroschott/202602-projeto1-b-05/issues/2)  
+**Fluxo proposto:** convites contextuais no início e no detalhe da fatura → assistente/FAQ → informação ou tela correspondente.
 
 ### História
 
-Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar.
+Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar.
 
 ### Critérios de aceite
 
-- [ ] Mostrar referência, vencimento e valor total da fatura.
-- [ ] Apresentar cada componente com nome, valor e explicação.
-- [ ] A soma dos componentes corresponde ao total.
-- [ ] Informar a base usada para comparar a economia.
-- [ ] Sem dados suficientes, informar que a comparação está indisponível.
-- [ ] Carregar dados fictícios em JSON via fetch.
-- [ ] Exibir carregamento, falha e opção de tentar novamente.
-- [ ] Permitir voltar à lista de faturas.
+- [ ] O assistente pode ser acessado pela tela inicial e pelo detalhe da fatura.
+- [ ] Os convites identificam claramente que se trata de um assistente virtual.
+- [ ] O cliente consegue iniciar a interação por perguntas prontas, sem precisar digitar.
+- [ ] O acesso pela fatura oferece perguntas relacionadas à cobrança.
+- [ ] As respostas usam linguagem simples e informações verificadas, sem inventar regras de faturamento ou valores.
+- [ ] Quando aplicável, a resposta oferece um botão para a tela correspondente do aplicativo.
+- [ ] Quando não há informação suficiente, o assistente informa a limitação e oferece um caminho de atendimento.
+- [ ] Ao sair da conversa, o cliente consegue retornar à tela de origem.
+- [ ] Carregar perguntas, respostas e dados fictícios de demonstração em JSON via `fetch`, com estados de carregamento, falha e tentativa novamente.
 - [ ] Funcionar em largura de 360 px sem rolagem horizontal.
+
+### Wireframes da mesma história
+
+1. **Início do app:** convite visível e identificado para conversar com o assistente sobre dúvidas do serviço e da cobrança.
+2. **Detalhe da fatura:** gancho contextual, como “Não entendeu esse valor? Pergunte ao assistente”, preservando o assunto ao abrir a conversa.
+3. **Assistente/FAQ:** perguntas prontas, explicações curtas, botões para os destinos correspondentes e retorno à origem.
+
+As três telas demonstram descoberta, entrada e uso do mesmo recurso e pertencem à HU01.
 
 ### Indicador e validação
 
-Indicador pretendido: pagamento da primeira fatura. A hipótese é que compreender a cobrança ajude o cliente a decidir sobre o pagamento com menos dúvidas. Nenhum impacto foi medido.
+Indicador pretendido: pagamento da primeira fatura. A hipótese é que explicações acessíveis no momento da dúvida apoiem a compreensão e a escolha do próximo passo. Nenhum impacto foi medido.
 
-Conferir cálculos, navegação, carregamento, falhas e apresentação no celular. Em um teste de compreensão, verificar se a pessoa identifica total, vencimento, componentes e base de comparação. Esse teste não comprova redução de inadimplência.
+No protótipo, verificar se uma pessoa encontra o convite sem instrução, reconhece que é um assistente virtual, inicia uma pergunta, compreende a explicação, segue o encaminhamento e volta à tela de origem. Incluir uma pergunta sem resposta disponível para verificar o encaminhamento ao atendimento. Esse teste avalia descoberta, compreensão e navegação; não comprova redução de inadimplência.
+
+### Limites e integração
+
+A HU01 oferece explicações e encaminhamentos. Não substitui a localização da fatura (HU02), o acompanhamento da adesão (HU03), os detalhes da cobrança (HU04) ou a calculadora (HU05); integra esses destinos quando disponíveis. Não confirma pagamentos reais.
+
+Perguntas prontas constituem o fluxo mínimo. Conversa livre, voz e integração com modelo de IA não são requisitos fechados nesta revisão; sua inclusão e viabilidade dependem de definição posterior. O protótipo não deve apresentar respostas predefinidas como IA já implementada.
 
 ### Issues vinculadas
 
-- Persona e jornada individual: #4
+- Persona e jornada individual de origem: #4
 - História: #5
-- Wireframe: #6
+- Três wireframes: #6
 - Protótipo de alta fidelidade: #7
 - Implementação: #8
 
-Wireframe, protótipo e implementação estão planejados, ainda não executados. A consolidação das personas e a priorização coletiva do MVP permanecem pendentes.
+Wireframe, protótipo e implementação permanecem como tarefas planejadas, sem conclusão atribuída nesta revisão.
 
 ## HU02 — Localizar a primeira fatura sem o aviso
 
@@ -90,39 +107,44 @@ Conferir navegação, dados, situações da fatura, carregamento, falhas e apres
 
 Wireframe, protótipo e implementação ainda não foram executados. A consolidação das personas e a priorização coletiva do MVP permanecem pendentes.
 
-## HU03 — Acompanhar a contratação e entender a primeira fatura
+## HU03 — Acompanhar o andamento da contratação
 
-**Status:** proposta individual; aguarda alinhamento com as duas personas consolidadas e confirmação de entrada no MVP.  
-**Responsável:** contribuição individual — Persona 5  
-**Persona de origem:** [Mariana Alves](personas/mariana-alves.md)  
-**Momento da jornada:** período de espera, recebimento e conferência da primeira fatura  
-**Oportunidade de origem:** acompanhamento claro da adesão e compreensão da primeira cobrança  
-**Tela proposta:** Acompanhe sua adesão / Entenda sua primeira fatura
+**Status:** proposta individual; aguarda alinhamento com as personas consolidadas e confirmação de entrada no MVP.  
+**Responsável:** Pedro Padilha (contribuição individual — Persona 5)  
+**Persona de referência:** [P1 — Cláudia Martins](personas/consolidadas.md#p1--cláudia-martins-acompanhar-e-acessar)  
+**Momento da jornada:** cadastro e período de espera pela conexão  
+**Oportunidade de origem:** acompanhamento claro da adesão durante a espera (O1 em `docs/jornada.md`)  
+**Tela proposta:** Acompanhe sua adesão
 
 ### História
 
-Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento.
+Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação.
 
 ### Critérios de aceite
 
-- [ ] Permitir consultar o status atual da contratação e apresentar o próximo passo quando essa informação estiver disponível.
-- [ ] Quando a primeira fatura estiver disponível, mostrar valor total, vencimento e referência da cobrança.
-- [ ] Explicar os principais componentes da fatura em linguagem simples.
-- [ ] Informar a base usada para comparar a economia; se não houver dados suficientes, deixar isso explícito.
-- [ ] Apresentar as informações em layout legível pelo celular.
+- [ ] Exibir uma linha de progresso com etapas identificadas e numeradas, destacando visualmente a etapa atual.
+- [ ] Mostrar o status atual em linguagem simples; a compreensão não pode depender apenas de cores, números ou porcentagem.
+- [ ] Exibir a última atualização quando essa informação estiver disponível nos dados.
+- [ ] Mostrar pendências e o próximo passo quando houver informações confirmadas.
+- [ ] Quando nenhuma ação for necessária do cliente, explicar que ele deve aguardar, sem inventar prazos ou datas de conexão.
+- [ ] Definir as etapas do protótipo com base no processo confirmado pela Bulbe; enquanto isso não ocorrer, identificar os nomes e a sequência como ilustrativos.
+- [ ] Carregar os dados fictícios de acompanhamento em arquivo JSON por meio de `fetch`.
 - [ ] Exibir estados de carregamento e falha de consulta, com opção de tentar novamente.
-- [ ] Não inventar datas, valores, status ou economias que não estejam presentes nos dados.
-- [ ] Permitir acessar as informações sem depender exclusivamente de uma mensagem de WhatsApp.
+- [ ] Não inventar status, datas, pendências, prazos ou previsões de conexão ausentes dos dados.
+- [ ] Permitir navegar entre a tela de acompanhamento e as demais telas do protótipo.
+- [ ] Funcionar em largura de 360 px sem rolagem horizontal, mantendo textos e etapas legíveis.
 
-### Indicador e validação
+### Indicador e justificativa
 
-Indicador pretendido: compreensão da primeira fatura e apoio ao pagamento da primeira cobrança. A hipótese é que o acompanhamento claro e a explicação dos valores reduzam dúvidas. Nenhum impacto foi medido.
+**Indicador pretendido:** pagamento da primeira fatura. A inadimplência da primeira fatura foi de 32,4% entre setembro de 2025 e julho de 2026. A jornada também registra que alguns clientes passaram até 20 dias sem comunicação durante a espera. A hipótese é que informar o status e o próximo passo reduza a incerteza e ajude a preparar o cliente para as etapas seguintes. Isso não demonstra que a tela, por si só, reduzirá a inadimplência; nenhum impacto foi medido.
 
-Em um teste com protótipo, verificar se a pessoa consegue encontrar o status da adesão, identificar o valor e vencimento da primeira fatura e explicar os principais componentes e a base da economia. O teste avalia compreensão e navegação, não comprova redução de inadimplência.
+### Validação
 
-### Observação de consolidação
+Em um teste com o protótipo, pedir à pessoa para identificar em qual etapa está, explicar o que o status significa e dizer se precisa realizar alguma ação. Registrar se ela consegue responder sem ajuda. O teste avalia compreensão e navegação, não comprova redução de inadimplência, nem valida etapas oficiais do processo.
 
-Esta história é uma proposta individual e pode se sobrepor à HU01, que já aborda a explicação dos valores e da economia, e à HU02, que aborda localizar a primeira fatura sem o aviso. O squad deve comparar as necessidades e decidir se a HU03 acrescenta um fluxo distinto ou se seus critérios devem ser incorporados às histórias existentes antes da definição final do MVP.
+### Limites de escopo
+
+Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e a espera pela conexão. Não inclui explicar valores ou economia da primeira fatura (tema da HU01/HU04), nem localizar uma fatura cujo aviso não foi recebido (tema da HU02). Os nomes e a sequência das etapas precisam ser confirmados com a Bulbe antes de serem apresentados como processo oficial.
 
 ## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
@@ -161,3 +183,43 @@ Em um teste com protótipo, verificar se a pessoa consegue, sem ajuda, dizer o q
 ### Observação de consolidação
 
 [a definir — verificar se esta história se sobrepõe a outra HU do squad, como login ou cadastro. Se não houver sobreposição, retirar esta seção.]
+Esta história se sobrepõe à HU01 e à HU03 na explicação dos valores e da economia. O que ela acrescenta é a relação entre a cobrança da Bulbe e a conta da Cemig durante a espera. O squad deve decidir se a HU04 segue como história própria ou se esse critério entra na HU01.
+
+
+## HU05 — Calcular e conferir a economia
+
+**Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
+**Responsável:** Sophia Miranda (@sophiacmiranda)  
+**Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
+**Momento da jornada:** conferência da primeira fatura e avaliação da economia  
+**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3) — transparência dos valores e da economia  
+**Tela proposta:** Calculadora de economia
+
+### História
+
+Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança.
+
+### Critérios de aceite
+
+- [ ] Permitir visualizar os períodos considerados no cálculo e identificar claramente as datas inicial e final de cada período.
+- [ ] Identificar a base de comparação e os valores usados no cálculo, com rótulos e explicações em linguagem simples.
+- [ ] Exibir a fórmula ou as etapas do cálculo para que o cliente consiga entender como o resultado foi obtido.
+- [ ] Calcular e exibir a economia somente quando houver dados suficientes e bases e períodos considerados comparáveis segundo regras confirmadas pela Bulbe.
+- [ ] Se os períodos não forem comparáveis, houver dados ausentes ou a regra de cálculo não estiver confirmada, explicar por que não é possível calcular a economia e não apresentar um valor como se fosse confiável.
+- [ ] Diferenciar valores informados, estimativas e resultados calculados; não apresentar estimativa como economia garantida.
+- [ ] Permitir revisar os dados de entrada e atualizar o resultado quando eles forem alterados.
+- [ ] Carregar dados fictícios de demonstração em JSON via `fetch`, sem usar ou expor dados reais de clientes.
+- [ ] Exibir estados de carregamento e falha, com opção de tentar novamente.
+- [ ] Funcionar em largura de 360 px sem rolagem horizontal, mantendo valores, períodos e explicações legíveis.
+
+### Indicador e validação
+
+**Indicador pretendido:** compreensão da base de cálculo da economia e pagamento da primeira fatura. A hipótese é que tornar períodos, valores e fórmula verificáveis ajude a pessoa a compreender o benefício. Nenhum impacto foi medido; o wireframe não comprova economia real nem redução de inadimplência.
+
+Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram comparados, explicar a base do cálculo e descrever como o resultado foi obtido. Incluir pelo menos um cenário com períodos incomparáveis ou dados insuficientes e verificar se a pessoa entende por que nenhum valor de economia é apresentado.
+
+### Limites de escopo e relação com outras histórias
+
+Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a calculadora será uma tela própria ou parte da tela “Entenda sua fatura”.
+
+As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
