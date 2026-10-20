@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | --- |
 | HU01 | Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar. | #3 | Alta (proposta) | #5 |
 | HU02 | Como cliente da Bulbe que não recebeu o aviso da primeira fatura, quero localizar a cobrança e consultar seu vencimento pelo app/site para organizar o pagamento sem depender da mensagem de WhatsApp. | #2 | Alta (proposta) | #9 |
-| HU03 | Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento. | Acompanhamento da jornada e compreensão da primeira cobrança | Média (proposta individual; priorização pendente) | A definir |
+| HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
 
 ## HU01 — Entender os valores da primeira fatura
@@ -90,39 +90,44 @@ Conferir navegação, dados, situações da fatura, carregamento, falhas e apres
 
 Wireframe, protótipo e implementação ainda não foram executados. A consolidação das personas e a priorização coletiva do MVP permanecem pendentes.
 
-## HU03 — Acompanhar a contratação e entender a primeira fatura
+## HU03 — Acompanhar o andamento da contratação
 
-**Status:** proposta individual; aguarda alinhamento com as duas personas consolidadas e confirmação de entrada no MVP.  
-**Responsável:** contribuição individual — Persona 5  
-**Persona de origem:** [Mariana Alves](personas/mariana-alves.md)  
-**Momento da jornada:** período de espera, recebimento e conferência da primeira fatura  
-**Oportunidade de origem:** acompanhamento claro da adesão e compreensão da primeira cobrança  
-**Tela proposta:** Acompanhe sua adesão / Entenda sua primeira fatura
+**Status:** proposta individual; aguarda alinhamento com as personas consolidadas e confirmação de entrada no MVP.  
+**Responsável:** Pedro Padilha (contribuição individual — Persona 5)  
+**Persona de referência:** [P1 — Cláudia Martins](personas/consolidadas.md#p1--cláudia-martins-acompanhar-e-acessar)  
+**Momento da jornada:** cadastro e período de espera pela conexão  
+**Oportunidade de origem:** acompanhamento claro da adesão durante a espera (O1 em `docs/jornada.md`)  
+**Tela proposta:** Acompanhe sua adesão
 
 ### História
 
-Como cliente da Bulbe, quero acompanhar pelo celular o andamento da contratação e entender os valores e a economia da primeira fatura para saber o que estou pagando sem precisar procurar atendimento.
+Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação.
 
 ### Critérios de aceite
 
-- [ ] Permitir consultar o status atual da contratação e apresentar o próximo passo quando essa informação estiver disponível.
-- [ ] Quando a primeira fatura estiver disponível, mostrar valor total, vencimento e referência da cobrança.
-- [ ] Explicar os principais componentes da fatura em linguagem simples.
-- [ ] Informar a base usada para comparar a economia; se não houver dados suficientes, deixar isso explícito.
-- [ ] Apresentar as informações em layout legível pelo celular.
+- [ ] Exibir uma linha de progresso com etapas identificadas e numeradas, destacando visualmente a etapa atual.
+- [ ] Mostrar o status atual em linguagem simples; a compreensão não pode depender apenas de cores, números ou porcentagem.
+- [ ] Exibir a última atualização quando essa informação estiver disponível nos dados.
+- [ ] Mostrar pendências e o próximo passo quando houver informações confirmadas.
+- [ ] Quando nenhuma ação for necessária do cliente, explicar que ele deve aguardar, sem inventar prazos ou datas de conexão.
+- [ ] Definir as etapas do protótipo com base no processo confirmado pela Bulbe; enquanto isso não ocorrer, identificar os nomes e a sequência como ilustrativos.
+- [ ] Carregar os dados fictícios de acompanhamento em arquivo JSON por meio de `fetch`.
 - [ ] Exibir estados de carregamento e falha de consulta, com opção de tentar novamente.
-- [ ] Não inventar datas, valores, status ou economias que não estejam presentes nos dados.
-- [ ] Permitir acessar as informações sem depender exclusivamente de uma mensagem de WhatsApp.
+- [ ] Não inventar status, datas, pendências, prazos ou previsões de conexão ausentes dos dados.
+- [ ] Permitir navegar entre a tela de acompanhamento e as demais telas do protótipo.
+- [ ] Funcionar em largura de 360 px sem rolagem horizontal, mantendo textos e etapas legíveis.
 
-### Indicador e validação
+### Indicador e justificativa
 
-Indicador pretendido: compreensão da primeira fatura e apoio ao pagamento da primeira cobrança. A hipótese é que o acompanhamento claro e a explicação dos valores reduzam dúvidas. Nenhum impacto foi medido.
+**Indicador pretendido:** pagamento da primeira fatura. A inadimplência da primeira fatura foi de 32,4% entre setembro de 2025 e julho de 2026. A jornada também registra que alguns clientes passaram até 20 dias sem comunicação durante a espera. A hipótese é que informar o status e o próximo passo reduza a incerteza e ajude a preparar o cliente para as etapas seguintes. Isso não demonstra que a tela, por si só, reduzirá a inadimplência; nenhum impacto foi medido.
 
-Em um teste com protótipo, verificar se a pessoa consegue encontrar o status da adesão, identificar o valor e vencimento da primeira fatura e explicar os principais componentes e a base da economia. O teste avalia compreensão e navegação, não comprova redução de inadimplência.
+### Validação
 
-### Observação de consolidação
+Em um teste com o protótipo, pedir à pessoa para identificar em qual etapa está, explicar o que o status significa e dizer se precisa realizar alguma ação. Registrar se ela consegue responder sem ajuda. O teste avalia compreensão e navegação, não comprova redução de inadimplência, nem valida etapas oficiais do processo.
 
-Esta história é uma proposta individual e pode se sobrepor à HU01, que já aborda a explicação dos valores e da economia, e à HU02, que aborda localizar a primeira fatura sem o aviso. O squad deve comparar as necessidades e decidir se a HU03 acrescenta um fluxo distinto ou se seus critérios devem ser incorporados às histórias existentes antes da definição final do MVP.
+### Limites de escopo
+
+Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e a espera pela conexão. Não inclui explicar valores ou economia da primeira fatura (tema da HU01/HU04), nem localizar uma fatura cujo aviso não foi recebido (tema da HU02). Os nomes e a sequência das etapas precisam ser confirmados com a Bulbe antes de serem apresentados como processo oficial.
 
 ## HU04 — Conferir a primeira fatura e a relação com a Cemig
 
