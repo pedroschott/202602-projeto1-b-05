@@ -9,6 +9,7 @@
 | HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
 | HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
+| HU06 | Como Renata, cliente que está conhecendo a Bulbe, quero conhecer a oportunidade de indicar o serviço depois de compreender seu benefício na minha rotina, para recomendar com confiança e decidir se quero participar. | Observação do onboarding trazida por Pedro; extensão da avaliação no 2º mês | A definir; fora do MVP até alinhamento | A definir |
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
@@ -220,3 +221,65 @@ Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram 
 Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a calculadora será uma tela própria ou parte da tela “Entenda sua fatura”.
 
 As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
+
+
+## HU06 — Conhecer a indicação depois de experimentar o serviço
+
+**Status:** proposta individual de Pedro Schott; aguarda revisão do squad e confirmação de escopo.
+**Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
+**Momento da jornada:** avaliação da experiência após compreender a primeira fatura e a economia; extensão da fase 6 do [mapa de jornada](jornada.md).
+**Origem:** observação do onboarding enviada por Pedro em 20/10/2026, acompanhada de captura da tela “Indique e ganhe”. Não corresponde às oportunidades #1–#3 já registradas.
+
+### Problema observado e hipótese
+
+Segundo a observação trazida por Pedro, o convite para indicar aparece durante o onboarding, antes de o usuário experimentar o aplicativo. A captura mostra a oferta de R$ 50 para quem indica e R$ 50 para o indicado, condicionada à indicação confirmada, com benefício do indicado na primeira conta Bulbe. A imagem, isoladamente, não comprova quando a tela aparece nem valida as regras atuais da campanha.
+
+Renata confere as cobranças e precisa entender o benefício antes de confiar no serviço. Pedir uma recomendação nesse primeiro contato pode chegar antes de ela ter uma experiência para compartilhar. Essa relação com a persona é uma hipótese, sem entrevista ou taxa de conversão medida.
+
+A hipótese a testar é que apresentar o convite após uma experiência de valor torne a indicação mais relevante. Esta proposta amplia o recorte atual de acompanhamento e pagamento da primeira fatura; não altera a prioridade das HU01–HU05 nem atribui impacto em inadimplência.
+
+### História
+
+Como Renata, cliente que está conhecendo a Bulbe, quero conhecer a oportunidade de indicar o serviço depois de compreender seu benefício na minha rotina, para recomendar com confiança e decidir se quero participar.
+
+A história descreve a necessidade e o benefício para a persona. Popup, missão e gatilho são a proposta de solução abaixo, que pode ser revisada sem mudar essa necessidade.
+
+### Proposta de solução para o futuro wireframe
+
+- Retirar o convite de indicação do onboarding.
+- Apresentar um popup contextual após um marco de uso. Para o protótipo, propor a primeira consulta da explicação da economia com dados suficientes, após a primeira fatura. Esse marco é uma hipótese para discussão, não uma regra oficial nem prova de satisfação. Só contar dias desde o cadastro não garante experiência com o serviço.
+- Mostrar no popup o benefício para as duas pessoas, as condições e o acesso à missão “Indique e ganhe”, com ação “Ver missão” e opção “Agora não”. Valores e condições devem ser confirmados com a Bulbe antes de uso real; no protótipo, são ilustrativos a partir da captura.
+- Manter a missão no app, com explicação, regras, acesso ao compartilhamento por WhatsApp e acompanhamento do estado.
+- Permitir fechar o popup e continuar usando o app. A missão pendente não pode ser descartada definitivamente: permanece acessível até ser concluída. Esta é a interpretação proposta para “missão que deve ser concluída para ser dismissable”; a persistência se aplica à missão, sem bloquear fatura, pagamento ou outras funções.
+- Propor como conclusão da missão uma indicação confirmada conforme as regras da campanha. Nesse estado, permitir arquivá-la da lista de pendentes e manter o resultado consultável. A condição oficial de confirmação precisa ser definida com a Bulbe.
+
+**Fluxo:** marco de uso → popup → missão pendente → compartilhamento → aguardando confirmação → missão concluída → arquivamento opcional.
+
+Fechar o popup mantém a missão pendente. Abrir ou cancelar o WhatsApp não comprova envio, adesão ou indicação confirmada e não conclui a missão. Sem confirmação de envio, manter a missão pendente; usar “aguardando confirmação” somente quando houver registro de indicação verificável. Não creditar desconto só porque a missão foi aberta ou compartilhada.
+
+### Critérios de aceite propostos
+
+- [ ] O convite não aparece durante o onboarding nem antes do marco de uso definido para o protótipo.
+- [ ] Quando faltam dados para compreender a economia, o marco não é considerado atingido.
+- [ ] Após o marco, o popup informa o objetivo e as condições da indicação e permite abrir a missão ou fechar o convite.
+- [ ] O popup é apresentado automaticamente uma única vez por campanha; fechar ou reabrir o app não o faz reaparecer. A missão continua acessível na área de missões.
+- [ ] Fechar o popup não conclui, remove ou arquiva a missão pendente e não impede o uso do restante do app.
+- [ ] A missão explica o que falta para concluir e diferencia pendente, aguardando confirmação e concluída por texto, sem depender apenas de cores.
+- [ ] Abrir, cancelar ou retornar do WhatsApp sem evidência de indicação não conclui a missão nem informa que houve envio.
+- [ ] Uma indicação só conclui a missão quando atende à condição de confirmação definida para a campanha; no protótipo, identificar essa confirmação como simulação com dados fictícios.
+- [ ] Apenas a missão concluída pode ser arquivada da lista de pendentes; seu resultado continua consultável.
+- [ ] Reabrir o app preserva o estado da missão e o registro de exibição do popup, sem duplicar missões da mesma campanha.
+- [ ] Falha ao consultar o estado mostra erro e tentativa novamente, sem simular conclusão, confirmação ou concessão de desconto.
+- [ ] O conteúdo funciona em largura de 360 px sem rolagem horizontal, com ações legíveis.
+
+### Indicadores e validação
+
+No teste do protótipo, verificar se a pessoa entende por que recebeu o convite, o benefício de cada participante, a condição de conclusão e a diferença entre fechar o popup e arquivar a missão. Testar saída e retorno, cancelamento do compartilhamento, falha de consulta e confirmação simulada.
+
+Para uma avaliação futura em produção, comparar convite no onboarding e após o marco de uso, medindo indicações confirmadas por usuário exposto em uma mesma janela de acompanhamento. Acompanhar também abertura da missão, fechamento do popup e abandono de tarefas principais. Cliques no WhatsApp são intenção de compartilhar, não indicações confirmadas. A janela, o tamanho da amostra e a meta ainda precisam ser definidos; nenhum ganho de conversão foi demonstrado.
+
+### Limites e próximos passos
+
+Este PR documenta a história e o comportamento proposto. Não implementa o recurso, não altera a campanha real e não cria wireframe. Pedro fará o wireframe no Figma, contemplando popup, missão pendente e conclusão/arquivamento. O link poderá ser incluído quando existir.
+
+Antes da implementação, alinhar com o squad a inclusão no escopo e confirmar com a Bulbe o marco de uso, as condições da campanha e o evento que comprova uma indicação. As biografias da persona consolidada permanecem preservadas; o comportamento de indicação é uma hipótese adicional.
