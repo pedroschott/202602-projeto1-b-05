@@ -146,40 +146,43 @@ Em um teste com o protótipo, pedir à pessoa para identificar em qual etapa est
 
 Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e a espera pela conexão. Não inclui explicar valores ou economia da primeira fatura (tema da HU01/HU04), nem localizar uma fatura cujo aviso não foi recebido (tema da HU02). Os nomes e a sequência das etapas precisam ser confirmados com a Bulbe antes de serem apresentados como processo oficial.
 
-## HU04 — Conferir a primeira fatura e a relação com a Cemig
+## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
 **Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
-**Persona de origem:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
-**Momento da jornada:** chegada da 1ª fatura, decisão e pagamento  
-**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3), com apoio de [#1](https://github.com/pedroschott/202602-projeto1-b-05/issues/1) e [#2](https://github.com/pedroschott/202602-projeto1-b-05/issues/2)  
-**Tela proposta:** Entenda sua fatura
+**Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
+**Momento da jornada:** primeiro acesso ao app, antes do login  
+**Oportunidade de origem:** [a definir — link para a issue]  
+**Tela proposta:** Boas-vindas (carrossel)
 
 ### História
 
-Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança, sem medo de estar pagando duas vezes ou de não ter o benefício contratado.
+Como pessoa que abre o app da Bulbe pela primeira vez, quero ver em poucos slides o que a Bulbe oferece, como o serviço funciona e o que vou encontrar depois de entrar, para decidir com segurança se faço login ou crio conta, sem precisar me cadastrar primeiro para entender o app.
 
 ### Critérios de aceite
 
-- [ ] Mostrar valor total e vencimento no topo da tela, sem rolar.
-- [ ] Apresentar cada componente com nome, valor e explicação em linguagem simples.
-- [ ] Explicar o que continua sendo pago à Cemig durante a espera, o que é cobrado pela Bulbe e o próximo passo, usando apenas as orientações disponíveis (E4).
-- [ ] Não afirmar nem negar pagamento em dobro sem regra de faturamento confirmada; nesse caso, direcionar ao atendimento.
-- [ ] Informar os períodos comparados e a base usada para calcular a economia.
-- [ ] Sem dados suficientes ou com períodos não comparáveis, informar que a comparação está indisponível, sem exibir valor de economia.
-- [ ] Mostrar orientação de pagamento e acesso ao atendimento próximos à explicação.
-- [ ] Carregar dados fictícios em JSON via fetch.
-- [ ] Exibir carregamento, falha e opção de tentar novamente.
+- [ ] Exibir o carrossel no primeiro acesso, antes da tela de login.
+- [ ] Apresentar cada slide com título, texto curto em linguagem simples e imagem.
+- [ ] Usar no conteúdo dos slides apenas informações confirmadas sobre o serviço; não prometer valor de economia nem prazo.
+- [ ] Permitir avançar e voltar com gesto de deslizar e com botões.
+- [ ] Mostrar um indicador de posição (por exemplo, "2 de 4" ou bolinhas).
+- [ ] Oferecer "Pular" em todos os slides, levando direto à tela de login.
+- [ ] No último slide, exibir o botão "Começar", que leva à tela de login.
+- [ ] Não exibir o carrossel de novo para quem já viu ou pulou.
+- [ ] Se uma imagem não carregar, manter o texto visível e a navegação funcionando.
+- [ ] Carregar o conteúdo dos slides de um JSON fictício via fetch.
+- [ ] Exibir carregamento, falha e opção de tentar novamente; em caso de falha, permitir seguir para o login.
 - [ ] Funcionar em largura de 360 px sem rolagem horizontal.
 
 ### Indicador e validação
 
-Indicador pretendido: pagamento da primeira fatura. A hipótese é que entender a cobrança, sua relação com a conta da Cemig e a base da economia ajude o cliente a pagar com menos dúvidas. Nenhum impacto foi medido; o dado de inadimplência de 32,4% (E0) é apenas contexto.
+Indicador pretendido: avanço do primeiro acesso para o login ou cadastro. A hipótese é que entender a proposta da Bulbe antes do login diminua a desistência na entrada do app. Nenhum impacto foi medido.
 
-Em um teste com protótipo, verificar se a pessoa identifica, sem ajuda, total, vencimento, componentes, base da economia e a orientação aplicável à conta da Cemig. O teste não promete economia nem comprova redução de inadimplência ou churn.
+Em um teste com protótipo, verificar se a pessoa consegue, sem ajuda, dizer o que a Bulbe oferece, navegar pelos slides, pular o carrossel e chegar à tela de login. O teste não comprova aumento de cadastros nem de conversão.
 
 ### Observação de consolidação
 
+[a definir — verificar se esta história se sobrepõe a outra HU do squad, como login ou cadastro. Se não houver sobreposição, retirar esta seção.]
 Esta história se sobrepõe à HU01 e à HU03 na explicação dos valores e da economia. O que ela acrescenta é a relação entre a cobrança da Bulbe e a conta da Cemig durante a espera. O squad deve decidir se a HU04 segue como história própria ou se esse critério entra na HU01.
 
 
