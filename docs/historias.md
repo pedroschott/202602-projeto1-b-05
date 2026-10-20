@@ -4,52 +4,68 @@
 
 | ID | História | Oportunidade de origem | Prioridade | Issue |
 | --- | --- | --- | --- | --- |
-| HU01 | Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar. | #3 | Alta (proposta) | #5 |
+| HU01 | Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar. | #3 (com apoio de #2) | Alta (proposta) | #5 |
 | HU02 | Como cliente da Bulbe que não recebeu o aviso da primeira fatura, quero localizar a cobrança e consultar seu vencimento pelo app/site para organizar o pagamento sem depender da mensagem de WhatsApp. | #2 | Alta (proposta) | #9 |
 | HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
 | HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
 
-## HU01 — Entender os valores da primeira fatura
+## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
-**Status:** proposta individual; aguarda alinhamento com as duas personas consolidadas e confirmação de entrada no MVP.
-**Responsável:** Vinicius Gorini (@viniciusgorini)
-**Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)
-**Momento da jornada:** recebimento e conferência da primeira fatura
-**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3)
-**Tela proposta:** Entenda sua fatura
+**Status:** reformulação alinhada à orientação do professor relatada por Vinicius; priorização coletiva no MVP a confirmar.  
+**Responsável:** Vinicius Gorini (@viniciusgorini)  
+**Prioridade proposta:** Alta  
+**Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
+**Momento da jornada:** recebimento e conferência da primeira fatura  
+**Oportunidade principal:** [#3 — compreensão da cobrança](https://github.com/pedroschott/202602-projeto1-b-05/issues/3), com apoio de [#2 — acesso à informação e à fatura](https://github.com/pedroschott/202602-projeto1-b-05/issues/2)  
+**Fluxo proposto:** convites contextuais no início e no detalhe da fatura → assistente/FAQ → informação ou tela correspondente.
 
 ### História
 
-Como cliente que recebeu sua primeira fatura da Bulbe, quero consultar uma explicação dos valores cobrados e da economia para conferir a cobrança antes de pagar.
+Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar.
 
 ### Critérios de aceite
 
-- [ ] Mostrar referência, vencimento e valor total da fatura.
-- [ ] Apresentar cada componente com nome, valor e explicação.
-- [ ] A soma dos componentes corresponde ao total.
-- [ ] Informar a base usada para comparar a economia.
-- [ ] Sem dados suficientes, informar que a comparação está indisponível.
-- [ ] Carregar dados fictícios em JSON via fetch.
-- [ ] Exibir carregamento, falha e opção de tentar novamente.
-- [ ] Permitir voltar à lista de faturas.
+- [ ] O assistente pode ser acessado pela tela inicial e pelo detalhe da fatura.
+- [ ] Os convites identificam claramente que se trata de um assistente virtual.
+- [ ] O cliente consegue iniciar a interação por perguntas prontas, sem precisar digitar.
+- [ ] O acesso pela fatura oferece perguntas relacionadas à cobrança.
+- [ ] As respostas usam linguagem simples e informações verificadas, sem inventar regras de faturamento ou valores.
+- [ ] Quando aplicável, a resposta oferece um botão para a tela correspondente do aplicativo.
+- [ ] Quando não há informação suficiente, o assistente informa a limitação e oferece um caminho de atendimento.
+- [ ] Ao sair da conversa, o cliente consegue retornar à tela de origem.
+- [ ] Carregar perguntas, respostas e dados fictícios de demonstração em JSON via `fetch`, com estados de carregamento, falha e tentativa novamente.
 - [ ] Funcionar em largura de 360 px sem rolagem horizontal.
+
+### Wireframes da mesma história
+
+1. **Início do app:** convite visível e identificado para conversar com o assistente sobre dúvidas do serviço e da cobrança.
+2. **Detalhe da fatura:** gancho contextual, como “Não entendeu esse valor? Pergunte ao assistente”, preservando o assunto ao abrir a conversa.
+3. **Assistente/FAQ:** perguntas prontas, explicações curtas, botões para os destinos correspondentes e retorno à origem.
+
+As três telas demonstram descoberta, entrada e uso do mesmo recurso e pertencem à HU01.
 
 ### Indicador e validação
 
-Indicador pretendido: pagamento da primeira fatura. A hipótese é que compreender a cobrança ajude o cliente a decidir sobre o pagamento com menos dúvidas. Nenhum impacto foi medido.
+Indicador pretendido: pagamento da primeira fatura. A hipótese é que explicações acessíveis no momento da dúvida apoiem a compreensão e a escolha do próximo passo. Nenhum impacto foi medido.
 
-Conferir cálculos, navegação, carregamento, falhas e apresentação no celular. Em um teste de compreensão, verificar se a pessoa identifica total, vencimento, componentes e base de comparação. Esse teste não comprova redução de inadimplência.
+No protótipo, verificar se uma pessoa encontra o convite sem instrução, reconhece que é um assistente virtual, inicia uma pergunta, compreende a explicação, segue o encaminhamento e volta à tela de origem. Incluir uma pergunta sem resposta disponível para verificar o encaminhamento ao atendimento. Esse teste avalia descoberta, compreensão e navegação; não comprova redução de inadimplência.
+
+### Limites e integração
+
+A HU01 oferece explicações e encaminhamentos. Não substitui a localização da fatura (HU02), o acompanhamento da adesão (HU03), os detalhes da cobrança (HU04) ou a calculadora (HU05); integra esses destinos quando disponíveis. Não confirma pagamentos reais.
+
+Perguntas prontas constituem o fluxo mínimo. Conversa livre, voz e integração com modelo de IA não são requisitos fechados nesta revisão; sua inclusão e viabilidade dependem de definição posterior. O protótipo não deve apresentar respostas predefinidas como IA já implementada.
 
 ### Issues vinculadas
 
-- Persona e jornada individual: #4
+- Persona e jornada individual de origem: #4
 - História: #5
-- Wireframe: #6
+- Três wireframes: #6
 - Protótipo de alta fidelidade: #7
 - Implementação: #8
 
-Wireframe, protótipo e implementação estão planejados, ainda não executados. A consolidação das personas e a priorização coletiva do MVP permanecem pendentes.
+Wireframe, protótipo e implementação permanecem como tarefas planejadas, sem conclusão atribuída nesta revisão.
 
 ## HU02 — Localizar a primeira fatura sem o aviso
 
