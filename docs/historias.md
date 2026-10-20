@@ -128,7 +128,7 @@ Esta história é uma proposta individual e pode se sobrepor à HU01, que já ab
 
 **Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
-**Persona de origem:** [a definir — link para a persona em personas/consolidadas.md]  
+**Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
 **Momento da jornada:** primeiro acesso ao app, antes do login  
 **Oportunidade de origem:** [a definir — link para a issue]  
 **Tela proposta:** Boas-vindas (carrossel)
