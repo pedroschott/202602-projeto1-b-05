@@ -9,6 +9,7 @@
 | HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
 | HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
+| HU06 | Como Renata, cliente que ainda não percebeu a economia esperada, quero acompanhar o que falta para o benefício aparecer e quanto posso economizar, para organizar o pagamento da segunda fatura com clareza sobre o serviço. | Gap entre adesão e percepção do benefício; apoio de O1/O3 | A definir; proposta individual | A definir |
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
@@ -223,3 +224,81 @@ Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram 
 Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a calculadora será uma tela própria ou parte da tela “Entenda sua fatura”.
 
 As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
+
+
+## HU06 — Acompanhar a espera até o benefício aparecer
+
+**Status:** proposta individual; revisão do squad e entrada no MVP pendentes.
+
+**Responsável:** Pedro Marcondes Dombeck Schott (@pedroschott)
+
+**Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
+
+**Momento da jornada:** intervalo entre adesão e percepção do benefício, com foco no cliente que chega à segunda fatura sem compreender a economia esperada.
+
+**Oportunidade de origem:** gap de percepção do benefício relatado por Pedro em 20/10/2026; relacionado a acompanhamento (O1) e compreensão da economia (O3), sem atribuir essa observação às evidências históricas do projeto.
+
+### Problema e hipótese
+
+Renata precisa entender o benefício para confiar no serviço. Quando a economia demora a ficar visível, pode não entender o que está acontecendo nem o valor da continuidade. A hipótese é que tornar a espera e o benefício esperado compreensíveis ajude a organizar o pagamento da segunda fatura. Não houve pesquisa que comprove essa causa de atraso nem medição de impacto.
+
+O foco está **antes do primeiro desconto aparecer**, e não em comemorar uma economia já realizada. O cenário do wireframe é ilustrativo: a existência de cobrança antes da compensação, os componentes cobrados e a sequência operacional precisam ser confirmados com a Bulbe. Não se afirma que todo cliente receba duas faturas Bulbe sem benefício.
+
+### História
+
+Como Renata, cliente que ainda não percebeu a economia esperada, quero acompanhar o que falta para o benefício aparecer e quanto posso economizar, para organizar o pagamento da segunda fatura com clareza sobre o serviço.
+
+### Proposta de solução
+
+Card compacto e persistente na home, com progresso visual por marcos: **adesão → créditos → primeiro desconto**. O estado representado é “aguardando créditos”, sem data confirmada para o primeiro desconto. A segunda tela detalha os mesmos marcos e apresenta uma estimativa de economia futura.
+
+A gamificação é básica: progresso e reconhecimento das etapas, sem pontos, prêmio financeiro adicional, missão obrigatória ou convite novo de indicação. O banner de indicação pertence à interface usada como referência; não integra a HU06. A barra representa etapas operacionais, não percentual de tempo decorrido ou garantia de proximidade da conclusão. As etapas são uma simplificação para revisão com a Bulbe.
+
+### Critérios de aceite
+
+- [ ] Manter o card acessível na home durante a espera pelo primeiro desconto, com acesso ao detalhe do acompanhamento.
+- [ ] Identificar por texto e elementos visuais a etapa concluída, a etapa atual e o que falta; não depender apenas da cor das barras.
+- [ ] Usar etapas e situação reais na implementação; se houver pendência do cliente, mostrar a ação necessária. Não avançar por tempo decorrido ou por pagamento.
+- [ ] Mostrar previsão somente quando confirmada pela operação; na ausência dela, informar “Previsão ainda não confirmada”.
+- [ ] Diferenciar economia estimada de desconto lançado. Antes da compensação, não apresentar a projeção como valor já economizado ou saldo disponível.
+- [ ] Apresentar estimativa personalizada somente com dados e regra aplicável confirmados; sem dados suficientes, manter o acompanhamento sem inventar valor.
+- [ ] Explicitar a base da simulação: R$ 300 de energia compensável × 15% = R$ 45 por ciclo; R$ 270 em seis ciclos com créditos. Os seis ciclos começam na compensação, não na adesão, e não são um prazo para o benefício acabar.
+- [ ] Não aplicar o percentual sobre o total da conta nem prometer valor fixo: consumo, tarifas, créditos e contrato podem alterar o resultado.
+- [ ] Manter a segunda fatura acessível, com valor, vencimento e situação vindos dos dados. Aguardar créditos não deve gerar orientação automática para deixar de pagar ou para pagar cobranças em duplicidade; dúvidas devem ter caminho de atendimento.
+- [ ] Não considerar o clique no Pix como pagamento confirmado. A confirmação de pagamento não antecipa a compensação dos créditos nem muda artificialmente a etapa.
+- [ ] Quando o desconto for efetivamente lançado, encerrar o estado de espera e mostrar o benefício realizado, distinguindo-o de projeções.
+- [ ] Tratar carregamento, dados ausentes e falha de consulta sem simular progresso ou conclusão; oferecer tentativa novamente.
+- [ ] Na implementação, carregar dados fictícios de demonstração via JSON/`fetch` e funcionar em 360 px sem rolagem horizontal, com altura limitada e rolagem interna.
+
+### Wireframes da mesma história
+
+1. **Home:** card persistente acima das faturas, barras verdes e etapa “aguardando créditos”.
+2. **Acompanhamento:** marcos da espera, benefício estimado e acesso às faturas.
+
+![HU06 — home e acompanhamento antes do benefício](wireframes/hu06-espera-beneficio.png)
+
+[HTML editável com as duas telas](wireframes/hu06-espera-beneficio.html).
+
+O PNG e o HTML são wireframes com dados fictícios, baseados na referência visual fornecida. Datas e histórico mantêm o contexto visual dessa referência; não representam uma conta real nem dados coletados para validar a segunda fatura. O HTML é estático: somente a navegação entre as duas telas está demonstrada; Pix, detalhes e atendimento não estão implementados. Cor principal: `#08068D`.
+
+### Indicador e validação
+
+**Indicador principal pretendido:** inadimplência da segunda fatura — número de segundas faturas não quitadas integralmente até o vencimento dividido pelo total de segundas faturas com vencimento no período observado. Aguardar uma janela completa de conciliação para classificar os pagamentos pela data efetiva. Não reutilizar a taxa histórica da primeira fatura como taxa da segunda.
+
+Em produção, comparar grupos equivalentes com e sem o card, separando clientes cujo desconto já começou daqueles que ainda aguardam. Definir com a Bulbe a identificação do segundo ciclo, janela de observação, tamanho da amostra e meta. Acompanhar também compreensão e procura por atendimento; nenhum efeito foi medido.
+
+No teste de uso, verificar se a pessoa identifica a etapa atual, entende o que falta e distingue a estimativa de desconto já lançado. Pedir que encontre a segunda fatura e explique se o pagamento muda a etapa de créditos. Incluir ausência de previsão e falha de consulta. O teste avalia compreensão e navegação, sem comprovar redução de inadimplência.
+
+### Limites e integração
+
+A HU03 acompanha a adesão de forma geral; a HU06 faz a ponte entre a espera e a percepção do benefício, com foco no pagamento da segunda fatura. A HU05 confere a economia com dados comparáveis; a HU06 apenas apresenta uma projeção identificada e acompanha o início do desconto. O squad deve revisar essa integração antes de implementar.
+
+Este PR entrega história, critérios, PNG e HTML de referência. Não implementa integração com faturamento ou créditos, nem altera o aplicativo real. Regras de cobrança antes da compensação, etapas e gatilhos devem ser confirmados com a Bulbe.
+
+### Fontes do modelo de serviço
+
+Fontes públicas consultadas em 20/10/2026, sem substituir o contrato individual:
+
+- [Como funciona](https://bulbeenergia.com.br/como-funciona/): geração de energia, créditos, distribuição e desconto.
+- [FAQ oficial](https://bulbeenergia.com.br/duvidas/): desconto sobre energia compensável, exclusões do cálculo e possibilidade de ciclo sem desconto quando não há créditos.
+- [Termos de uso](https://bulbeenergia.com.br/termos-de-uso/): variação dos créditos e regras da fatura única conforme contratação.
