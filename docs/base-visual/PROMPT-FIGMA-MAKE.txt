@@ -1,0 +1,7 @@
+Aplique a base compartilhada Bulbe aos meus modelos/telas existentes. Preserve o conteúdo, os fluxos e o trabalho que já existem. Leia Guidelines.md e use BulbeLayout.tsx + bulbe-base.css como a fonte comum do layout. Não crie um componente equivalente com valores diferentes. Os logos originais já estão embutidos no TSX.
+
+Crie uma página de referência com três quadros em branco: onboarding/carrossel, área principal do app e detalhe/formulário, usando as variantes do componente. Deixe só uma área neutra de conteúdo no centro. Não invente funcionalidades, faturas ou histórias. Não coloque a moldura dos três quadros no produto final: ela é somente uma galeria de revisão.
+
+Use Poppins e preserve medidas, cores e proporções definidas no CSS. No app: cabeçalho azul com menu à esquerda, logo central e suporte humano à direita, rodapé Faturas/Consumo/Indicações. No carrossel: cabeçalho branco, logo colorida, suporte, etapas e Continuar/Pular. No detalhe: Voltar, logo, suporte e rodapé contextual opcional. Diferencie suporte humano do chatbot da HU01.
+
+Conecte navegação, voltar, suporte e etapas aos destinos existentes. Se não houver destino, indique o que falta, sem fingir funcionamento. Não apague funcionalidades existentes ao aplicar o layout. Confira 390x844 e 360x800, ausência de rolagem horizontal, fonte carregada, logo 96x38, alvos de 44px e conteúdo rolável. Liste as telas migradas e qualquer divergência restante.

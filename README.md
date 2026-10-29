@@ -37,6 +37,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
+- **Base visual compartilhada:** [docs/base-visual/](docs/base-visual/) — três modelos, CSS, logos, componente para Figma Make e regras de padronização do grupo (proposta para revisão).
 
 ## 4. Tecnologias
 
