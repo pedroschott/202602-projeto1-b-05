@@ -33,7 +33,17 @@ Os perfis são propostas para revisão do squad e ainda não foram validados com
 
 ## 3. Solução
 
-A hipótese de solução combina acompanhamento da espera, acesso à fatura e explicação dos valores. As oportunidades estão documentadas em `docs/jornada.md`. Histórias, telas e wireframes ainda serão definidos a partir da revisão do squad nas aulas seguintes. O código desta preparação continua sendo o exemplo original fornecido pelo professor.
+A hipótese de solução combina acompanhamento da espera, acesso à fatura e explicação dos valores. As oportunidades estão documentadas em `docs/jornada.md`. Histórias e wireframes seguem em revisão pelo squad.
+
+### O que já está implementado
+
+- **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
+- **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
+- **HU03** (Pedro Padilha): tela original em [`docs/wireframes/Telas Prontas/hu03.html`](docs/wireframes/Telas%20Prontas/hu03.html), acessível pelo menu; ainda não integrada ao template comum.
+
+Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
+
+**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU01, HU04 e HU05, integração da HU03 ao template, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -60,13 +70,19 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 ## 6. Estrutura do repositório
 
 ```
-├── index.html            # Página inicial
-├── pages/                # Demais telas da solução
+├── index.html            # Home: card da HU02 e faturas
+├── pages/
+│   ├── acompanhamento.html  # HU02: A caminho da economia
+│   └── modelo.html       # Modelo para novas telas
 ├── assets/
-│   ├── css/style.css     # Estilos
-│   ├── js/main.js        # Lógica da página inicial
+│   ├── css/style.css     # Estilos comuns do squad
+│   ├── css/hu02.css      # Estilos da HU02
+│   ├── js/layout.js      # Menu, suporte, diálogos e estados de carregamento
 │   ├── js/api.js         # Leitura dos dados (fetch)
-│   └── img/              # Imagens e ícones
+│   ├── js/hu02.js        # Regras da HU02 (etapas, previsão, simulação)
+│   ├── js/main.js        # Lógica da home
+│   ├── js/acompanhamento.js # Lógica da página de acompanhamento
+│   └── img/              # Logos originais
 ├── data/                 # Dados fictícios em JSON
 ├── docs/                 # Jornada, histórias, wireframes e sprints
 └── .github/              # Modelos de Issue e de Pull Request
@@ -96,7 +112,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 | Histórias de usuário | 20 | A desenvolver na aula correspondente |
 | Wireframes | 21–23 | A desenvolver na aula correspondente |
 | Sprint Review I | 24 | A desenvolver na aula correspondente |
-| Implementação | 25–28 | A desenvolver na aula correspondente |
+| Implementação | 25–28 | Em andamento: template comum e HU02 implementados, aguardando revisão; demais histórias pendentes |
 | Sprint Review II | 29 | A desenvolver na aula correspondente |
 | Versão final | 30 | A desenvolver na aula correspondente |
 
