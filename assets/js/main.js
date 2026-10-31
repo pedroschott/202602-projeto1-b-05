@@ -99,7 +99,7 @@ function mostrarDetalhes(fatura) {
       <div><dt>Vencimento</dt><dd>${textoVencimento(fatura)}</dd></div>
     </dl>
     ${observacao}
-    <p>A explicação completa do que compõe a cobrança é a HU04, ainda pendente.</p>
+    <p>O detalhamento dos componentes da cobrança ainda está indisponível neste protótipo.</p>
     ${AVISO_FICTICIO}
   `);
 }

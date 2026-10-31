@@ -58,8 +58,8 @@ function abrirMenu() {
   abrirDialogo('Menu', `
     <ul class="dialogo-menu">
       <li><a href="${raiz}index.html${busca}">Início<small>Faturas e acompanhamento da economia</small></a></li>
-      <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>HU02 · Pedro Schott</small></a></li>
-      <li><a href="${raiz}docs/wireframes/Telas%20Prontas/hu03.html">Acompanhar adesão<small>HU03 · contribuição de Pedro Padilha (tela original)</small></a></li>
+      <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>Etapas e previsão do primeiro benefício</small></a></li>
+      <li><a href="${raiz}docs/wireframes/Telas%20Prontas/hu03.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
       <li><a href="${raiz}pages/modelo.html">Modelo de página<small>Template para os colegas copiarem</small></a></li>
     </ul>
     <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. Login, perfil e configurações não fazem parte desta entrega.</p>
@@ -81,7 +81,7 @@ export function abrirSuporte(assunto) {
 export function avisarPendente(nome) {
   abrirDialogo(nome, `
     <p>Esta parte ainda não foi implementada pelo squad.</p>
-    <p class="aviso-ficticio">Quando a tela existir, troque este botão por um link para ela.</p>
+    <p class="aviso-ficticio">Recurso indisponível neste protótipo.</p>
   `);
 }
 
