@@ -39,11 +39,12 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 
 - **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
+- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. Login e exibição automática somente no primeiro acesso ficam pendentes.
 - **HU03** (Pedro Padilha): tela original em [`docs/wireframes/Telas Prontas/hu03.html`](docs/wireframes/Telas%20Prontas/hu03.html), acessível pelo menu; ainda não integrada ao template comum.
 
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
-**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU01, HU04 e HU05, integração da HU03 ao template, revisão do squad e validação das regras com a Bulbe.
+**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU01 e HU05, integração da HU03 ao template, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -72,6 +73,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 ```
 ├── index.html            # Home: card da HU02 e faturas
 ├── pages/
+│   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
 │   └── modelo.html       # Modelo para novas telas
 ├── assets/

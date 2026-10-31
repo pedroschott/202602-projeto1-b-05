@@ -7,7 +7,7 @@
 | HU01 | Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar. | #3 (com apoio de #2) | Alta (proposta) | #5 |
 | HU02 | Como Renata, cliente que ainda não percebeu a economia esperada, quero acompanhar o que falta para o benefício aparecer e quanto posso economizar, para organizar o pagamento da segunda fatura com clareza sobre o serviço. | Gap entre adesão e percepção do benefício; apoio de O1/O3 | A definir; proposta individual | A definir |
 | HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
-| HU04 | Como cliente que recebeu a primeira fatura da Bulbe, quero ver pelo celular o que compõe o total, como a cobrança da Bulbe se relaciona com a conta da Cemig e em que se baseia a economia para pagar com confiança. | #3 (com apoio de #1 e #2) | A definir | A definir |
+| HU04 | Como pessoa que abre o app pela primeira vez, quero conhecer a Bulbe pelo carrossel antes do login, para entender o serviço antes de entrar. | Primeiro acesso ao app | A definir | A definir |
 | HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
@@ -194,7 +194,7 @@ Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e
 
 ## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
-**Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
+**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Nesta versão, Começar/Pular abrem a home de demonstração. Login e controle para apresentar somente no primeiro acesso ainda estão pendentes.
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
 **Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
 **Momento da jornada:** primeiro acesso ao app, antes do login  

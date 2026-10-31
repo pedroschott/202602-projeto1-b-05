@@ -34,3 +34,8 @@ export async function buscarAcompanhamentoHU02(cenario) {
   const nome = cenario || dados.cenarioPadrao;
   return Object.hasOwn(dados.cenarios, nome) ? dados.cenarios[nome] : null;
 }
+
+// HU04: conteúdo fictício da apresentação inicial.
+export function buscarBoasVindas() {
+  return lerJSON('hu04-boas-vindas.json');
+}
