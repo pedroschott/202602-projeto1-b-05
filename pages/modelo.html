@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+  MODELO DE PÁGINA DO SQUAD — copie este arquivo para pages/<sua-tela>.html.
+  Guia rápido: docs/template.md
+
+  1. Troque o <title>.
+  2. Mantenha o cabeçalho e a navegação como estão (são iguais em todas as telas).
+  3. Escreva o conteúdo da sua história somente dentro de <main>.
+  4. Seus estilos próprios vão em assets/css/<sua-historia>.css (o comum já está em style.css).
+  5. Seu JavaScript vai no <script type="module"> no fim (ou em assets/js/<sua-historia>.js).
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#08068d">
+  <title>Bulbe | Modelo de página</title>
+  <link rel="icon" href="../assets/img/logo-colorida.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- <link rel="stylesheet" href="../assets/css/sua-historia.css"> -->
+</head>
+<body data-raiz="../">
+  <div class="bulbe-shell">
+    <!-- CABEÇALHO COMUM: menu, logo original e suporte humano -->
+    <header class="bulbe-header">
+      <button class="bulbe-icon-btn" type="button" aria-label="Abrir menu" data-acao="menu">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <img class="bulbe-logo" src="../assets/img/logo-clara.png" alt="Bulbe">
+      <button class="bulbe-icon-btn" type="button" aria-label="Falar com o suporte humano" data-acao="suporte">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3M4 12H2v6h4v-6H4m16 0h2v6h-4v-6h2m0 6c0 3-3 3-6 3"/></svg>
+      </button>
+    </header>
+
+    <!-- CONTEÚDO DA SUA HISTÓRIA: só esta parte muda entre os integrantes -->
+    <main class="bulbe-content">
+      <h1 class="titulo-secao">Título da sua tela</h1>
+      <p>Explique aqui, em poucas palavras, o que a pessoa faz nesta tela.</p>
+
+      <h2 class="titulo-secao">Exemplo de dados com fetch</h2>
+      <div id="exemplo-dados"></div>
+    </main>
+
+    <!-- NAVEGAÇÃO COMUM: use aria-current="page" no item da tela atual.
+         Telas que ainda não existem usam data-pendente para avisar com honestidade. -->
+    <nav class="bulbe-nav" aria-label="Navegação principal">
+      <a href="../index.html">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l2 3v15l-3-2-4 2-4-2-3 2V3h2M8 8h8M8 12h8"/></svg>
+        <span>Faturas</span>
+      </a>
+      <button type="button" data-pendente="Consumo">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7"/></svg>
+        <span>Consumo</span>
+      </button>
+      <button type="button" data-pendente="Indicações">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M18 8a3 3 0 0 1 0 6M22 21v-2a4 4 0 0 0-3-4"/></svg>
+        <span>Indicações</span>
+      </button>
+    </nav>
+  </div>
+
+  <script type="module">
+    import { buscarFaturas } from '../assets/js/api.js';
+    import { iniciarLayout, carregarComEstados, escaparHTML, formatarMoeda } from '../assets/js/layout.js';
+
+    // Liga menu, suporte e itens pendentes da navegação.
+    iniciarLayout();
+
+    // Exemplo: lê data/faturas.json com estados de carregando, vazio e falha (com "Tentar novamente").
+    // Troque buscarFaturas pela função da sua história em assets/js/api.js.
+    carregarComEstados(document.querySelector('#exemplo-dados'), {
+      carregar: buscarFaturas,
+      textoVazio: 'Nenhuma fatura cadastrada.',
+      mostrar: (faturas) => {
+        document.querySelector('#exemplo-dados').innerHTML = faturas
+          .map((f) => `<p class="bulbe-card">Fatura ${escaparHTML(f.referencia)} · ${formatarMoeda(f.valor)}</p>`)
+          .join('');
+      }
+    });
+  </script>
+</body>
+</html>
