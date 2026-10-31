@@ -1,0 +1,20 @@
+[
+  {
+    "titulo": "Bem-vindo à Bulbe",
+    "texto": "Conheça a energia solar por assinatura e acompanhe as informações do seu serviço pelo aplicativo.",
+    "imagem": "../assets/img/hu04-energia.svg",
+    "descricaoImagem": "Sol sobre painéis de energia solar"
+  },
+  {
+    "titulo": "Entenda os créditos de energia",
+    "texto": "A energia gerada dá origem a créditos. A compensação e o desconto seguem as condições do seu contrato, sem uma data garantida nesta demonstração.",
+    "imagem": "../assets/img/hu04-energia.svg",
+    "descricaoImagem": "Ilustração de geração de energia solar"
+  },
+  {
+    "titulo": "Acompanhe tudo por aqui",
+    "texto": "Na demonstração, você pode consultar faturas fictícias e acompanhar a espera pelo primeiro benefício.",
+    "imagem": "../assets/img/hu04-energia.svg",
+    "descricaoImagem": "Painéis solares sob a luz do sol"
+  }
+]
