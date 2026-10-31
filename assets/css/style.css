@@ -1,53 +1,431 @@
-/* Variáveis de cor e tipografia: ajustem para a identidade da solução */
+/*
+  CSS comum do squad (template geral).
+  Baseado em docs/base-visual/bulbe-base.css e docs/base-visual/Guidelines.md.
+  Regra do grupo: mudanças de cores, cabeçalho, logo ou navegação entram aqui,
+  e não no CSS de cada história.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 :root {
-  --cor-primaria: #0a2558;
-  --cor-destaque: #f2ae00;
-  --cor-fundo: #f7f9fc;
-  --cor-texto: #1f2937;
-  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bulbe-primary: #08068d;
+  --bulbe-primary-pressed: #07057b;
+  --bulbe-green: #26d07c;
+  --bulbe-green-light: #a8e8c6;
+  --bulbe-bg: #fff;
+  --bulbe-surface: #f6f9f9;
+  --bulbe-blue-light: #eef4fd;
+  --bulbe-text: #344054;
+  --bulbe-muted: #667085;
+  --bulbe-border: #d1d9e0;
+  --bulbe-success: #16804a;
+  --bulbe-error: #b42318;
+  --bulbe-warning-bg: #fff4e6;
+  --bulbe-font: 'Poppins', sans-serif;
+  --bulbe-header-height: 64px;
+  --bulbe-nav-height: 72px;
+  --bulbe-page-padding: 24px;
+  --bulbe-radius: 12px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: var(--fonte);
-  color: var(--cor-texto);
-  background: var(--cor-fundo);
-  line-height: 1.5;
+  font-family: var(--bulbe-font);
+  color: var(--bulbe-text);
+  background: #edf0f5;
+  line-height: 1.6;
 }
 
-.topo {
-  background: var(--cor-primaria);
-  color: #fff;
-  padding: 1.5rem;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
-.topo a { color: var(--cor-destaque); }
 
-main {
-  max-width: 960px;
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f5a623;
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* ---------- Moldura da tela (sem simular celular) ---------- */
+
+.bulbe-shell {
+  width: 100%;
+  max-width: 430px;
+  min-width: 320px;
+  height: 100dvh;
   margin: 0 auto;
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--bulbe-bg);
+  overflow: hidden;
 }
 
-.aviso {
-  background: #fff4d6;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+/* ---------- Cabeçalho: 44px / logo central / 44px ---------- */
+
+.bulbe-header {
+  height: var(--bulbe-header-height);
+  flex: none;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  background: var(--bulbe-primary);
+  color: #fff;
 }
 
-.lista { list-style: none; padding: 0; }
-.lista li {
+.bulbe-header--claro {
   background: #fff;
-  margin-bottom: 0.5rem;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: var(--bulbe-primary);
+  border-bottom: 1px solid var(--bulbe-border);
 }
 
-.rodape {
+.bulbe-logo {
+  display: block;
+  width: 96px;
+  height: 38px;
+  object-fit: contain;
+  margin: auto;
+}
+
+.bulbe-icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+.bulbe-icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Área central rolável ---------- */
+
+.bulbe-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px var(--bulbe-page-padding);
+  overscroll-behavior: contain;
+}
+
+/* Variante com faixa azul no topo e "folha" branca arredondada (home e detalhe) */
+.bulbe-content--faixa {
+  padding: 0;
+  background: var(--bulbe-primary);
+}
+
+.faixa-azul {
+  padding: 8px var(--bulbe-page-padding) 24px;
+  color: #fff;
+}
+
+.faixa-azul h1 {
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.folha {
+  min-height: 100%;
+  padding: 24px var(--bulbe-page-padding) 32px;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+}
+
+/* ---------- Textos e botões ---------- */
+
+.titulo-secao {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--bulbe-text);
+  margin: 24px 0 12px;
+}
+
+.legenda {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--bulbe-muted);
+}
+
+.bulbe-button {
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--bulbe-primary);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.bulbe-button:hover {
+  background: var(--bulbe-primary-pressed);
+}
+
+.bulbe-button--secundario {
+  background: #fff;
+  color: var(--bulbe-primary);
+  border-color: var(--bulbe-primary);
+}
+
+.bulbe-button--secundario:hover {
+  background: var(--bulbe-blue-light);
+}
+
+.bulbe-button--largo {
+  width: 100%;
+}
+
+.link {
+  color: var(--bulbe-primary);
+  background: none;
+  border: 0;
+  padding: 0;
+  min-height: 44px;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.bulbe-card {
+  padding: 16px;
+  border: 1px solid var(--bulbe-border);
+  border-radius: var(--bulbe-radius);
+  background: #fff;
+}
+
+/* ---------- Navegação inferior ---------- */
+
+.bulbe-nav {
+  min-height: var(--bulbe-nav-height);
+  padding: 4px 12px calc(4px + env(safe-area-inset-bottom, 0px));
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--bulbe-border);
+  background: #fff;
+}
+
+.bulbe-nav a,
+.bulbe-nav button {
+  position: relative;
+  min-height: 60px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--bulbe-muted);
+  text-decoration: none;
+}
+
+.bulbe-nav [aria-current="page"] {
+  color: var(--bulbe-primary);
+  font-weight: 600;
+}
+
+.bulbe-nav [aria-current="page"]::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  width: 40px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--bulbe-primary);
+}
+
+/* ---------- Estados de carregamento, vazio e falha ---------- */
+
+.estado {
+  padding: 32px 16px;
   text-align: center;
-  padding: 1rem;
-  color: #5b6475;
-  font-size: 0.875rem;
+  color: var(--bulbe-muted);
+}
+
+.estado strong {
+  display: block;
+  color: var(--bulbe-text);
+  margin-bottom: 4px;
+}
+
+.estado .bulbe-button {
+  margin-top: 16px;
+}
+
+.estado--falha strong {
+  color: var(--bulbe-error);
+}
+
+.carregando::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 12px;
+  border: 3px solid var(--bulbe-border);
+  border-top-color: var(--bulbe-primary);
+  border-radius: 50%;
+  animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carregando::before {
+    animation: none;
+  }
+}
+
+/* ---------- Diálogo comum (menu, suporte, Pix, detalhes, partes pendentes) ---------- */
+
+.dialogo {
+  width: min(360px, calc(100% - 32px));
+  border: 0;
+  border-radius: 16px;
+  padding: 24px;
+  color: var(--bulbe-text);
+}
+
+.dialogo::backdrop {
+  background: rgba(8, 6, 141, 0.35);
+}
+
+.dialogo h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--bulbe-primary);
+  margin-bottom: 12px;
+}
+
+.dialogo p,
+.dialogo li {
+  font-size: 14px;
+}
+
+.dialogo p + p {
+  margin-top: 8px;
+}
+
+.dialogo .bulbe-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.dialogo-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dialogo-menu a {
+  display: block;
+  padding: 12px 0;
+  min-height: 44px;
+  color: var(--bulbe-primary);
+  font-weight: 500;
+  border-bottom: 1px solid var(--bulbe-border);
+}
+
+.dialogo-menu small {
+  display: block;
+  font-weight: 400;
+  color: var(--bulbe-muted);
+}
+
+.aviso-ficticio {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--bulbe-warning-bg);
+  font-size: 12px;
+}
+
+.dados-lista {
+  margin: 0;
+}
+
+.dados-lista div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--bulbe-border);
+  font-size: 14px;
+}
+
+.dados-lista dt {
+  color: var(--bulbe-muted);
+}
+
+.dados-lista dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.codigo-pix {
+  display: block;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background: var(--bulbe-surface);
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* Texto só para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bulbe-card + .bulbe-card {
+  margin-top: 8px;
 }
