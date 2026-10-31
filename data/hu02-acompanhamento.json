@@ -1,0 +1,128 @@
+{
+  "aviso": "Dados fictícios de demonstração da HU02. Não representam clientes, faturas ou créditos reais da Bulbe.",
+  "cenarioPadrao": "aguardando-creditos",
+  "cenarios": {
+    "aguardando-creditos": {
+      "descricao": "Caso base do wireframe: adesão concluída, aguardando créditos, sem previsão confirmada.",
+      "cliente": { "nome": "Renata Alves" },
+      "instalacao": "3001234567",
+      "situacao": "aguardando_creditos",
+      "pendenciaCliente": null,
+      "previsaoPrimeiroDesconto": null,
+      "simulacao": { "energiaCompensavel": 300, "percentualDesconto": 15, "ciclos": 6 },
+      "descontoLancado": null,
+      "faturas": [
+        {
+          "id": 202,
+          "referencia": "2026-10",
+          "vencimento": "2026-11-06",
+          "valor": 306.73,
+          "situacao": "em_aberto",
+          "observacao": "Créditos ainda não compensados",
+          "pixCopiaECola": "PIX-FICTICIO-HU02-0202"
+        },
+        {
+          "id": 201,
+          "referencia": "2026-09",
+          "vencimento": "2026-10-06",
+          "valor": 289.4,
+          "situacao": "paga",
+          "observacao": "Primeira fatura",
+          "pixCopiaECola": null
+        }
+      ]
+    },
+    "previsao-confirmada": {
+      "descricao": "Aguardando créditos com previsão confirmada pela operação.",
+      "cliente": { "nome": "Renata Alves" },
+      "instalacao": "3001234567",
+      "situacao": "aguardando_creditos",
+      "pendenciaCliente": null,
+      "previsaoPrimeiroDesconto": { "referencia": "2026-12", "confirmada": true },
+      "simulacao": { "energiaCompensavel": 300, "percentualDesconto": 15, "ciclos": 6 },
+      "descontoLancado": null,
+      "faturas": [
+        {
+          "id": 202,
+          "referencia": "2026-10",
+          "vencimento": "2026-11-06",
+          "valor": 306.73,
+          "situacao": "em_aberto",
+          "observacao": "Créditos ainda não compensados",
+          "pixCopiaECola": "PIX-FICTICIO-HU02-0202"
+        }
+      ]
+    },
+    "pendencia-cliente": {
+      "descricao": "Adesão ainda em andamento, com ação pendente do cliente.",
+      "cliente": { "nome": "Renata Alves" },
+      "instalacao": "3001234567",
+      "situacao": "adesao_em_andamento",
+      "pendenciaCliente": "Envie uma foto legível da última conta da Cemig pelo suporte.",
+      "previsaoPrimeiroDesconto": null,
+      "simulacao": { "energiaCompensavel": 300, "percentualDesconto": 15, "ciclos": 6 },
+      "descontoLancado": null,
+      "faturas": []
+    },
+    "dados-incompletos": {
+      "descricao": "Faltam dados da simulação e de uma fatura: a tela não deve inventar valores.",
+      "cliente": { "nome": "Renata Alves" },
+      "instalacao": null,
+      "situacao": "aguardando_creditos",
+      "pendenciaCliente": null,
+      "previsaoPrimeiroDesconto": null,
+      "simulacao": { "energiaCompensavel": null, "percentualDesconto": 15, "ciclos": 6 },
+      "descontoLancado": null,
+      "faturas": [
+        {
+          "id": 302,
+          "referencia": "2026-10",
+          "vencimento": null,
+          "valor": null,
+          "situacao": "em_aberto",
+          "observacao": null,
+          "pixCopiaECola": null
+        }
+      ]
+    },
+    "desconto-lancado": {
+      "descricao": "Momento futuro simulado: primeiro desconto efetivamente lançado e fim do estado de espera.",
+      "cliente": { "nome": "Renata Alves" },
+      "instalacao": "3001234567",
+      "situacao": "desconto_lancado",
+      "pendenciaCliente": null,
+      "previsaoPrimeiroDesconto": null,
+      "simulacao": { "energiaCompensavel": 300, "percentualDesconto": 15, "ciclos": 6 },
+      "descontoLancado": { "valor": 43.8, "referencia": "2026-12", "faturaId": 204 },
+      "faturas": [
+        {
+          "id": 204,
+          "referencia": "2026-12",
+          "vencimento": "2027-01-06",
+          "valor": 251.12,
+          "situacao": "em_aberto",
+          "observacao": "Desconto de R$ 43,80 aplicado nesta fatura",
+          "pixCopiaECola": "PIX-FICTICIO-HU02-0204"
+        },
+        {
+          "id": 203,
+          "referencia": "2026-11",
+          "vencimento": "2026-12-06",
+          "valor": 298.55,
+          "situacao": "paga",
+          "observacao": "Créditos ainda não compensados",
+          "pixCopiaECola": null
+        },
+        {
+          "id": 202,
+          "referencia": "2026-10",
+          "vencimento": "2026-11-06",
+          "valor": 306.73,
+          "situacao": "paga",
+          "observacao": "Créditos ainda não compensados",
+          "pixCopiaECola": null
+        }
+      ]
+    }
+  }
+}

@@ -24,3 +24,13 @@ export async function buscarFaturasDoCliente(clienteId) {
   const faturas = await buscarFaturas();
   return faturas.filter((fatura) => fatura.clienteId === clienteId);
 }
+
+// HU02: dados fictícios de acompanhamento da espera pelo benefício.
+// O arquivo tem vários cenários de demonstração; a página escolhe um pelo
+// endereço (ex.: index.html?cenario=desconto-lancado). Sem ?cenario=, usa o padrão.
+// Retorna null quando o cenário pedido não existe (a página mostra estado vazio).
+export async function buscarAcompanhamentoHU02(cenario) {
+  const dados = await lerJSON('hu02-acompanhamento.json');
+  const nome = cenario || dados.cenarioPadrao;
+  return Object.hasOwn(dados.cenarios, nome) ? dados.cenarios[nome] : null;
+}
