@@ -43,3 +43,11 @@ O `<body>` precisa de `data-raiz` com o caminho até a raiz (`"../"` em `pages/`
 - 360 px de largura sem rolagem horizontal (DevTools → modo celular).
 - Teclado: todos os botões alcançáveis e com foco visível.
 - Estados de carregando, vazio e falha funcionando (no DevTools → Network → Offline, recarregue a página).
+
+## Telas implementadas da HU02
+
+Capturas da home e do acompanhamento, em viewport de 390 × 844 px:
+
+![Home da HU02](telas/hu02-home.png)
+
+![Acompanhamento da HU02](telas/hu02-acompanhamento.png)
