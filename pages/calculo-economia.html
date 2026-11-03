@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#08068d">
+  <title>Bulbe | Conferir economia</title>
+  <link rel="icon" href="../assets/img/logo-colorida.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/hu05.css">
+</head>
+<body data-raiz="../">
+  <div class="bulbe-shell">
+    <header class="bulbe-header">
+      <a class="bulbe-icon-btn" href="../index.html" aria-label="Voltar para o início">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+      </a>
+      <img class="bulbe-logo" src="../assets/img/logo-clara.png" alt="Bulbe">
+      <button class="bulbe-icon-btn" type="button" aria-label="Falar com o suporte humano" data-acao="suporte">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3M4 12H2v6h4v-6H4m16 0h2v6h-4v-6h2m0 6c0 3-3 3-6 3"/></svg>
+      </button>
+    </header>
+
+    <main class="bulbe-content hu05-content">
+      <p class="hu05-eyebrow">SUA ECONOMIA, COM TRANSPARÊNCIA</p>
+      <h1 class="titulo-secao">Confira sua economia</h1>
+      <p class="hu05-intro">Veja quais informações precisam ser comparadas para entender o benefício da Bulbe.</p>
+
+      <section class="hu05-section" aria-labelledby="periodos-titulo">
+        <h2 id="periodos-titulo">Exemplo de informações</h2>
+        <p class="hu05-muted">Os valores abaixo são fictícios e servem apenas para demonstrar a tela.</p>
+        <div id="hu05-exemplos" aria-live="polite">
+          <div class="estado carregando" role="status">Carregando informações...</div>
+        </div>
+      </section>
+
+      <section class="hu05-section" aria-labelledby="form-titulo">
+        <h2 id="form-titulo">Revise os dados da comparação</h2>
+        <p class="hu05-muted">Informe os dois períodos e a base usada em cada valor. Isso ajuda a identificar se os dados são comparáveis.</p>
+        <form id="hu05-form" novalidate>
+          <fieldset>
+            <legend>Período anterior</legend>
+            <label for="hu05-data-anterior">Data ou referência</label>
+            <input id="hu05-data-anterior" name="dataAnterior" type="date" required>
+            <label for="hu05-valor-anterior">Valor informado (R$)</label>
+            <input id="hu05-valor-anterior" name="valorAnterior" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 289,40" required>
+            <label for="hu05-base-anterior">Base deste valor</label>
+            <select id="hu05-base-anterior" name="baseAnterior" required>
+              <option value="">Selecione a base</option>
+              <option value="valor_total_fatura">Valor total da fatura</option>
+              <option value="energia_compensavel">Valor da energia compensável</option>
+              <option value="outro">Outra base informada</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Período atual</legend>
+            <label for="hu05-data-atual">Data ou referência</label>
+            <input id="hu05-data-atual" name="dataAtual" type="date" required>
+            <label for="hu05-valor-atual">Valor informado (R$)</label>
+            <input id="hu05-valor-atual" name="valorAtual" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ex.: 306,73" required>
+            <label for="hu05-base-atual">Base deste valor</label>
+            <select id="hu05-base-atual" name="baseAtual" required>
+              <option value="">Selecione a base</option>
+              <option value="valor_total_fatura">Valor total da fatura</option>
+              <option value="energia_compensavel">Valor da energia compensável</option>
+              <option value="outro">Outra base informada</option>
+            </select>
+          </fieldset>
+
+          <button class="bulbe-button hu05-submit" type="submit">Verificar dados</button>
+          <p id="hu05-feedback" class="hu05-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. A fórmula oficial e as regras de comparação precisam ser confirmadas pela Bulbe. Nenhum valor de economia é calculado nesta versão.</p>
+    </main>
+
+    <nav class="bulbe-nav" aria-label="Navegação principal">
+      <a href="../index.html">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l2 3v15l-3-2-4 2-4-2-3 2V3h2M8 8h8M8 12h8"/></svg>
+        <span>Faturas</span>
+      </a>
+      <button type="button" data-pendente="Consumo">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7"/></svg>
+        <span>Consumo</span>
+      </button>
+      <button type="button" data-pendente="Indicações">
+        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M18 8a3 3 0 0 1 0 6M22 21v-2a4 4 0 0 0-3-4"/></svg>
+        <span>Indicações</span>
+      </button>
+    </nav>
+  </div>
+  <script type="module" src="../assets/js/hu05.js"></script>
+</body>
+</html>
