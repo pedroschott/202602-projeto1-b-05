@@ -1,0 +1,62 @@
+{
+  "cenarioPadrao": "adesao-em-andamento",
+  "etapas": [
+    {
+      "nome": "Cadastro",
+      "titulo": "Cadastro concluído",
+      "descricao": "As informações iniciais do cliente foram registradas nesta etapa ilustrativa.",
+      "proxima": "Validação",
+      "orientacao": "As informações seguem para conferência, conforme o fluxo que vier a ser confirmado pela Bulbe."
+    },
+    {
+      "nome": "Validação",
+      "titulo": "Validação concluída",
+      "descricao": "Esta etapa representa a conferência das informações necessárias para seguir com a adesão.",
+      "proxima": "Adesão",
+      "orientacao": "Acompanhe a tela para consultar a situação da próxima etapa quando houver dados disponíveis."
+    },
+    {
+      "nome": "Adesão",
+      "titulo": "Adesão em andamento",
+      "descricao": "Seu processo está nesta etapa. Consulte as informações disponíveis e acompanhe as próximas atualizações por aqui.",
+      "proxima": "Ativação",
+      "orientacao": "Acompanhe esta tela para consultar novas informações quando estiverem disponíveis."
+    },
+    {
+      "nome": "Ativação",
+      "titulo": "Etapa de ativação",
+      "descricao": "Esta etapa ilustra o acompanhamento da ativação. O status real deve vir da fonte oficial da Bulbe.",
+      "proxima": "1ª fatura",
+      "orientacao": "Quando a primeira fatura estiver disponível, o cliente deverá conseguir encontrá-la por um caminho claro."
+    },
+    {
+      "nome": "1ª fatura",
+      "titulo": "Primeira fatura",
+      "descricao": "Esta etapa representa a consulta à primeira fatura, quando ela estiver disponível no sistema.",
+      "proxima": "Consulta de faturas",
+      "orientacao": "Consulte as informações da fatura pelos canais oficiais da Bulbe quando estiverem disponíveis."
+    }
+  ],
+  "cenarios": {
+    "cadastro": {
+      "etapaAtual": 0,
+      "ultimaAtualizacao": "Cadastro registrado — demonstração"
+    },
+    "validacao": {
+      "etapaAtual": 1,
+      "ultimaAtualizacao": "Validação em andamento — demonstração"
+    },
+    "adesao-em-andamento": {
+      "etapaAtual": 2,
+      "ultimaAtualizacao": "Conteúdo demonstrativo — integração real pendente"
+    },
+    "ativacao": {
+      "etapaAtual": 3,
+      "ultimaAtualizacao": "Ativação ilustrativa — demonstração"
+    },
+    "primeira-fatura": {
+      "etapaAtual": 4,
+      "ultimaAtualizacao": "Primeira fatura ilustrativa — demonstração"
+    }
+  }
+}
