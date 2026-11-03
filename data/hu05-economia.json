@@ -1,19 +1,26 @@
 {
-  "aviso": "Exemplos fictícios para demonstração acadêmica. Não representam contas reais nem regras oficiais da Bulbe.",
+  "aviso": "Simulação fictícia para demonstração acadêmica. Os valores não representam clientes reais nem a metodologia oficial da Bulbe.",
   "regrasCalculoConfirmadas": false,
   "exemplos": [
     {
-      "referencia": "Período anterior — Setembro/2026",
+      "referencia": "Antes da Bulbe — Setembro/2026",
       "data": "2026-09-06",
-      "valor": 289.40,
+      "valor": 420,
       "base": "Valor total da fatura"
     },
     {
-      "referencia": "Período atual — Outubro/2026",
+      "referencia": "Com a Bulbe — Outubro/2026",
       "data": "2026-10-06",
-      "valor": 306.73,
+      "valor": 315,
       "base": "Valor total da fatura"
     }
   ],
-  "observacao": "A comparação de valores de faturas, isoladamente, não comprova economia. É necessário confirmar períodos, componentes considerados e metodologia oficial com a Bulbe."
+  "demonstracao": {
+    "valorAnterior": 420,
+    "valorAtual": 315,
+    "diferenca": 105,
+    "percentualReducao": 25,
+    "descricao": "R$ 420,00 − R$ 315,00 = R$ 105,00 de diferença (25% do valor anterior)."
+  },
+  "observacao": "A demonstração subtrai o valor atual do anterior. Uma comparação real exige períodos e componentes equivalentes, além da metodologia oficial da Bulbe."
 }
