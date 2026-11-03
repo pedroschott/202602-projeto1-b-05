@@ -1,0 +1,19 @@
+{
+  "aviso": "Exemplos fictícios para demonstração acadêmica. Não representam contas reais nem regras oficiais da Bulbe.",
+  "regrasCalculoConfirmadas": false,
+  "exemplos": [
+    {
+      "referencia": "Período anterior — Setembro/2026",
+      "data": "2026-09-06",
+      "valor": 289.40,
+      "base": "Valor total da fatura"
+    },
+    {
+      "referencia": "Período atual — Outubro/2026",
+      "data": "2026-10-06",
+      "valor": 306.73,
+      "base": "Valor total da fatura"
+    }
+  ],
+  "observacao": "A comparação de valores de faturas, isoladamente, não comprova economia. É necessário confirmar períodos, componentes considerados e metodologia oficial com a Bulbe."
+}
