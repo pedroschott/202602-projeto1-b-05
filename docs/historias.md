@@ -12,7 +12,7 @@
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
-**Status:** reformulação alinhada à orientação do professor relatada por Vinicius; priorização coletiva no MVP a confirmar.  
+**Status:** primeira implementação em HTML/CSS/JS com JSON via `fetch`, integrada à home e ao detalhe de faturas da HU02; revisão do squad, validação do conteúdo e confirmação do escopo do MVP pendentes. [Roteiro técnico e evidências](hu01-implementacao.md).
 **Responsável:** Vinicius Gorini (@viniciusgorini)  
 **Prioridade proposta:** Alta  
 **Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
@@ -26,16 +26,16 @@ Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobran�
 
 ### Critérios de aceite
 
-- [ ] O assistente pode ser acessado pela tela inicial e pelo detalhe da fatura.
-- [ ] Os convites identificam claramente que se trata de um assistente virtual.
-- [ ] O cliente consegue iniciar a interação por perguntas prontas, sem precisar digitar.
-- [ ] O acesso pela fatura oferece perguntas relacionadas à cobrança.
+- [x] O assistente pode ser acessado pela tela inicial e pelo detalhe da fatura.
+- [x] Os convites identificam claramente que se trata de um assistente virtual.
+- [x] O cliente consegue iniciar a interação por perguntas prontas, sem precisar digitar.
+- [x] O acesso pela fatura oferece perguntas relacionadas à cobrança.
 - [ ] As respostas usam linguagem simples e informações verificadas, sem inventar regras de faturamento ou valores.
-- [ ] Quando aplicável, a resposta oferece um botão para a tela correspondente do aplicativo.
-- [ ] Quando não há informação suficiente, o assistente informa a limitação e oferece um caminho de atendimento.
-- [ ] Ao sair da conversa, o cliente consegue retornar à tela de origem.
-- [ ] Carregar perguntas, respostas e dados fictícios de demonstração em JSON via `fetch`, com estados de carregamento, falha e tentativa novamente.
-- [ ] Funcionar em largura de 360 px sem rolagem horizontal.
+- [x] Quando aplicável, a resposta oferece um botão para a tela correspondente do aplicativo.
+- [x] Quando não há informação suficiente, o assistente informa a limitação e oferece um caminho de atendimento.
+- [x] Ao sair da conversa, o cliente consegue retornar à tela de origem.
+- [x] Carregar perguntas, respostas e dados fictícios de demonstração em JSON via `fetch`, com estados de carregamento, falha e tentativa novamente.
+- [x] Funcionar em largura de 360 px sem rolagem horizontal.
 
 ### Wireframes da mesma história
 
@@ -53,7 +53,7 @@ No protótipo, verificar se uma pessoa encontra o convite sem instrução, recon
 
 ### Limites e integração
 
-A HU01 oferece explicações e encaminhamentos. Não substitui o acompanhamento da espera pelo benefício (HU02), o acompanhamento da adesão (HU03), os detalhes da cobrança (HU04) ou a calculadora (HU05); integra esses destinos quando disponíveis. Não confirma pagamentos reais.
+A HU01 oferece explicações e encaminhamentos. Não substitui o acompanhamento da espera pelo benefício (HU02), o acompanhamento da adesão (HU03), a apresentação inicial (HU04) ou a calculadora (HU05); integra esses destinos quando disponíveis. Não confirma pagamentos reais.
 
 Perguntas prontas constituem o fluxo mínimo. Conversa livre, voz e integração com modelo de IA não são requisitos fechados nesta revisão; sua inclusão e viabilidade dependem de definição posterior. O protótipo não deve apresentar respostas predefinidas como IA já implementada.
 
@@ -65,7 +65,8 @@ Perguntas prontas constituem o fluxo mínimo. Conversa livre, voz e integração
 - Protótipo de alta fidelidade: #7
 - Implementação: #8
 
-Wireframe, protótipo e implementação permanecem como tarefas planejadas, sem conclusão atribuída nesta revisão.
+A implementação inicial está disponível para revisão. O fechamento das issues depende da revisão dos respectivos entregáveis; esta documentação não encerra o protótipo ou a implementação automaticamente. Os componentes detalhados da fatura e a calculadora ainda não estão disponíveis; o assistente informa essas limitações.
+
 
 <a id="hu02--localizar-a-primeira-fatura-sem-o-aviso"></a>
 <a id="hu06--acompanhar-a-espera-até-o-benefício-aparecer"></a>

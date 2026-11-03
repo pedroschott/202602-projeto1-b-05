@@ -39,3 +39,8 @@ export async function buscarAcompanhamentoHU02(cenario) {
 export function buscarBoasVindas() {
   return lerJSON('hu04-boas-vindas.json');
 }
+
+// HU01: FAQ predefinida, independente dos dados financeiros da HU02.
+export function buscarFAQHU01() {
+  return lerJSON('hu01-assistente.json');
+}
