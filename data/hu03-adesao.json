@@ -1,0 +1,72 @@
+{
+  "cenarioPadrao": "adesao-em-andamento",
+  "etapas": [
+    {
+      "nome": "Cadastro",
+      "titulo": "Cadastro inicial",
+      "descricao": "Nesta etapa, as informações iniciais são registradas para começar a adesão.",
+      "proxima": "Validação",
+      "orientacao": "Aguarde a confirmação do cadastro. Depois, acompanhe a conferência das informações aqui."
+    },
+    {
+      "nome": "Validação",
+      "titulo": "Conferência dos dados",
+      "descricao": "Nesta etapa, os dados informados no cadastro são conferidos antes do avanço do processo.",
+      "proxima": "Adesão",
+      "orientacao": "Aguarde a conclusão da validação. Acompanhe esta tela para saber quando o processo avançar."
+    },
+    {
+      "nome": "Adesão",
+      "titulo": "Processo de adesão",
+      "descricao": "Nesta etapa, o pedido de adesão segue para as próximas providências. Consulte as atualizações nesta tela.",
+      "proxima": "Ativação",
+      "orientacao": "Aguarde as próximas atualizações do seu pedido. Você não precisa fazer nada nesta etapa demonstrativa."
+    },
+    {
+      "nome": "Ativação",
+      "titulo": "Ativação do benefício",
+      "descricao": "Esta etapa representa a preparação para ativar o benefício após a adesão.",
+      "proxima": "1ª fatura",
+      "orientacao": "Aguarde a confirmação da ativação. Depois, acompanhe a disponibilidade da primeira fatura."
+    },
+    {
+      "nome": "1ª fatura",
+      "titulo": "Primeira fatura",
+      "descricao": "Quando sua primeira fatura estiver disponível, você poderá consultá-la na área de Faturas.",
+      "proxima": "Consulta de faturas",
+      "orientacao": "Para consultar a primeira fatura demonstrativa, selecione o botão abaixo."
+    }
+  ],
+  "cenarios": {
+    "cadastro": {
+      "etapaAtual": 0,
+      "statusAtual": "Cadastro em andamento",
+      "resumoAtual": "Estamos registrando as informações iniciais. Aguarde a confirmação do cadastro.",
+      "ultimaAtualizacao": "Cadastro em andamento — demonstração"
+    },
+    "validacao": {
+      "etapaAtual": 1,
+      "statusAtual": "Validação em andamento",
+      "resumoAtual": "Seus dados estão em conferência. Aguarde a conclusão desta etapa.",
+      "ultimaAtualizacao": "Validação em andamento — demonstração"
+    },
+    "adesao-em-andamento": {
+      "etapaAtual": 2,
+      "statusAtual": "Adesão em andamento",
+      "resumoAtual": "Seu pedido está na etapa de adesão. Aguarde as próximas atualizações.",
+      "ultimaAtualizacao": "Adesão em andamento — demonstração"
+    },
+    "ativacao": {
+      "etapaAtual": 3,
+      "statusAtual": "Ativação em andamento",
+      "resumoAtual": "A ativação está em andamento neste exemplo. Aguarde a confirmação.",
+      "ultimaAtualizacao": "Ativação em andamento — demonstração"
+    },
+    "primeira-fatura": {
+      "etapaAtual": 4,
+      "statusAtual": "Primeira fatura disponível",
+      "resumoAtual": "Neste exemplo, a primeira fatura está disponível para consulta.",
+      "ultimaAtualizacao": "Primeira fatura disponível — demonstração"
+    }
+  }
+}

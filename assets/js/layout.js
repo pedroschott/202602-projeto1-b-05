@@ -59,7 +59,7 @@ function abrirMenu() {
     <ul class="dialogo-menu">
       <li><a href="${raiz}index.html${busca}">Início<small>Faturas e acompanhamento da economia</small></a></li>
       <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>Etapas e previsão do primeiro benefício</small></a></li>
-      <li><a href="${raiz}docs/wireframes/Telas%20Prontas/hu03.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
+      <li><a href="${raiz}pages/adesao.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
       <li><a href="${raiz}pages/boas-vindas.html">Conheça a Bulbe<small>Apresentação do serviço</small></a></li>
       <li><a href="${raiz}pages/assistente.html${busca}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>
       <li><a href="${raiz}pages/modelo.html">Modelo de página<small>Template para os colegas copiarem</small></a></li>
