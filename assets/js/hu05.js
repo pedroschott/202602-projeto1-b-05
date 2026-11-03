@@ -1,15 +1,9 @@
+import { buscarEconomiaHU05 } from './api.js';
 import { iniciarLayout, carregarComEstados, formatarMoeda, formatarData } from './layout.js';
 
 const alvo = document.querySelector('#hu05-exemplos');
 const form = document.querySelector('#hu05-form');
 const feedback = document.querySelector('#hu05-feedback');
-
-async function buscarDadosHU05() {
-  const url = new URL('../../data/hu05-economia.json', import.meta.url);
-  const resposta = await fetch(url);
-  if (!resposta.ok) throw new Error(`Não foi possível carregar os dados: ${resposta.status}`);
-  return resposta.json();
-}
 
 function mostrarExemplos(dados) {
   alvo.innerHTML = '';
@@ -79,7 +73,7 @@ async function iniciar() {
   iniciarLayout();
   let dadosCarregados;
   const opcoes = {
-    carregar: buscarDadosHU05,
+    carregar: buscarEconomiaHU05,
     textoVazio: 'Ainda não há exemplos cadastrados.',
     mostrar: (dados) => {
       dadosCarregados = dados;
