@@ -49,3 +49,8 @@ export function buscarFAQHU01() {
 export function buscarAcompanhamentoHU03() {
   return lerJSON('hu03-adesao.json');
 }
+
+// HU05: premissas acadêmicas da simulação de economia.
+export function buscarEconomiaHU05() {
+  return lerJSON('hu05-economia.json');
+}
