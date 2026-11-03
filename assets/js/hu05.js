@@ -44,9 +44,19 @@ function validarContas(contas) {
     mostrarErro('Informe valores maiores que zero para as três contas.');
     return false;
   }
+
   const periodos = contas.map((conta) => conta.periodo);
   if (new Set(periodos).size !== 3) {
     mostrarErro('Selecione três períodos de consumo diferentes.');
+    return false;
+  }
+
+  const meses = periodos.map((periodo) => {
+    const [ano, mes] = periodo.split('-').map(Number);
+    return ano * 12 + mes;
+  });
+  if (!(meses[1] === meses[0] + 1 && meses[2] === meses[1] + 1)) {
+    mostrarErro('Informe os três meses consecutivos mais recentes, em ordem do mais antigo para o mais recente.');
     return false;
   }
   return true;
@@ -83,6 +93,9 @@ async function iniciar() {
   iniciarLayout();
   try {
     regras = await buscarEconomiaHU05();
+    if (!Number.isFinite(regras.percentualMaximo) || regras.percentualMaximo < 0 || regras.percentualMaximo > 15) {
+      throw new Error('Premissa de percentual inválida.');
+    }
   } catch (erro) {
     mostrarErro('Não foi possível carregar as premissas da simulação. Atualize a página e tente novamente.');
     form.querySelector('button[type="submit"]').disabled = true;
@@ -109,8 +122,7 @@ async function iniciar() {
   });
   document.querySelector('#hu05-back').addEventListener('click', () => mostrarEtapa(2));
   document.querySelector('#hu05-contract').addEventListener('click', () => {
-    const raiz = document.body.dataset.raiz || '../';
-    window.location.href = `${raiz}pages/boas-vindas.html`;
+    window.location.href = 'https://bulbeenergia.com.br/';
   });
 }
 
