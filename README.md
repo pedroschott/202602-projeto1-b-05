@@ -41,11 +41,11 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 - **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamento para a HU02. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
 - **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. Login e exibição automática somente no primeiro acesso ficam pendentes.
-- **HU03** (Pedro Padilha): tela original em [`docs/wireframes/Telas Prontas/hu03.html`](docs/wireframes/Telas%20Prontas/hu03.html), acessível pelo menu; ainda não integrada ao template comum.
+- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas horizontais, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. A versão anterior permanece em [`docs/wireframes/Telas Prontas/hu03.html`](docs/wireframes/Telas%20Prontas/hu03.html) como histórico. [Roteiro de testes](docs/hu03-implementacao.md).
 
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
-**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU05, revisão do conteúdo da HU01, integração da HU03 ao template, revisão do squad e validação das regras com a Bulbe.
+**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU05, revisão do conteúdo da HU01, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -76,7 +76,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 ├── pages/
 │   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
-│   └── modelo.html       # Modelo para novas telas
+│   ├── adesao.html       # HU03: acompanhamento de adesão\n│   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad
 │   ├── css/hu02.css      # Estilos da HU02
