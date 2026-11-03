@@ -19,6 +19,15 @@ page.on('requestfailed', (req) => {
   if (req.url().startsWith(ORIGIN)) failedRequests.push(req.url());
 });
 try {
+  // Navegação integrada: Home > Menu > HU03 > Home.
+  await page.goto(ORIGIN + '/index.html', { waitUntil: 'load' });
+  await page.getByRole('button', { name: 'Abrir menu' }).click();
+  await page.getByRole('link', { name: /Acompanhar adesão/ }).click();
+  await page.locator('#hu03-titulo').waitFor();
+  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Adesão em andamento');
+  await page.getByRole('link', { name: 'Voltar para o início' }).click();
+  assert(page.url().endsWith('/index.html'), 'Botão voltar encaminha para a home');
+
   const response = await page.goto(ORIGIN + '/pages/adesao.html', { waitUntil: 'load' });
   assert.equal(response.status(), 200, 'Página HTTP');
   await page.locator('#hu03-titulo').waitFor();
@@ -44,6 +53,9 @@ try {
     await button.click();
     assert.equal(await button.getAttribute('aria-pressed'), 'true');
   }
+  await page.locator('[data-etapa="2"]').focus();
+  await page.keyboard.press('Enter');
+  assert.equal(await page.locator('[data-etapa="2"]').getAttribute('aria-pressed'), 'true', 'Atalho por teclado');
   await page.getByRole('button', { name: 'Falar com o suporte humano' }).click();
   assert.equal(await page.locator('dialog[open]').count(), 1, 'Suporte abre');
   await page.locator('dialog [data-fechar]').click();
