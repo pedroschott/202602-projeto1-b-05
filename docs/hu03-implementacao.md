@@ -11,7 +11,7 @@ Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, al
 - `assets/js/layout.js`: acesso pelo menu da home.
 - `scripts/test-hu03.mjs`: testes em Chromium (página HTTP, cenários, responsividade, suporte, teclado, erro e retry).
 
-A versão original em `docs/wireframes/Telas Prontas/` continua preservada como histórico.
+A implementação antiga foi retirada do diretório `docs/wireframes/Telas Prontas/` para evitar duplicação. Ela continua disponível no histórico de commits do GitHub; a versão mantida é `pages/adesao.html` e seus arquivos em `assets/` e `data/`.
 
 ## Capturas da tela integrada (390 × 844 px)
 As imagens foram produzidas pelo Chromium no GitHub Actions, com o projeto servido por HTTP.
