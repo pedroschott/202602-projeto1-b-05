@@ -1,0 +1,24 @@
+/* HU05 — estilos específicos; cores e moldura vêm do template comum. */
+.hu05-content { padding-top: 24px; padding-bottom: 32px; }
+.hu05-eyebrow { color: var(--bulbe-success); font-size: 11px; font-weight: 700; letter-spacing: .08em; margin-bottom: 6px; }
+.hu05-content .titulo-secao { color: var(--bulbe-primary); font-size: 24px; margin-bottom: 8px; }
+.hu05-intro { color: var(--bulbe-muted); font-size: 14px; margin-bottom: 24px; }
+.hu05-section { margin: 24px 0; }
+.hu05-section h2 { color: var(--bulbe-primary); font-size: 18px; margin-bottom: 6px; }
+.hu05-muted { color: var(--bulbe-muted); font-size: 12px; margin-bottom: 12px; }
+.hu05-exemplo { padding: 14px; border: 1px solid var(--bulbe-border); border-radius: var(--bulbe-radius); background: var(--bulbe-surface); }
+.hu05-exemplo + .hu05-exemplo { margin-top: 8px; }
+.hu05-exemplo strong { display: block; color: var(--bulbe-primary); font-size: 18px; }
+.hu05-exemplo span { display: block; color: var(--bulbe-muted); font-size: 12px; }
+#hu05-form fieldset { min-width: 0; margin: 16px 0; padding: 14px; border: 1px solid var(--bulbe-border); border-radius: var(--bulbe-radius); }
+#hu05-form legend { padding: 0 6px; color: var(--bulbe-primary); font-size: 14px; font-weight: 600; }
+#hu05-form label { display: block; margin: 12px 0 4px; color: var(--bulbe-text); font-size: 12px; font-weight: 500; }
+#hu05-form input, #hu05-form select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--bulbe-border); border-radius: 8px; background: #fff; color: var(--bulbe-text); font-size: 14px; }
+#hu05-form input:focus, #hu05-form select:focus { outline: 3px solid var(--bulbe-blue-light); border-color: var(--bulbe-primary); }
+.hu05-submit { width: 100%; margin-top: 8px; }
+.hu05-feedback { min-height: 24px; margin-top: 12px; padding: 0; color: var(--bulbe-muted); font-size: 13px; }
+.hu05-feedback--aviso { padding: 12px; border-radius: 8px; background: var(--bulbe-warning-bg); color: var(--bulbe-text); }
+.hu05-feedback--erro { color: var(--bulbe-error); }
+@media (min-width: 600px) {
+  .hu05-content { padding-right: 28px; padding-left: 28px; }
+}
