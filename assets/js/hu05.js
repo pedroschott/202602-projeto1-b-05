@@ -56,7 +56,7 @@ function validarContas(contas) {
     return ano * 12 + mes;
   });
   if (!(meses[1] === meses[0] + 1 && meses[2] === meses[1] + 1)) {
-    mostrarErro('Informe os três meses consecutivos mais recentes, em ordem do mais antigo para o mais recente.');
+    mostrarErro('Informe três meses consecutivos, em ordem do mais antigo para o mais recente.');
     return false;
   }
   return true;
