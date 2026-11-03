@@ -44,3 +44,8 @@ export function buscarBoasVindas() {
 export function buscarFAQHU01() {
   return lerJSON('hu01-assistente.json');
 }
+
+// HU03: cenários fictícios do acompanhamento das cinco etapas de adesão.
+export function buscarAcompanhamentoHU03() {
+  return lerJSON('hu03-adesao.json');
+}
