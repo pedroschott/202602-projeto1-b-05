@@ -1,10 +1,10 @@
 /* HU05 — estilos específicos; cores e moldura vêm do template comum. */
 .hu05-content { padding-top: 24px; padding-bottom: 32px; }
 .hu05-eyebrow { color: var(--bulbe-success); font-size: 11px; font-weight: 700; letter-spacing: .08em; margin-bottom: 6px; }
-.hu05-content .titulo-secao { color: var(--bulbe-primary); font-size: 24px; margin-bottom: 8px; }
+.hu05-content .titulo-secao { color: var(--bulbe-text); }
 .hu05-intro { color: var(--bulbe-muted); font-size: 14px; margin-bottom: 24px; }
 .hu05-section { margin: 24px 0; }
-.hu05-section h2 { color: var(--bulbe-primary); font-size: 18px; margin-bottom: 6px; }
+.hu05-section h2 { color: var(--bulbe-text); font-size: 18px; font-weight: 500; margin-bottom: 6px; }
 .hu05-muted { color: var(--bulbe-muted); font-size: 12px; margin-bottom: 12px; }
 .hu05-exemplo { padding: 14px; border: 1px solid var(--bulbe-border); border-radius: var(--bulbe-radius); background: var(--bulbe-surface); }
 .hu05-exemplo + .hu05-exemplo { margin-top: 8px; }
