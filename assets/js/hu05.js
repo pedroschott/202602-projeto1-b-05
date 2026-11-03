@@ -61,12 +61,22 @@ function validarFormulario(dados) {
     return;
   }
 
-  if (!dados.regrasCalculoConfirmadas) {
-    mostrarFeedback('Os dados foram preenchidos e as bases selecionadas são iguais. Mesmo assim, a regra oficial de cálculo da Bulbe ainda não está confirmada. Por isso, não vamos apresentar uma economia calculada ou um valor como confiável.', 'aviso');
-    return;
-  }
+  const diferenca = anterior.valor - atual.valor;
+  const percentual = anterior.valor > 0 ? (diferenca / anterior.valor) * 100 : 0;
 
-  mostrarFeedback('Os dados foram validados. A fórmula oficial precisa ser implementada e homologada antes de apresentar um resultado.', 'aviso');
+  if (diferenca > 0) {
+    mostrarFeedback(
+      `Simulação fictícia: a diferença é de ${formatarMoeda(diferenca)} (${percentual.toFixed(1).replace('.', ',')}% a menos em relação ao período anterior). Esse resultado considera apenas os valores digitados e não é uma economia oficial ou garantida pela Bulbe.`,
+      'aviso'
+    );
+  } else if (diferenca < 0) {
+    mostrarFeedback(
+      `Nesta simulação, o valor atual ficou ${formatarMoeda(Math.abs(diferenca))} maior que o anterior. Portanto, não há redução entre os valores informados. Isso não permite concluir, isoladamente, se houve economia real.`,
+      'aviso'
+    );
+  } else {
+    mostrarFeedback('Nesta simulação, os dois valores são iguais. A diferença calculada é R$ 0,00 (0%).', 'aviso');
+  }
 }
 
 async function iniciar() {
