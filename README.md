@@ -76,7 +76,8 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 ├── pages/
 │   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
-│   ├── adesao.html       # HU03: acompanhamento de adesão\n│   └── modelo.html       # Modelo para novas telas
+│   ├── adesao.html       # HU03: acompanhamento de adesão
+│   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad
 │   ├── css/hu02.css      # Estilos da HU02
