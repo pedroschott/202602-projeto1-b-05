@@ -44,3 +44,8 @@ export function buscarBoasVindas() {
 export function buscarFAQHU01() {
   return lerJSON('hu01-assistente.json');
 }
+
+// HU05: dados fictícios usados para demonstrar a revisão de períodos e bases.
+export function buscarEconomiaHU05() {
+  return lerJSON('hu05-economia.json');
+}
