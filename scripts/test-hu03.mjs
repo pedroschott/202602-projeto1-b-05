@@ -86,7 +86,8 @@ try {
   await page.locator('#hu03-titulo').waitFor();
   assert.equal(await page.locator('#hu03-titulo').innerText(), 'Adesão em andamento');
 
-  assert.deepEqual(failedRequests.filter((url) => /\\/(pages\\/adesao\\.html|data\\/hu03-adesao\\.json|assets\\/(js\\/hu03\\.js|css\\/hu03\\.css))$/.test(url)), [], 'Sem falhas de rede nos arquivos da HU03');
+  const recursosHU03 = ['/pages/adesao.html', '/data/hu03-adesao.json', '/assets/js/hu03.js', '/assets/css/hu03.css'];
+  assert.deepEqual(failedRequests.filter((url) => recursosHU03.some((recurso) => url.endsWith(recurso))), [], 'Sem falhas de rede nos arquivos da HU03');
   assert.deepEqual(uncaught, [], 'Sem erros JavaScript não tratados');
   console.log('HU03: APROVADA — HTTP, JSON, 5 cenários, navegação, responsividade, suporte e retry');
 } finally {
