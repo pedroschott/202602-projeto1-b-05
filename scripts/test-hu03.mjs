@@ -24,14 +24,14 @@ try {
   await page.getByRole('button', { name: 'Abrir menu' }).click();
   await page.getByRole('link', { name: /Acompanhar adesão/ }).click();
   await page.locator('#hu03-titulo').waitFor();
-  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Adesão em andamento');
+  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Processo de adesão');
   await page.getByRole('link', { name: 'Voltar para o início' }).click();
   assert(page.url().endsWith('/index.html'), 'Botão voltar encaminha para a home');
 
   const response = await page.goto(ORIGIN + '/pages/adesao.html', { waitUntil: 'load' });
   assert.equal(response.status(), 200, 'Página HTTP');
   await page.locator('#hu03-titulo').waitFor();
-  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Adesão em andamento');
+  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Processo de adesão');
   assert.equal(await page.locator('[data-etapa]').count(), 5);
   assert(await page.locator('.bulbe-logo').evaluate((image) => image.complete && image.naturalWidth > 0));
 
@@ -39,6 +39,9 @@ try {
     await page.setViewportSize({ width, height: 844 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false,
       'Sem rolagem horizontal em ' + width + 'px');
+    assert((await page.locator('.hu03-step').first().evaluate(
+      (elemento) => parseFloat(getComputedStyle(elemento).fontSize))) >= 12,
+      'Legenda das etapas com pelo menos 12px em ' + width + 'px');
   }
 
   // Prints do aplicativo real; screenshot 390 x 844.
@@ -61,18 +64,56 @@ try {
   await page.locator('dialog [data-fechar]').click();
 
   const cenarios = {
-    cadastro: 'Cadastro concluído',
-    validacao: 'Validação concluída',
-    'adesao-em-andamento': 'Adesão em andamento',
-    ativacao: 'Etapa de ativação',
-    'primeira-fatura': 'Primeira fatura'
+    cadastro: { indice: 0, titulo: 'Cadastro inicial',
+      status: 'Cadastro em andamento', proxima: 'Próxima etapa: Validação' },
+    validacao: { indice: 1, titulo: 'Conferência dos dados',
+      status: 'Validação em andamento', proxima: 'Próxima etapa: Adesão' },
+    'adesao-em-andamento': { indice: 2, titulo: 'Processo de adesão',
+      status: 'Adesão em andamento', proxima: 'Próxima etapa: Ativação' },
+    ativacao: { indice: 3, titulo: 'Ativação do benefício',
+      status: 'Ativação em andamento', proxima: 'Próxima etapa: 1ª fatura' },
+    'primeira-fatura': { indice: 4, titulo: 'Primeira fatura',
+      status: 'Primeira fatura disponível', proxima: 'Consultar sua primeira fatura' }
   };
-  for (const [cenario, titulo] of Object.entries(cenarios)) {
+
+  for (const [cenario, esperado] of Object.entries(cenarios)) {
     await page.goto(ORIGIN + '/pages/adesao.html?cenario=' + cenario);
     await page.locator('#hu03-titulo').waitFor();
-    assert.equal(await page.locator('#hu03-titulo').innerText(), titulo);
+    assert.equal(await page.locator('#hu03-titulo').innerText(), esperado.titulo);
+    assert.equal(await page.locator('#hu03-situacao').innerText(), esperado.status);
+    assert.equal(await page.locator('#hu03-proxima').innerText(), esperado.proxima);
+    assert.equal(await page.locator('.hu03-step.is-current').count(), 1);
+    assert.equal(await page.locator('.hu03-step.is-selected').count(), 1);
+    assert(await page.locator('[data-etapa="' + esperado.indice + '"]').evaluate(
+      (elemento) => elemento.classList.contains('is-current')));
+    assert((await page.locator('#hu03-update-texto').innerText()).includes(
+      esperado.status), 'Última atualização coerente: ' + cenario);
+
+    const fillAntes = await page.locator('#hu03-fill').evaluate((elemento) => elemento.style.width);
+    const proximaAntes = await page.locator('#hu03-proxima').innerText();
+    const atualizacaoAntes = await page.locator('#hu03-update-texto').innerText();
+    const outroIndice = (esperado.indice + 2) % 5;
+    await page.locator('[data-etapa="' + outroIndice + '"]').click();
+    assert.equal(await page.locator('#hu03-situacao').innerText(), esperado.status,
+      'Consulta não altera status atual: ' + cenario);
+    assert.equal(await page.locator('#hu03-fill').evaluate((elemento) => elemento.style.width), fillAntes);
+    assert.equal(await page.locator('#hu03-proxima').innerText(), proximaAntes);
+    assert.equal(await page.locator('#hu03-update-texto').innerText(), atualizacaoAntes);
+    assert(await page.locator('[data-etapa="' + esperado.indice + '"]').evaluate(
+      (elemento) => elemento.classList.contains('is-current')),
+      'Etapa atual preservada: ' + cenario);
+    assert.equal(await page.locator('[data-etapa="' + outroIndice + '"]').getAttribute('aria-pressed'), 'true');
+    assert((await page.locator('#hu03-detalhe-modo').innerText()).includes('CONSULTA DA ETAPA'));
+
+    if (cenario === 'primeira-fatura') {
+      assert.equal(await page.getByRole('link', { name: 'Consultar faturas' }).count(), 1,
+        'Link de faturas permanece visível ao consultar outra etapa');
+      assert(!(await page.locator('#hu03-descricao').innerText()).includes('Seu processo está nesta etapa'),
+        'Consulta não diz que etapa consultada é a atual');
+    } else {
+      assert.equal(await page.getByRole('link', { name: 'Consultar faturas' }).count(), 0);
+    }
   }
-  assert.equal(await page.getByRole('link', { name: 'Consultar faturas' }).count(), 1);
   await page.goto(ORIGIN + '/pages/adesao.html?cenario=inexistente');
   await page.getByText('Nada por aqui ainda').waitFor();
 
@@ -84,12 +125,12 @@ try {
   await page.unroute('**/data/hu03-adesao.json');
   await page.getByRole('button', { name: 'Tentar novamente' }).click();
   await page.locator('#hu03-titulo').waitFor();
-  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Adesão em andamento');
+  assert.equal(await page.locator('#hu03-titulo').innerText(), 'Processo de adesão');
 
   const recursosHU03 = ['/pages/adesao.html', '/data/hu03-adesao.json', '/assets/js/hu03.js', '/assets/css/hu03.css'];
   assert.deepEqual(failedRequests.filter((url) => recursosHU03.some((recurso) => url.endsWith(recurso))), [], 'Sem falhas de rede nos arquivos da HU03');
   assert.deepEqual(uncaught, [], 'Sem erros JavaScript não tratados');
-  console.log('HU03: APROVADA — HTTP, JSON, 5 cenários, navegação, responsividade, suporte e retry');
+  console.log('HU03: APROVADA — 5 cenários coerentes, etapa atual fixa, consultas, HTTP, mobile e retry');
 } finally {
   await browser.close();
 }

@@ -3,60 +3,70 @@
   "etapas": [
     {
       "nome": "Cadastro",
-      "titulo": "Cadastro concluído",
-      "descricao": "As informações iniciais do cliente foram registradas nesta etapa ilustrativa.",
+      "titulo": "Cadastro inicial",
+      "descricao": "Nesta etapa, as informações iniciais são registradas para começar a adesão.",
       "proxima": "Validação",
-      "orientacao": "As informações seguem para conferência, conforme o fluxo que vier a ser confirmado pela Bulbe."
+      "orientacao": "Aguarde a confirmação do cadastro. Depois, acompanhe a conferência das informações aqui."
     },
     {
       "nome": "Validação",
-      "titulo": "Validação concluída",
-      "descricao": "Esta etapa representa a conferência das informações necessárias para seguir com a adesão.",
+      "titulo": "Conferência dos dados",
+      "descricao": "Nesta etapa, os dados informados no cadastro são conferidos antes do avanço do processo.",
       "proxima": "Adesão",
-      "orientacao": "Acompanhe a tela para consultar a situação da próxima etapa quando houver dados disponíveis."
+      "orientacao": "Aguarde a conclusão da validação. Acompanhe esta tela para saber quando o processo avançar."
     },
     {
       "nome": "Adesão",
-      "titulo": "Adesão em andamento",
-      "descricao": "Seu processo está nesta etapa. Consulte as informações disponíveis e acompanhe as próximas atualizações por aqui.",
+      "titulo": "Processo de adesão",
+      "descricao": "Nesta etapa, o pedido de adesão segue para as próximas providências. Consulte as atualizações nesta tela.",
       "proxima": "Ativação",
-      "orientacao": "Acompanhe esta tela para consultar novas informações quando estiverem disponíveis."
+      "orientacao": "Aguarde as próximas atualizações do seu pedido. Você não precisa fazer nada nesta etapa demonstrativa."
     },
     {
       "nome": "Ativação",
-      "titulo": "Etapa de ativação",
-      "descricao": "Esta etapa ilustra o acompanhamento da ativação. O status real deve vir da fonte oficial da Bulbe.",
+      "titulo": "Ativação do benefício",
+      "descricao": "Esta etapa representa a preparação para ativar o benefício após a adesão.",
       "proxima": "1ª fatura",
-      "orientacao": "Quando a primeira fatura estiver disponível, o cliente deverá conseguir encontrá-la por um caminho claro."
+      "orientacao": "Aguarde a confirmação da ativação. Depois, acompanhe a disponibilidade da primeira fatura."
     },
     {
       "nome": "1ª fatura",
       "titulo": "Primeira fatura",
-      "descricao": "Esta etapa representa a consulta à primeira fatura, quando ela estiver disponível no sistema.",
+      "descricao": "Quando sua primeira fatura estiver disponível, você poderá consultá-la na área de Faturas.",
       "proxima": "Consulta de faturas",
-      "orientacao": "Consulte as informações da fatura pelos canais oficiais da Bulbe quando estiverem disponíveis."
+      "orientacao": "Para consultar a primeira fatura demonstrativa, selecione o botão abaixo."
     }
   ],
   "cenarios": {
     "cadastro": {
       "etapaAtual": 0,
-      "ultimaAtualizacao": "Cadastro registrado — demonstração"
+      "statusAtual": "Cadastro em andamento",
+      "resumoAtual": "Estamos registrando as informações iniciais. Aguarde a confirmação do cadastro.",
+      "ultimaAtualizacao": "Cadastro em andamento — demonstração"
     },
     "validacao": {
       "etapaAtual": 1,
+      "statusAtual": "Validação em andamento",
+      "resumoAtual": "Seus dados estão em conferência. Aguarde a conclusão desta etapa.",
       "ultimaAtualizacao": "Validação em andamento — demonstração"
     },
     "adesao-em-andamento": {
       "etapaAtual": 2,
-      "ultimaAtualizacao": "Conteúdo demonstrativo — integração real pendente"
+      "statusAtual": "Adesão em andamento",
+      "resumoAtual": "Seu pedido está na etapa de adesão. Aguarde as próximas atualizações.",
+      "ultimaAtualizacao": "Adesão em andamento — demonstração"
     },
     "ativacao": {
       "etapaAtual": 3,
-      "ultimaAtualizacao": "Ativação ilustrativa — demonstração"
+      "statusAtual": "Ativação em andamento",
+      "resumoAtual": "A ativação está em andamento neste exemplo. Aguarde a confirmação.",
+      "ultimaAtualizacao": "Ativação em andamento — demonstração"
     },
     "primeira-fatura": {
       "etapaAtual": 4,
-      "ultimaAtualizacao": "Primeira fatura ilustrativa — demonstração"
+      "statusAtual": "Primeira fatura disponível",
+      "resumoAtual": "Neste exemplo, a primeira fatura está disponível para consulta.",
+      "ultimaAtualizacao": "Primeira fatura disponível — demonstração"
     }
   }
 }

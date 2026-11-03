@@ -14,6 +14,7 @@ Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, al
 A implementação antiga foi retirada do diretório `docs/wireframes/Telas Prontas/` para evitar duplicação. Ela continua disponível no histórico de commits do GitHub; a versão mantida é `pages/adesao.html` e seus arquivos em `assets/` e `data/`.
 
 ## Capturas da tela integrada (390 × 844 px)
+Capturas geradas a cada execução aprovada do GitHub Actions, incluindo as revisões solicitadas pelo squad.
 As imagens foram produzidas pelo Chromium no GitHub Actions, com o projeto servido por HTTP.
 
 ![HU03 — tela inicial](telas/hu03-adesao.png)
@@ -37,10 +38,13 @@ Abra `index.html` pela extensão Live Server do VS Code e escolha **Acompanhar a
 - [x] Tratamento de erro HTTP 503 e recuperação pelo botão "Tentar novamente".
 - [x] Dimensões de 320, 360 e 390 px sem rolagem horizontal.
 - [x] Suporte humano demonstrativo e seleção das etapas.
+- [x] Etapa atual permanece fixa, mesmo ao consultar outras etapas; próximo passo e atualização sempre referem-se ao estado real fictício.
+- [x] Textos de status coerentes nos cinco cenários; instruções diretas para o cliente.
+- [x] Legendas de etapas com pelo menos 12 px em 320, 360 e 390 px.
 - [x] Capturas em `docs/telas/` com cabeçalho e navegação visual do squad.
 - [ ] Conferência final do fluxo pela equipe e aprovação visual do grupo.
 
 **Automação:** [GitHub Actions — HU03](https://github.com/pedroschott/202602-projeto1-b-05/actions/workflows/hu03-screenshots.yml).
 
 ## Limitações
-As etapas e atualizações são ilustrativas; a Bulbe ainda precisa confirmar o fluxo. A consulta visual das etapas não altera o andamento real. Não há login, pagamento ou comunicação com cliente real. O teste automatizado usa um servidor HTTP estático equivalente ao Live Server, e não a extensão específica do VS Code.
+As etapas e atualizações são ilustrativas; a Bulbe ainda precisa confirmar o fluxo. A seleção de uma etapa apenas mostra informações gerais; ela não altera o status atual, o próximo passo nem o andamento real. Não há login, pagamento ou comunicação com cliente real. O teste automatizado usa um servidor HTTP estático equivalente ao Live Server, e não a extensão específica do VS Code.
