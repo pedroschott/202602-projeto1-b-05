@@ -38,7 +38,7 @@ function mostrar({ etapas, estado }) {
       '<div class="hu03-steps" role="group" aria-label="Etapas ilustrativas da adesão">' +
         '<div class="hu03-track" aria-hidden="true"><div id="hu03-fill" class="hu03-fill"></div></div>' +
         etapasHTML +
-      '</div><p class="hu03-hint">Selecione uma etapa para ver detalhes. O progresso real está indicado em verde.</p>' +
+      '</div><p class="hu03-hint">Selecione uma etapa para consultar os detalhes do processo.</p>' +
     '</section>' +
     '<section class="hu03-status" aria-live="polite">' +
       '<div class="hu03-status-icon" aria-hidden="true">↻</div><div>' +
