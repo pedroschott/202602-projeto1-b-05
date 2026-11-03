@@ -1,41 +1,46 @@
 # HU03 — Acompanhar adesão | Implementação
 
-Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, alinhada à base compartilhada do Squad 05.
+Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, alinhada ao template compartilhado do Squad 05.
 
 ## Arquivos
+- `pages/adesao.html`: estrutura com cabeçalho, logo e navegação comuns.
+- `assets/css/hu03.css`: apenas estilos da jornada horizontal e cartões.
+- `assets/js/hu03.js`: seleção e renderização das cinco etapas.
+- `data/hu03-adesao.json`: cinco cenários fictícios.
+- `assets/js/api.js`: leitura via fetch.
+- `assets/js/layout.js`: acesso pelo menu da home.
+- `scripts/test-hu03.mjs`: testes em Chromium (página HTTP, cenários, responsividade, suporte, teclado, erro e retry).
 
-- `pages/adesao.html`: estrutura da tela e componentes compartilhados.
-- `assets/css/hu03.css`: somente regras específicas das cinco etapas e cartões.
-- `assets/js/hu03.js`: seleção de etapas e renderização segura.
-- `data/hu03-adesao.json`: exemplos fictícios com cinco etapas e cinco cenários.
-- `assets/js/api.js`: leitura centralizada via fetch.
-- `assets/js/layout.js`: item do menu aponta para `pages/adesao.html`.
+A versão original em `docs/wireframes/Telas Prontas/` continua preservada como histórico.
 
-A primeira versão em `docs/wireframes/Telas Prontas/` foi preservada como referência histórica.
+## Capturas da tela integrada (390 × 844 px)
+As imagens foram produzidas pelo Chromium no GitHub Actions, com o projeto servido por HTTP.
 
-## Como abrir
+![HU03 — tela inicial](telas/hu03-adesao.png)
 
-Inicie o projeto com Live Server pela raiz, pois `fetch` não funciona ao abrir HTML via `file://`. No menu da home, escolha **Acompanhar adesão**.
+![HU03 — parte inferior com rolagem](telas/hu03-adesao-inferior.png)
 
-### Cenários para avaliar
+## Como executar
+Abra `index.html` pela extensão Live Server do VS Code e escolha **Acompanhar adesão** no menu. Não use `file://`: a leitura do JSON exige um servidor HTTP.
 
-- `pages/adesao.html` — adesão em andamento (padrão, etapa 3).
+### Cenários
+- `pages/adesao.html` — padrão, etapa 3 (adesão).
 - `pages/adesao.html?cenario=cadastro` — etapa 1.
 - `pages/adesao.html?cenario=validacao` — etapa 2.
 - `pages/adesao.html?cenario=ativacao` — etapa 4.
-- `pages/adesao.html?cenario=primeira-fatura` — etapa 5, com atalho para faturas.
-- `pages/adesao.html?cenario=inexistente` — estado vazio.
+- `pages/adesao.html?cenario=primeira-fatura` — etapa 5, com link para faturas.
+- `pages/adesao.html?cenario=inexistente` — cenário ausente/estado vazio.
 
-## Verificações antes do merge
+## Verificações
+- [x] Carregamento HTTP e leitura do JSON com fetch no Chromium do GitHub Actions.
+- [x] Cinco etapas, cinco cenários, link de faturas e estado vazio.
+- [x] Tratamento de erro HTTP 503 e recuperação pelo botão "Tentar novamente".
+- [x] Dimensões de 320, 360 e 390 px sem rolagem horizontal.
+- [x] Suporte humano demonstrativo e seleção das etapas.
+- [x] Capturas em `docs/telas/` com cabeçalho e navegação visual do squad.
+- [ ] Conferência final do fluxo pela equipe e aprovação visual do grupo.
 
-- [ ] Abrir a home e navegar pelo menu até a HU03; voltar ao início.
-- [ ] Conferir logotipo, cabeçalho azul, suporte e tipografia comuns às outras telas.
-- [ ] Selecionar as cinco etapas: o cartão informativo muda, mas o avanço real não é alterado.
-- [ ] Conferir os cinco cenários do JSON e o atalho de faturas na etapa 5.
-- [ ] Simular Offline no DevTools: erro de carregamento e botão "Tentar novamente".
-- [ ] Testar no navegador em 320, 360 e 390 px, sem rolagem horizontal; testar também com teclado.
-- [ ] Registrar captura de tela da implementação real em 390 × 844 px em `docs/telas/hu03-adesao.png` (pendente de captura no navegador).
+**Automação:** [GitHub Actions — HU03](https://github.com/pedroschott/202602-projeto1-b-05/actions/workflows/hu03-screenshots.yml).
 
 ## Limitações
-
-O progresso de adesão, os status e as datas são demonstrações ilustrativas, não dados oficiais de clientes. A seleção das etapas consulta informações, mas não modifica o andamento real. A captura de tela da aplicação executada deve ser adicionada antes de considerar a documentação visual completa.
+As etapas e atualizações são ilustrativas; a Bulbe ainda precisa confirmar o fluxo. A consulta visual das etapas não altera o andamento real. Não há login, pagamento ou comunicação com cliente real. O teste automatizado usa um servidor HTTP estático equivalente ao Live Server, e não a extensão específica do VS Code.
