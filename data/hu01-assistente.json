@@ -1,0 +1,39 @@
+{
+  "aviso": "Respostas predefinidas para demonstração acadêmica. Este protótipo não utiliza IA real.",
+  "perguntas": [
+    {
+      "id": "componentes",
+      "pergunta": "O que compõe o valor da fatura?",
+      "resposta": "Confira a referência, o vencimento e o valor registrado na fatura. Os componentes individuais da cobrança ainda não estão disponíveis nesta demonstração; não é possível explicar a soma sem esses dados.",
+      "acao": "Ver a fatura",
+      "destino": "fatura"
+    },
+    {
+      "id": "cemig",
+      "pergunta": "Por que ainda recebo conta da Cemig?",
+      "resposta": "A Cemig continua sendo a distribuidora. Os documentos da Bulbe e da Cemig podem ter funções diferentes conforme a contratação. Compare os períodos e os itens; com estes dados fictícios não é possível confirmar a composição das suas duas contas.",
+      "acao": "Conferir com atendimento",
+      "destino": "suporte"
+    },
+    {
+      "id": "duplicidade",
+      "pergunta": "Estou pagando duas vezes?",
+      "resposta": "Não há dados suficientes nesta demonstração para confirmar cobrança repetida. Compare referência, itens e situação das duas contas. O atendimento pode analisar a dúvida; esta conversa não confirma pagamentos.",
+      "acao": "Falar com atendimento",
+      "destino": "suporte"
+    },
+    {
+      "id": "economia",
+      "pergunta": "Como foi calculada minha economia?",
+      "resposta": "A projeção de benefício e as condições usadas estão na tela A caminho da economia. Uma estimativa não é desconto já lançado. Para comparar economia realizada, precisamos de períodos e bases comparáveis; esses detalhes ainda não estão disponíveis aqui.",
+      "acao": "Ver acompanhamento do benefício",
+      "destino": "acompanhamento"
+    }
+  ],
+  "semResposta": {
+    "pergunta": "Não encontrei informação suficiente",
+    "resposta": "Não tenho uma resposta cadastrada para essa pergunta nesta demonstração. Posso encaminhar você ao atendimento, sem inventar dados sobre sua cobrança.",
+    "acao": "Falar com atendimento",
+    "destino": "suporte"
+  }
+}

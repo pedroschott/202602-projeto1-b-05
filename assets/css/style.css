@@ -52,7 +52,8 @@ button {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid #f5a623;
+  outline: 3px solid var(--bulbe-primary);
+  box-shadow: 0 0 0 3px #fff;
   outline-offset: 3px;
 }
 
@@ -429,3 +430,10 @@ p {
 .bulbe-card + .bulbe-card {
   margin-top: 8px;
 }
+
+/* Foco com contraste no cabeçalho azul; separação evita confundir o contorno. */
+.bulbe-header:not(.bulbe-header--claro) :focus-visible {
+  outline-color: #fff;
+  box-shadow: 0 0 0 3px var(--bulbe-primary);
+}
+input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3px; }
