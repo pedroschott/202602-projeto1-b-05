@@ -22,6 +22,17 @@ function mostrarExemplos(dados) {
     alvo.appendChild(card);
   });
 
+  if (dados.demonstracao) {
+    const resultado = document.createElement('article');
+    resultado.className = 'hu05-exemplo';
+    const tituloResultado = document.createElement('strong');
+    tituloResultado.textContent = 'Resultado da simulação fictícia';
+    const calculo = document.createElement('span');
+    calculo.textContent = dados.demonstracao.descricao;
+    resultado.append(tituloResultado, calculo);
+    alvo.appendChild(resultado);
+  }
+
   const aviso = document.createElement('p');
   aviso.className = 'hu05-muted';
   aviso.textContent = dados.aviso;
