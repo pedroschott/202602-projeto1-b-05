@@ -66,7 +66,8 @@ export function validarEntrada(entrada) {
       erros.push('O período da fatura anterior deve começar antes do período da fatura atual.');
     }
     // Datas inclusivas: terminar no mesmo dia em que o outro período começa também é sobreposição.
-    if (entrada.anterior.fim >= entrada.atual.inicio) {
+    const periodosSeSobrepoem = entrada.anterior.inicio <= entrada.atual.fim && entrada.atual.inicio <= entrada.anterior.fim;
+    if (periodosSeSobrepoem) {
       erros.push('Os períodos se sobrepõem. A data final da fatura anterior deve ser anterior ao início da fatura atual.');
     }
   }
