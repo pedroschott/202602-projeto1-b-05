@@ -54,3 +54,17 @@
   .hu05-bill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .hu05-bill { margin: 14px 0; }
 }
+.hu05-summary { padding: 16px; border: 1px solid var(--bulbe-border); border-radius: var(--bulbe-radius); }
+.hu05-summary p { margin: 12px 0 0; color: var(--bulbe-muted); font-size: 13px; line-height: 1.5; }
+.hu05-comparison-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hu05-comparison-row > div { min-width: 0; display: flex; flex-direction: column; gap: 7px; }
+.hu05-comparison-row span, .hu05-comparison-row small { color: var(--bulbe-muted); font-size: 11px; line-height: 1.4; }
+.hu05-comparison-row strong { color: var(--bulbe-primary); font-size: 19px; overflow-wrap: anywhere; }
+.hu05-blocked { margin: 16px 0; padding: 16px; border-left: 4px solid var(--bulbe-primary); border-radius: 8px; background: var(--bulbe-blue-light); color: var(--bulbe-text); font-size: 13px; line-height: 1.55; }
+.hu05-blocked--detail { margin-top: 18px; }
+.hu05-check-list { padding-left: 20px; color: var(--bulbe-text); font-size: 13px; line-height: 1.65; }
+.hu05-bill select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--bulbe-border); border-radius: 8px; background: #fff; color: var(--bulbe-text); font-size: 13px; }
+.hu05-bill input:focus, .hu05-bill select:focus { outline: 3px solid var(--bulbe-blue-light); border-color: var(--bulbe-primary); }
+@media (max-width: 420px) {
+  .hu05-comparison-row { grid-template-columns: 1fr; }
+}
