@@ -284,4 +284,3 @@ Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram 
 Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a calculadora será uma tela própria ou parte da tela “Entenda sua fatura”.
 
 As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
-

@@ -166,4 +166,3 @@ export function formatarReferencia(textoAnoMes) {
   const [ano, mes] = textoAnoMes.split('-');
   return `${MESES[Number(mes) - 1]}/${ano.slice(2)}`;
 }
-

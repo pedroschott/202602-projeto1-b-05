@@ -205,4 +205,3 @@ export function htmlLinhaDoTempo(acomp) {
   }).join('');
   return `${htmlPendencia(acomp)}<ol class="linha-tempo" aria-label="Etapas até o primeiro desconto">${itens}</ol>`;
 }
-
