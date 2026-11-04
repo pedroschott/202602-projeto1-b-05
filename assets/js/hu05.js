@@ -1,17 +1,18 @@
 import { buscarEconomiaHU05 } from './api.js';
-import { iniciarLayout, formatarMoeda } from './layout.js';
+import { iniciarLayout, formatarMoeda, formatarData } from './layout.js';
 
 const form = document.querySelector('#hu05-form');
 const feedback = document.querySelector('#hu05-feedback');
 const etapas = [...document.querySelectorAll('.hu05-step')];
 const marcadores = [...document.querySelectorAll('[data-step-label]')];
+const resumo = document.querySelector('#hu05-resumo');
+const bloqueio = document.querySelector('#hu05-bloqueio');
+const detalhe = document.querySelector('#hu05-detalhe');
 let regras = null;
-let resultado = null;
+let dados = null;
 
 function mostrarEtapa(numero) {
-  etapas.forEach((etapa, indice) => {
-    etapa.hidden = indice !== numero - 1;
-  });
+  etapas.forEach((etapa, indice) => { etapa.hidden = indice !== numero - 1; });
   marcadores.forEach((marcador, indice) => {
     marcador.classList.toggle('is-active', indice === numero - 1);
     marcador.classList.toggle('is-done', indice < numero - 1);
@@ -25,104 +26,120 @@ function mostrarErro(mensagem) {
   feedback.textContent = mensagem;
   feedback.className = 'hu05-feedback hu05-feedback--erro';
 }
-
 function limparErro() {
   feedback.textContent = '';
   feedback.className = 'hu05-feedback';
 }
 
-function lerContas() {
-  return [1, 2, 3].map((numero) => ({
-    valor: Number(form.elements[`valor${numero}`].value),
-    periodo: form.elements[`periodo${numero}`].value
-  }));
+function lerDados() {
+  const campos = (prefixo) => ({
+    valor: Number(form.elements[`${prefixo}Valor`].value),
+    inicio: form.elements[`${prefixo}Inicio`].value,
+    fim: form.elements[`${prefixo}Fim`].value,
+    base: form.elements[`${prefixo}Base`].value
+  });
+  return { anterior: campos('anterior'), atual: campos('atual') };
 }
 
-function validarContas(contas) {
+function diasDoPeriodo(inicio, fim) {
+  const a = new Date(`${inicio}T00:00:00Z`);
+  const b = new Date(`${fim}T00:00:00Z`);
+  return Math.round((b - a) / 86400000) + 1;
+}
+
+function validar(d) {
   if (!form.reportValidity()) return false;
-  if (contas.some((conta) => !Number.isFinite(conta.valor) || conta.valor <= 0)) {
-    mostrarErro('Informe valores maiores que zero para as três contas.');
+  for (const [nome, conta] of Object.entries(d)) {
+    if (!Number.isFinite(conta.valor) || conta.valor <= 0) {
+      mostrarErro(`Informe um valor maior que zero para a fatura ${nome === 'anterior' ? 'anterior' : 'atual'}.`);
+      return false;
+    }
+    if (!conta.inicio || !conta.fim || conta.inicio > conta.fim) {
+      mostrarErro('Confira as datas inicial e final de cada período de consumo.');
+      return false;
+    }
+  }
+  if (d.anterior.base !== d.atual.base) {
+    mostrarErro('Escolha a mesma base de comparação nas duas faturas.');
     return false;
   }
-
-  const periodos = contas.map((conta) => conta.periodo);
-  if (new Set(periodos).size !== 3) {
-    mostrarErro('Selecione três períodos de consumo diferentes.');
-    return false;
-  }
-
-  const meses = periodos.map((periodo) => {
-    const [ano, mes] = periodo.split('-').map(Number);
-    return ano * 12 + mes;
-  });
-  if (!(meses[1] === meses[0] + 1 && meses[2] === meses[1] + 1)) {
-    mostrarErro('Informe três meses consecutivos, em ordem do mais antigo para o mais recente.');
+  if (diasDoPeriodo(d.anterior.inicio, d.anterior.fim) !== diasDoPeriodo(d.atual.inicio, d.atual.fim)) {
+    mostrarErro('Os períodos informados têm durações diferentes. Confira as datas antes de continuar.');
     return false;
   }
   return true;
 }
 
-function calcular(contas) {
-  const media = contas.reduce((soma, conta) => soma + conta.valor, 0) / contas.length;
-  const percentual = regras.percentualMaximo / 100;
-  const economia = media * percentual;
-  return {
-    contas,
-    media,
-    percentual: regras.percentualMaximo,
-    economia,
-    projetado: media - economia
-  };
+function descreverBase(base) {
+  return base === 'total' ? 'Valor total da fatura' : 'Componente de energia informado';
 }
 
-function preencherResultado() {
-  const moeda = formatarMoeda;
-  document.querySelector('#hu05-saving').textContent = moeda(resultado.economia);
-  document.querySelector('#hu05-percent').textContent = `Até ${resultado.percentual}% de redução estimada`;
-  document.querySelector('#hu05-average').textContent = moeda(resultado.media);
-  document.querySelector('#hu05-projected').textContent = moeda(resultado.projetado);
-  document.querySelector('#hu05-detail-average').textContent = moeda(resultado.media);
-  document.querySelector('#hu05-detail-projected').textContent = moeda(resultado.projetado);
-  document.querySelector('#hu05-detail-base').textContent = moeda(resultado.media);
-  document.querySelector('#hu05-detail-rate').textContent = `Até ${resultado.percentual}%`;
-  document.querySelector('#hu05-detail-saving').textContent = moeda(resultado.economia);
-  document.querySelector('#hu05-detail-total').textContent = moeda(resultado.projetado);
+function preencherComparacao() {
+  const anterior = dados.anterior;
+  const atual = dados.atual;
+  resumo.innerHTML = `
+    <div class="hu05-comparison-row">
+      <div><span>Fatura anterior à Bulbe</span><strong>${formatarMoeda(anterior.valor)}</strong><small>${formatarData(anterior.inicio)} a ${formatarData(anterior.fim)}</small></div>
+      <div><span>Primeira fatura após a Bulbe</span><strong>${formatarMoeda(atual.valor)}</strong><small>${formatarData(atual.inicio)} a ${formatarData(atual.fim)}</small></div>
+    </div>
+    <p><strong>Base informada:</strong> ${descreverBase(anterior.base)}</p>
+    <p><strong>Duração:</strong> ${diasDoPeriodo(anterior.inicio, anterior.fim)} dias em cada período</p>
+  `;
+  const comparavel = regras.basesComparaveisConfirmadas === true &&
+    regras.regrasCalculoConfirmadas === true &&
+    regras.metodologiaConfirmada === true;
+  bloqueio.hidden = comparavel;
+  if (!comparavel) {
+    bloqueio.textContent = regras.mensagemSemCalculo ||
+      'Ainda não é possível calcular uma economia confiável: a metodologia e os critérios oficiais de comparação não foram confirmados pela Bulbe. Os valores e períodos informados são exibidos apenas para conferência.';
+  } else {
+    bloqueio.textContent = 'Os dados foram registrados para conferência. A implementação da fórmula oficial ainda depende da especificação aprovada pela Bulbe; nenhum valor de economia será inferido automaticamente.';
+  }
+  detalhe.textContent = 'A comparação só poderá apresentar economia quando a Bulbe confirmar quais componentes devem ser comparados, como os períodos devem ser normalizados e qual fórmula deve ser aplicada.';
+}
+
+async function carregarRegras() {
+  const botao = form.querySelector('button[type="submit"]');
+  botao.disabled = true;
+  try {
+    regras = await buscarEconomiaHU05();
+    if (!regras || regras.tipo !== 'conferencia_economia') throw new Error('Configuração HU05 inválida.');
+    botao.disabled = false;
+  } catch (erro) {
+    mostrarErro('Não foi possível carregar as regras da HU05. Verifique a conexão e tente novamente.');
+    const tentar = document.querySelector('#hu05-tentar');
+    tentar.hidden = false;
+  }
 }
 
 async function iniciar() {
   iniciarLayout();
-  try {
-    regras = await buscarEconomiaHU05();
-    if (!Number.isFinite(regras.percentualMaximo) || regras.percentualMaximo < 0 || regras.percentualMaximo > 15) {
-      throw new Error('Premissa de percentual inválida.');
-    }
-  } catch (erro) {
-    mostrarErro('Não foi possível carregar as premissas da simulação. Atualize a página e tente novamente.');
-    form.querySelector('button[type="submit"]').disabled = true;
-    return;
-  }
+  document.querySelector('#hu05-tentar').addEventListener('click', async () => {
+    limparErro();
+    await carregarRegras();
+  });
+  await carregarRegras();
 
   form.addEventListener('submit', (evento) => {
     evento.preventDefault();
     limparErro();
-    const contas = lerContas();
-    if (!validarContas(contas)) return;
-    resultado = calcular(contas);
-    preencherResultado();
+    const entrada = lerDados();
+    if (!validar(entrada)) return;
+    dados = entrada;
+    preencherComparacao();
     mostrarEtapa(2);
   });
-
   form.addEventListener('input', limparErro);
+  form.addEventListener('change', limparErro);
   document.querySelector('#hu05-details').addEventListener('click', () => mostrarEtapa(3));
+  document.querySelector('#hu05-edit').addEventListener('click', () => mostrarEtapa(1));
+  document.querySelector('#hu05-back').addEventListener('click', () => mostrarEtapa(2));
   document.querySelector('#hu05-restart').addEventListener('click', () => {
     form.reset();
-    resultado = null;
+    dados = null;
+    resumo.replaceChildren();
     limparErro();
     mostrarEtapa(1);
-  });
-  document.querySelector('#hu05-back').addEventListener('click', () => mostrarEtapa(2));
-  document.querySelector('#hu05-contract').addEventListener('click', () => {
-    window.location.href = 'https://bulbeenergia.com.br/';
   });
 }
 
