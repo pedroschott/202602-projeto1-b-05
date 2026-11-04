@@ -76,8 +76,18 @@ Os títulos de commits descrevem entregas esperadas, não commits já existentes
 
 - **Node:** 35/35 testes locais aprovados: 18 regressões HU02 e 17 verificações API/fontes JSON, referências HTML e configuração sem cálculo oficial. Sintaxe dos scripts do app e testes verificada.
 - **Chromium local:** bloqueado com `socket: Operation not permitted`; testes de navegador e QA visual não concluídos localmente. Não é aprovação nem reprovação das telas.
-- **CI:** preparada para verificar o draft; resultado ainda pendente. Registrar run e commit depois da execução, sem antecipar sucesso.
+- **CI:** execução concluída com sucesso; run, commit, cobertura e limites detalhados abaixo.
 - **Diagnóstico HU05 com DOM simulado:** aceita períodos idênticos e ordem invertida entre faturas; oculta o aviso com três flags `true`, embora não haja fórmula implementada. Não inclui validação HTML nativa, foco, rolagem ou layout. Correções propostas, não executadas nesta preparação.
 - **Escopo:** arquivos da aplicação (assets, páginas, dados e index) preservados em relação à base `69f01fe75c6febc650755470a6e786c6147a8384`. O PR draft de preparação contém somente testes, CI e documentação; não representa entrega das tarefas dos colegas.
 
 Comandos reproduzíveis de Node, Playwright 1.56.1 e servidor HTTP na porta 4173: [README — Testes](../README.md#testes).
+
+### Resultado de CI e inspeção parcial
+
+A execução [41915874300](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) concluiu com sucesso para o head `419b735859649f30ba395848a7bbef31661b6f9e`, no merge provisório `cbb4cd7cc345bae1a896e074fd338ec4a1ee26b7` com main `be1d7f8`. O PR não foi integrado à main.
+
+- 35 testes Node, roteiro Chromium HU03 e sete grupos de integração aprovados; nenhum erro JavaScript não tratado nos fluxos percorridos.
+- Geradas 21 capturas de sete telas em 320/360/390 px e duas capturas HU03. Os artefatos dessa execução expiram em 11/11/2026; podem ser gerados novamente pelo workflow.
+- Inspecionadas nove capturas: HU03/HU05 em 320 e 390 px, home, assistente, acompanhamento, boas-vindas e fatura em 360 px. A HU03 ainda quebra os nomes das etapas no meio das palavras, embora não tenha rolagem horizontal. Manter o ajuste mobile no bloco proposto para Rodrigo.
+- Essa inspeção é parcial: não aprova todos os estados, telas inteiras, gestos ou desktop. Também não valida critérios pendentes de primeiro acesso, cronologia HU05 e encaminhamento contextual HU01 → HU05.
+- O simulador pré-contratação entrou separadamente na main pelo [PR #38](https://github.com/pedroschott/202602-projeto1-b-05/pull/38) durante a preparação. Ele não está coberto pela suíte acima. No commit `be1d7f8`, `hu05-simulacao.js` importa `buscarSimulacaoEconomiaHU05`, mas chama `buscarEconomiaHU05`, ausente no módulo: a inicialização cai no tratamento de erro. Correção e decisão de escopo ficam pendentes, sem alteração desse arquivo nesta integração.

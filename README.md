@@ -100,7 +100,7 @@ node scripts/test-integracao.mjs
 
 Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. O teste integrado salva evidências em `artifacts/mvp`; o teste HU03 gera capturas em `docs/telas`. Na CI, as evidências são artefatos, sem commit automático.
 
-**Estado em 04/11:** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). Chromium local bloqueado pelo ambiente; QA visual e resultado da CI ainda pendentes. O PR de preparação não implementa as correções propostas das HUs.
+**Estado em 04/11:** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. O PR de preparação não implementa as correções propostas das HUs.
 
 ## 6. Estrutura do repositório
 
