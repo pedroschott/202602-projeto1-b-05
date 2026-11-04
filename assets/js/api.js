@@ -54,3 +54,8 @@ export function buscarAcompanhamentoHU03() {
 export function buscarEconomiaHU05() {
   return lerJSON('hu05-economia.json');
 }
+
+// HU05: premissas ilustrativas para simulação antes da contratação.
+export function buscarSimulacaoEconomiaHU05() {
+  return lerJSON('hu05-simulacao.json');
+}

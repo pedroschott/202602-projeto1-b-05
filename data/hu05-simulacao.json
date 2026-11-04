@@ -1,0 +1,8 @@
+{
+  "tipo": "simulacao_academica",
+  "percentualMaximo": 15,
+  "regrasCalculoConfirmadas": false,
+  "metodologia": "A estimativa demonstrativa calcula a média aritmética dos valores totais das três contas informadas e aplica sobre ela o percentual máximo ilustrativo de 15%.",
+  "aviso": "Premissa acadêmica: até 15% de redução estimada. Não representa fórmula oficial, proposta comercial ou garantia de economia da Bulbe.",
+  "observacao": "A projeção não detalha energia, distribuição, encargos, impostos ou taxas porque não foram fornecidos os dados e a metodologia necessários. A economia real depende das condições da unidade consumidora e da proposta comercial."
+}
