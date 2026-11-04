@@ -1,5 +1,11 @@
 import { buscarBoasVindas } from './api.js';
 import { iniciarLayout, carregarComEstados } from './layout.js';
+import { marcarApresentacaoVista } from './hu04-primeiro-acesso.js';
+
+// Abrir esta página (pelo primeiro acesso, pelo menu ou direto) conta como
+// "já viu": a home não abre a apresentação sozinha de novo neste navegador.
+// Se o armazenamento estiver bloqueado, nada é gravado e a página funciona igual.
+marcarApresentacaoVista();
 
 const slide = document.querySelector('#slide');
 const controles = document.querySelector('#controles');
@@ -42,7 +48,7 @@ function mostrarSlide() {
 
 function avancar() {
   if (atual === slides.length - 1) {
-    // O login real ainda não faz parte desta primeira versão.
+    // Destino aprovado: home de demonstração. Não há login nesta entrega.
     window.location.href = '../index.html';
     return;
   }
