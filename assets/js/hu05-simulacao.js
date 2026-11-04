@@ -92,7 +92,7 @@ function preencherResultado() {
 async function iniciar() {
   iniciarLayout();
   try {
-    regras = await buscarEconomiaHU05();
+    regras = await buscarSimulacaoEconomiaHU05();
     if (!Number.isFinite(regras.percentualMaximo) || regras.percentualMaximo < 0 || regras.percentualMaximo > 15) {
       throw new Error('Premissa de percentual inválida.');
     }
