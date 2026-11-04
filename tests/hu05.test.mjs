@@ -65,6 +65,7 @@ test('rejeita períodos fora da ordem cronológica', () => {
   }));
   assert.equal(resultado.valido, false);
   assert.match(resultado.erros.join(' '), /fatura anterior deve começar antes/i);
+  assert.doesNotMatch(resultado.erros.join(' '), /se sobrepõem/i);
 });
 
 test('rejeita sobreposição e contato no limite inclusivo', () => {
