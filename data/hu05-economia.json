@@ -1,0 +1,8 @@
+{
+  "tipo": "conferencia_economia",
+  "regrasCalculoConfirmadas": false,
+  "basesComparaveisConfirmadas": false,
+  "metodologiaConfirmada": false,
+  "metodologia": null,
+  "mensagemSemCalculo": "Ainda não é possível calcular uma economia confiável. A metodologia oficial da Bulbe e os critérios para comparar bases e períodos ainda não foram confirmados. Confira os dados informados, mas não apresentamos um valor de economia."
+}
