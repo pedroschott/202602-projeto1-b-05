@@ -5,7 +5,7 @@
 | ID | História | Oportunidade de origem | Prioridade | Issue |
 | --- | --- | --- | --- | --- |
 | HU01 | Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar. | #3 (com apoio de #2) | Alta (proposta) | #5 |
-| HU02 | Como Renata, cliente que ainda não percebeu a economia esperada, quero acompanhar o que falta para o benefício aparecer e quanto posso economizar, para organizar o pagamento da segunda fatura com clareza sobre o serviço. | Gap entre adesão e percepção do benefício; apoio de O1/O3 | A definir; proposta individual | A definir |
+| HU02 | Como Renata, cliente que ainda não percebeu a economia esperada, quero acompanhar o que falta para o benefício aparecer e quanto posso economizar, para organizar o pagamento da segunda fatura com clareza sobre o serviço. | Inadimplência após a adesão, durante a espera pelo benefício; apoio de O1/O3 | A definir | #9 (histórico); implementação no PR #33 |
 | HU03 | Como cliente pessoa física da Bulbe no primeiro ciclo de contratação, quero acompanhar visualmente o andamento da minha adesão e consultar o próximo passo, para saber em que situação estou e se preciso realizar alguma ação. | #1 — acompanhamento da adesão durante a espera | Média (proposta individual; priorização pendente) | A definir |
 | HU04 | Como pessoa que abre o app pela primeira vez, quero conhecer a Bulbe pelo carrossel antes do login, para entender o serviço antes de entrar. | Primeiro acesso ao app | A definir | A definir |
 | HU05 | Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos e bases comparáveis, para entender de onde vem o resultado e avaliar o benefício com confiança. | #3 — transparência e compreensão da economia | A definir | A definir |
@@ -73,7 +73,7 @@ A implementação inicial está disponível para revisão. O fechamento das issu
 
 ## HU02 — Acompanhar a espera até o benefício aparecer
 
-**Status:** substitui a HU02 anterior com a proposta originalmente registrada como HU06; revisão do squad e entrada no MVP pendentes.
+**Status:** primeira implementação integrada à `main` pelo [PR #33](https://github.com/pedroschott/202602-projeto1-b-05/pull/33), em 31/10/2026. A HU02 já tem home, acompanhamento e dados fictícios via `fetch`. A revisão por colega do squad não está registrada no PR #33; validação com a Bulbe e avaliação do resultado continuam pendentes.
 
 **Responsável:** Pedro Marcondes Dombeck Schott (@pedroschott)
 
@@ -85,15 +85,17 @@ A implementação inicial está disponível para revisão. O fechamento das issu
 
 ### Histórico da substituição
 
-Em 22/10/2026, a proposta de Pedro antes identificada como HU06 ([PR #26](https://github.com/pedroschott/202602-projeto1-b-05/pull/26)) passa a ocupar a HU02, substituindo “Localizar a primeira fatura sem o aviso”, vinculada à persona individual Célia Martins. A nova HU02 mantém a persona Renata e o foco na espera pelo benefício e na segunda fatura; não é uma mudança de nome da persona.
+Em 22/10/2026, o [PR #30](https://github.com/pedroschott/202602-projeto1-b-05/pull/30) integrou a substituição da HU02 antiga, “Localizar a primeira fatura sem o aviso”, vinculada à persona individual Célia Martins. A história de Pedro antes identificada como HU06 ([PR #26](https://github.com/pedroschott/202602-projeto1-b-05/pull/26)) passou a ocupar a HU02, mantendo Renata e o foco na espera pelo benefício e na segunda fatura. Não houve mudança de nome da persona.
 
-A [versão anterior da HU02](https://github.com/pedroschott/202602-projeto1-b-05/blob/02de82e116e6ceb229a12cc417eb9f7e41673adb/docs/historias.md#hu02--localizar-a-primeira-fatura-sem-o-aviso) permanece no histórico do Git. A [Issue #9](https://github.com/pedroschott/202602-projeto1-b-05/issues/9) ainda descreve essa versão anterior e não foi reescrita nem encerrada nesta alteração. A vinculação da nova HU02 a uma Issue fica pendente de alinhamento após a revisão deste PR.
+A [versão anterior da HU02](https://github.com/pedroschott/202602-projeto1-b-05/blob/02de82e116e6ceb229a12cc417eb9f7e41673adb/docs/historias.md#hu02--localizar-a-primeira-fatura-sem-o-aviso) permanece no histórico do Git. A [Issue #9](https://github.com/pedroschott/202602-projeto1-b-05/issues/9) conserva o texto original e foi encerrada por substituição de escopo, sem marcar os critérios antigos como concluídos. O trabalho atual está nesta seção e no PR #33. Esta correção acrescenta novos commits, sem alterar os anteriores.
 
 O identificador HU06 deixa de representar uma história separada. As contribuições individuais de persona e as demais histórias foram preservadas; somente as referências à HU02 foram ajustadas. O HTML da antiga HU06, [removido anteriormente](https://github.com/pedroschott/202602-projeto1-b-05/commit/3fb8c0bebbd11e0ec10bf4cda9991bbe3612be42), não é restaurado; o PNG passa a usar o nome `hu02-espera-beneficio.png`.
 
 ### Problema e hipótese
 
-Renata precisa entender o benefício para confiar no serviço. Quando a economia demora a ficar visível, pode não entender o que está acontecendo nem o valor da continuidade. A hipótese é que tornar a espera e o benefício esperado compreensíveis ajude a organizar o pagamento da segunda fatura. Não houve pesquisa que comprove essa causa de atraso nem medição de impacto.
+O problema é a inadimplência depois da adesão, durante o período em que o cliente ainda não percebe o benefício. A HU02 recorta esse problema na **segunda fatura**: Renata já aderiu, mas ainda precisa entender a espera e a economia esperada para organizar o pagamento. A hipótese é que dar essa clareza ajude a reduzir atrasos. A falta de benefício percebido não foi comprovada como causa dos atrasos, e nenhum impacto da solução foi medido.
+
+O objetivo geral continua sendo reduzir a inadimplência. Primeira e segunda fatura são recortes diferentes desse objetivo: o dado histórico de 32,4% registrado em [docs/jornada.md](jornada.md#como-interpretar-as-evidências) é da **primeira fatura** e não mede a inadimplência da segunda.
 
 O foco está **antes do primeiro desconto aparecer**, e não em comemorar uma economia já realizada. O cenário do wireframe é ilustrativo: a existência de cobrança antes da compensação, os componentes cobrados e a sequência operacional precisam ser confirmados com a Bulbe. Não se afirma que todo cliente receba duas faturas Bulbe sem benefício.
 
@@ -108,6 +110,8 @@ Card compacto e persistente na home, com progresso visual por marcos: **adesão 
 A gamificação é básica: progresso e reconhecimento das etapas, sem pontos, prêmio financeiro adicional, missão obrigatória ou convite novo de indicação. O banner de indicação pertence à interface usada como referência; não integra a HU02. A barra representa etapas operacionais, não percentual de tempo decorrido ou garantia de proximidade da conclusão. As etapas são uma simplificação para revisão com a Bulbe.
 
 ### Critérios de aceite
+
+Os itens abaixo são critérios para o aceite final. A implementação inicial já existe; regras reais de faturamento, dados de produção e validação com clientes continuam pendentes. Esta correção não marca aceite sem verificação.
 
 - [ ] Manter o card acessível na home durante a espera pelo primeiro desconto, com acesso ao detalhe do acompanhamento.
 - [ ] Identificar por texto e elementos visuais a etapa concluída, a etapa atual e o que falta; não depender apenas da cor das barras.
@@ -130,7 +134,17 @@ A gamificação é básica: progresso e reconhecimento das etapas, sem pontos, p
 
 ![HU02 — home e acompanhamento antes do benefício](wireframes/hu02-espera-beneficio.png)
 
-O PNG é um wireframe estático com dados fictícios, baseado na referência visual fornecida. Datas e histórico mantêm o contexto visual dessa referência; não representam uma conta real nem dados coletados para validar a segunda fatura. As duas telas ilustram o fluxo proposto; navegação, Pix, detalhes e atendimento não estão implementados neste artefato. Cor principal: `#08068D`.
+O PNG é um wireframe estático com dados fictícios, baseado na referência visual fornecida. Datas e histórico mantêm o contexto visual dessa referência; não representam uma conta real nem dados coletados para validar a segunda fatura. A imagem não é interativa. A implementação posterior está indicada abaixo. Cor principal: `#08068D`.
+
+### Implementação e revisão
+
+- [PR #26](https://github.com/pedroschott/202602-projeto1-b-05/pull/26): história e wireframe, integrados em 21/10/2026 ainda como HU06.
+- [PR #30](https://github.com/pedroschott/202602-projeto1-b-05/pull/30): substituição da HU02, integrada em 22/10/2026.
+- [PR #33](https://github.com/pedroschott/202602-projeto1-b-05/pull/33): primeira implementação e template comum, integrados em 31/10/2026 no commit [e8da233](https://github.com/pedroschott/202602-projeto1-b-05/commit/e8da233eb542a6509dca389e6d3601be1e2bcd16).
+
+A entrega inclui a [home](../index.html), a [página de acompanhamento](../pages/acompanhamento.html), [dados fictícios](../data/hu02-acompanhamento.json) e o [guia do template com capturas](template.md#telas-implementadas-da-hu02). Pix e suporte são demonstrativos, sem pagamento ou envio de mensagens reais.
+
+O PR #33 relata verificações técnicas e uma revisão independente, mas o checklist de revisão por colega está desmarcado e não há aprovação de colega registrada nele. A integração do código não comprova aprovação do professor nem validação com a Bulbe. A revisão desta correção será uma revisão nova, sem atribuir aprovação retroativa ao PR #33.
 
 ### Indicador e validação
 
@@ -142,9 +156,9 @@ No teste de uso, verificar se a pessoa identifica a etapa atual, entende o que f
 
 ### Limites e integração
 
-A HU03 acompanha a adesão de forma geral; a HU02 faz a ponte entre a espera e a percepção do benefício, com foco no pagamento da segunda fatura. A HU05 confere a economia com dados comparáveis; a HU02 apenas apresenta uma projeção identificada e acompanha o início do desconto. O squad deve revisar essa integração antes de implementar.
+A HU03 acompanha a adesão de forma geral; a HU02 faz a ponte entre a espera e a percepção do benefício, com foco no pagamento da segunda fatura. A HU05 confere a economia com dados comparáveis; a HU02 apenas apresenta uma projeção identificada e acompanha o início do desconto. A integração entre as histórias ainda precisa de validação do squad.
 
-Esta história reúne os critérios e o PNG de referência. Não implementa integração com faturamento ou créditos, nem altera o aplicativo real. Regras de cobrança antes da compensação, etapas e gatilhos devem ser confirmados com a Bulbe.
+Esta história reúne os critérios, o wireframe e os vínculos da implementação inicial. O protótipo usa JSON fictício e não está integrado ao faturamento ou aos créditos reais. Regras de cobrança antes da compensação, etapas e gatilhos devem ser confirmados com a Bulbe.
 
 ### Fontes do modelo de serviço
 
