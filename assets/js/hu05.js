@@ -105,6 +105,7 @@ async function carregarRegras() {
     regras = await buscarEconomiaHU05();
     if (!regras || regras.tipo !== 'conferencia_economia') throw new Error('Configuração HU05 inválida.');
     botao.disabled = false;
+    document.querySelector('#hu05-tentar').hidden = true;
   } catch (erro) {
     mostrarErro('Não foi possível carregar as regras da HU05. Verifique a conexão e tente novamente.');
     const tentar = document.querySelector('#hu05-tentar');
