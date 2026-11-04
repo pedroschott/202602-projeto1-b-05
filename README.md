@@ -43,9 +43,14 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 - **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. Login e exibição automática somente no primeiro acesso ficam pendentes.
 - **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas horizontais, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
 
+- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente.
+
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
-**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU05, revisão do conteúdo da HU01, revisão do squad e validação das regras com a Bulbe.
+
+**Proposta para a próxima etapa:** consulte o [plano da Implementação 2](docs/implementacao-2.md) para lacunas de navegação, QA e divisão equilibrada sugerida em um único PR. As correções propostas não estão implementadas. O plano reserva os maiores blocos a Rodrigo e Vinicius, HU05 a Sophia e integração final a Pedro; Padilha não recebe trabalho novo e sua autoria histórica é preservada. Um PR draft de preparação reúne somente testes, CI e documentação para receber os próximos commits. Os blocos dos colegas dependem de alinhamento e não são apresentados como executados; merge fica fora desta etapa.
+
+**Pendente:** login e decisão de escopo da HU04, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -69,6 +74,34 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 > Abrir o `index.html` direto no navegador (duplo clique) não funciona: o `fetch` dos arquivos JSON exige um servidor.
 
+### Testes
+
+Use Node.js 22. Na raiz do repositório, valide a sintaxe e execute os testes sem navegador:
+
+```bash
+for arquivo in assets/js/*.js scripts/*.mjs; do node --check "$arquivo" || exit 1; done
+node --test scripts/test-api.mjs scripts/test-hu02.mjs
+```
+
+Para os testes de navegador, instale o Playwright e o Chromium:
+
+```bash
+npm install --no-save playwright@1.56.1
+npx playwright install chromium
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Deixe o servidor aberto e, em outro terminal na raiz, execute:
+
+```bash
+node scripts/test-hu03.mjs
+node scripts/test-integracao.mjs
+```
+
+Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. O teste integrado salva evidências em `artifacts/mvp`; o teste HU03 gera capturas em `docs/telas`. Na CI, as evidências são artefatos, sem commit automático.
+
+**Estado em 04/11:** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). Chromium local bloqueado pelo ambiente; QA visual e resultado da CI ainda pendentes. O PR de preparação não implementa as correções propostas das HUs.
+
 ## 6. Estrutura do repositório
 
 ```
@@ -77,6 +110,9 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 │   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
 │   ├── adesao.html       # HU03: acompanhamento de adesão
+│   ├── assistente.html   # HU01: perguntas e respostas predefinidas
+│   ├── fatura.html       # Detalhe com contexto da fatura
+│   ├── calculo-economia.html # HU05: conferência, sem fórmula oficial
 │   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad
@@ -116,9 +152,9 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 | Histórias de usuário | 20 | A desenvolver na aula correspondente |
 | Wireframes | 21–23 | A desenvolver na aula correspondente |
 | Sprint Review I | 24 | A desenvolver na aula correspondente |
-| Implementação | 25–28 | Em andamento: primeiras versões do template, HU01, HU02 e HU04; integração completa e revisão do squad pendentes |
-| Sprint Review II | 29 | A desenvolver na aula correspondente |
-| Versão final | 30 | A desenvolver na aula correspondente |
+| Implementação | 25–28 | Cinco HUs com telas; integração MVP e revisão humana pendentes. [Plano da Implementação 2](docs/implementacao-2.md) |
+| Sprint Review II | 29 | 06/11/2026: MVP na main e apresentação de 10 minutos; [roteiro proposto](docs/sprints/review-ii-roteiro.md) |
+| Versão final | 30 | Congelamento em 12/11/2026; apresentação em 13 ou 18/11, conforme sorteio |
 
 ---
 
@@ -128,3 +164,5 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 - [Apresentação da aula 19](https://docs.google.com/presentation/d/1v_punRor5o8ZU-v9BN9I9VhaWDtIEyXWVMFbYb-s_Fg/edit), slides 4–8, 11 e 19
 - [Roteiro do repositório](https://docs.google.com/document/d/1K9OFyecp78Xt7IMWENCUfc8RL-i-K73yShUDiCTYdSA/edit)
+
+- [Roteiro oficial da Implementação 2 e Review II](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit)
