@@ -249,12 +249,12 @@ Esta história se sobrepõe à HU01 e à HU03 na explicação dos valores e da e
 
 ## HU05 — Calcular e conferir a economia
 
-**Status:** proposta individual; aguarda alinhamento do squad e confirmação de entrada no MVP.  
-**Responsável:** Sophia Miranda (@sophiacmiranda)  
-**Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
-**Momento da jornada:** conferência da primeira fatura e avaliação da economia  
-**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3) — transparência dos valores e da economia  
-**Tela proposta:** Calculadora de economia
+**Status:** implementação em revisão; o protótipo coleta e apresenta valores, bases e períodos das duas faturas, mas bloqueia o cálculo enquanto a metodologia oficial não estiver confirmada.
+**Responsável:** Sophia Miranda (@sophiacmiranda)
+**Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
+**Momento da jornada:** conferência da primeira fatura e avaliação da economia
+**Oportunidade de origem:** [#3](https://github.com/pedroschott/202602-projeto1-b-05/issues/3) — transparência dos valores e da economia
+**Tela proposta:** Conferência da economia
 
 ### História
 
@@ -264,7 +264,7 @@ Como cliente da Bulbe, quero calcular e conferir minha economia usando períodos
 
 - [ ] Permitir visualizar os períodos considerados no cálculo e identificar claramente as datas inicial e final de cada período.
 - [ ] Identificar a base de comparação e os valores usados no cálculo, com rótulos e explicações em linguagem simples.
-- [ ] Exibir a fórmula ou as etapas do cálculo para que o cliente consiga entender como o resultado foi obtido.
+- [ ] Exibir a fórmula ou as etapas do cálculo para que o cliente consiga entender como o resultado foi obtido, quando a metodologia estiver confirmada.
 - [ ] Calcular e exibir a economia somente quando houver dados suficientes e bases e períodos considerados comparáveis segundo regras confirmadas pela Bulbe.
 - [ ] Se os períodos não forem comparáveis, houver dados ausentes ou a regra de cálculo não estiver confirmada, explicar por que não é possível calcular a economia e não apresentar um valor como se fosse confiável.
 - [ ] Diferenciar valores informados, estimativas e resultados calculados; não apresentar estimativa como economia garantida.
@@ -281,6 +281,7 @@ Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram 
 
 ### Limites de escopo e relação com outras histórias
 
-Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a calculadora será uma tela própria ou parte da tela “Entenda sua fatura”.
+Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a conferência será uma tela própria ou parte da tela “Entenda sua fatura”.
 
 As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
+
