@@ -113,6 +113,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
       <section class="card-espera" aria-labelledby="titulo-espera">
         <div class="card-espera-topo"><h2 id="titulo-espera">Acompanhamento da economia</h2></div>
         <p class="legenda">Não conseguimos identificar a etapa atual. Nenhum progresso é exibido até essa informação chegar.</p>
+        ${htmlPendencia(acomp)}
         <div class="card-espera-rodape">
           <button class="link" type="button" data-acao="suporte" data-assunto="Etapa da economia indisponível">Falar com o suporte</button>
         </div>
@@ -129,6 +130,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
         </div>
         <p class="valor-estimado valor-realizado"><strong>${valor}</strong> de desconto${fatura}</p>
         ${htmlBarras(etapas)}
+        ${htmlPendencia(acomp)}
         <div class="card-espera-rodape">
           <span>Valor lançado, não é estimativa</span>
           <a href="${link}">Ver detalhes ›</a>
@@ -165,7 +167,7 @@ function detalheMarco(indice, estado, acomp) {
     }
     return {
       titulo: 'Adesão em andamento',
-      texto: acomp.pendenciaCliente ? `Ação necessária: ${acomp.pendenciaCliente}` : 'Nenhuma ação sua é necessária agora'
+      texto: acomp.pendenciaCliente ? 'Confira a ação necessária acima para continuar' : 'Nenhuma ação sua é necessária agora'
     };
   }
   if (indice === 1) {
@@ -187,7 +189,7 @@ function detalheMarco(indice, estado, acomp) {
 export function htmlLinhaDoTempo(acomp) {
   const etapas = montarEtapas(acomp);
   if (!etapas) {
-    return '<p class="estado">Etapa atual indisponível. Nenhum progresso é exibido até essa informação chegar.</p>';
+    return `${htmlPendencia(acomp)}<p class="estado">Etapa atual indisponível. Nenhum progresso é exibido até essa informação chegar.</p>`;
   }
   const itens = etapas.map((etapa, indice) => {
     const marco = etapa.estado === 'concluida' ? '✓' : (etapa.estado === 'atual' ? '◷' : indice + 1);
@@ -201,5 +203,6 @@ export function htmlLinhaDoTempo(acomp) {
         </div>
       </li>`;
   }).join('');
-  return `<ol class="linha-tempo" aria-label="Etapas até o primeiro desconto">${itens}</ol>`;
+  return `${htmlPendencia(acomp)}<ol class="linha-tempo" aria-label="Etapas até o primeiro desconto">${itens}</ol>`;
 }
+

@@ -160,6 +160,10 @@ export function formatarData(textoISO) {
 
 // "2026-10" -> "Outubro/26"
 export function formatarReferencia(textoAnoMes) {
+  if (typeof textoAnoMes !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(textoAnoMes)) {
+    return 'Referência indisponível';
+  }
   const [ano, mes] = textoAnoMes.split('-');
   return `${MESES[Number(mes) - 1]}/${ano.slice(2)}`;
 }
+
