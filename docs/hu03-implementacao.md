@@ -6,7 +6,7 @@ Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, al
 - `pages/adesao.html`: estrutura com cabeçalho, logo e navegação comuns.
 - `assets/css/hu03.css`: apenas estilos da jornada horizontal e cartões.
 - `assets/js/hu03.js`: seleção e renderização das cinco etapas.
-- `data/hu03-adesao.json`: cinco cenários fictícios.
+- `data/hu03-adesao.json`: cinco cenários de progresso e um cenário fictício adicional de pendência.
 - `assets/js/api.js`: leitura via fetch.
 - `assets/js/layout.js`: acesso pelo menu da home.
 - `scripts/test-mvp.mjs`: smoke Chromium compartilhado; comandos no [README](../README.md#testes).
@@ -31,6 +31,15 @@ Abra `index.html` pela extensão Live Server do VS Code e escolha **Acompanhar a
 - `pages/adesao.html?cenario=ativacao` — etapa 4.
 - `pages/adesao.html?cenario=primeira-fatura` — etapa 5, com link para faturas.
 - `pages/adesao.html?cenario=inexistente` — cenário ausente/estado vazio.
+- `pages/adesao.html?cenario=pendencia-cliente` — validação com confirmação de contato pendente; orientação de ação demonstrativa.
+
+## Orientações e pendências (complemento para Issue #1)
+- Quando o JSON traz o objeto opcional `pendencia` (`titulo`, `detalhe`, `acao`), a HU03 informa a pendência e prioriza a ação no cartão de próximo passo. Sem esses dados, exibe "Nenhuma pendência informada" **apenas para o cenário demonstrativo**, sem pressupor o estado de um cliente real.
+- A etapa atual permanece determinada por `etapaAtual`; a consulta de outra etapa não modifica status, pendência, orientação nem última atualização.
+- Durante os cenários de espera, aparece orientação cautelosa de continuar pagando a Cemig **pelo período indicado pela Bulbe**, sem inventar datas, vencimentos ou previsão de conexão. É uma transposição informativa do material da disciplina, não uma regra de cobrança validada em produção.
+- O cenário de primeira fatura não mostra o lembrete de espera da Cemig. O caminho de faturas segue demonstrativo.
+- **Aceite pendente:** a equipe e a Bulbe precisam confirmar a sequência oficial, as regras de cobrança e pendências, além de revisar a legibilidade e os testes de compreensão; testes automáticos não substituem essas confirmações.
+
 
 ## Verificações históricas da HU03
 
