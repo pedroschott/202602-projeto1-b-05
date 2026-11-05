@@ -14,3 +14,6 @@ node_modules/
 # Arquivos temporários
 *.tmp
 ~$*
+
+# Evidências locais dos testes de integração
+artifacts/

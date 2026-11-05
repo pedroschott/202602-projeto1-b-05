@@ -1,51 +1,58 @@
-name: HU03 - teste e capturas
+name: MVP - testes essenciais
 
 on:
+  pull_request:
+    branches: [main]
   push:
-    branches:
-      - feat/hu03-integracao-template
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: mvp-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  validar-hu03:
-    if: github.actor != 'github-actions[bot]'
+  validar-mvp:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Baixar o projeto
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
       - name: Preparar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verificar sintaxe e testes sem navegador
+        run: |
+          for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do
+            node --check "$arquivo"
+          done
+          node --test tests/mvp.test.mjs
       - name: Instalar navegador de testes
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Subir servidor HTTP (equivalente ao Live Server)
+      - name: Subir servidor HTTP
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/hu03-server.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/mvp-server.log 2>&1 &
           for i in $(seq 1 20); do
-            if curl -fsS http://127.0.0.1:4173/pages/adesao.html > /dev/null; then exit 0; fi
+            if curl -fsS http://127.0.0.1:4173/index.html > /dev/null; then exit 0; fi
             sleep 1
           done
-          cat /tmp/hu03-server.log
+          cat /tmp/mvp-server.log
           exit 1
-      - name: Testar HU03 e gerar screenshots
-        run: node scripts/test-hu03.mjs
-      - name: Registrar evidencias em docs/telas
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/telas/hu03-adesao.png docs/telas/hu03-adesao-inferior.png
-          if git diff --cached --quiet; then
-            echo "Prints ja estao atualizados"
-          else
-            git commit -m "docs(hu03): registra capturas reais de Chromium"
-            git push
-          fi
+      - name: Testar fluxos principais no Chromium
+        run: node scripts/test-mvp.mjs
+      - name: Guardar evidências sem alterar o repositório
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvp-evidencias-${{ github.sha }}
+          path: artifacts/
+          if-no-files-found: ignore
+          retention-days: 7

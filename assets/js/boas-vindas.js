@@ -1,5 +1,11 @@
 import { buscarBoasVindas } from './api.js';
 import { iniciarLayout, carregarComEstados } from './layout.js';
+import { marcarApresentacaoVista } from './hu04-primeiro-acesso.js';
+
+// Abrir esta página (pelo primeiro acesso, pelo menu ou direto) conta como
+// "já viu": a home não abre a apresentação sozinha de novo neste navegador.
+// Se o armazenamento estiver bloqueado, nada é gravado e a página funciona igual.
+marcarApresentacaoVista();
 
 const slide = document.querySelector('#slide');
 const controles = document.querySelector('#controles');
@@ -30,14 +36,20 @@ function mostrarSlide() {
   slide.appendChild(artigo);
 
   document.querySelector('#posicao').textContent = `${atual + 1} de ${slides.length}`;
+  // Se o foco estava no "Voltar" e ele ficou desabilitado (primeiro slide),
+  // leva o foco ao "Continuar" para quem usa teclado não ficar preso.
+  const focoEstavaNoVoltar = document.activeElement === anterior;
   anterior.disabled = atual === 0;
+  if (anterior.disabled && focoEstavaNoVoltar) {
+    proximo.focus();
+  }
   proximo.textContent = atual === slides.length - 1 ? 'Começar' : 'Continuar';
 }
 
 function avancar() {
   if (atual === slides.length - 1) {
-    // O login real ainda não faz parte desta primeira versão.
-    window.location.href = '../index.html';
+    // Entrada visual do protótipo, sem autenticação ou dados reais.
+    window.location.href = 'login.html';
     return;
   }
   atual++;
@@ -55,12 +67,17 @@ proximo.addEventListener('click', avancar);
 // Navegação pelo gesto no celular, além dos botões.
 let inicioDoGesto = null;
 slide.addEventListener('touchstart', (evento) => {
-  inicioDoGesto = evento.changedTouches[0].clientX;
+  const toque = evento.changedTouches[0];
+  inicioDoGesto = { x: toque.clientX, y: toque.clientY };
 }, { passive: true });
 slide.addEventListener('touchend', (evento) => {
   if (inicioDoGesto === null || slides.length === 0) return;
-  const distancia = evento.changedTouches[0].clientX - inicioDoGesto;
+  const toque = evento.changedTouches[0];
+  const distancia = toque.clientX - inicioDoGesto.x;
+  const distanciaVertical = toque.clientY - inicioDoGesto.y;
   inicioDoGesto = null;
+  // Arrasto mais vertical que horizontal é rolagem da página, não troca de slide.
+  if (Math.abs(distanciaVertical) >= Math.abs(distancia)) return;
   if (distancia < -50 && atual < slides.length - 1) {
     atual++;
     mostrarSlide();
@@ -73,7 +90,7 @@ slide.addEventListener('touchend', (evento) => {
 iniciarLayout();
 carregarComEstados(slide, {
   carregar: buscarBoasVindas,
-  textoVazio: 'A apresentação ainda não tem conteúdo. Você pode pular para a demonstração.',
+  textoVazio: 'A apresentação ainda não tem conteúdo. Você pode seguir para o acesso demonstrativo.',
   mostrar: (dados) => {
     if (!Array.isArray(dados) || dados.some((item) => !item || typeof item.titulo !== 'string' || typeof item.texto !== 'string')) {
       throw new Error('Conteúdo da apresentação inválido');

@@ -38,14 +38,19 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 ### O que já está implementado
 
 - **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
-- **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamento para a HU02. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
+- **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamentos para a HU02 e a conferência HU05, com retorno contextual. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
-- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. Login e exibição automática somente no primeiro acesso ficam pendentes.
-- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas horizontais, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
+- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. O bloco reunido no PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Na finalização, Começar/Pular passam pela [tela de acesso demonstrativo](pages/login.html), sem autenticação real. Ela não coleta credenciais nem autentica usuários; a integração assistida não altera a autoria original da HU04.
+- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas verticais no mobile até 430 px e horizontais a partir de 431 px, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os ajustes de rótulos mobile de Rodrigo estão reunidos no PR #41; a correção final do breakpoint foi testada, preservando a autoria original da HU03. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
+
+- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente. O bloco recebido de Sophia acrescenta validação de cronologia/sobreposição, carregamento/retentativa, foco e rolagem interna, além de retorno contextual preparado. Bases ou durações diferentes geram avisos na comparação, não bloqueios de entrada.
 
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
-**Pendente:** telas de Consumo e Indicações (a navegação avisa que estão pendentes), HU05, revisão do conteúdo da HU01, revisão do squad e validação das regras com a Bulbe.
+
+**Integração em 05/11:** os blocos de Sophia e Rodrigo estão no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge na `main`. Correções assistidas de integração preservam a autoria original das HUs. A conferência HU05 e o [simulador acadêmico pré-contratação](pages/simulacao-economia.html) são distintos. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
+
+**Pendente:** autenticação real, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -69,14 +74,44 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 > Abrir o `index.html` direto no navegador (duplo clique) não funciona: o `fetch` dos arquivos JSON exige um servidor.
 
+**Alternativa sem extensão:** com Python 3 instalado, abra o terminal na pasta clonada, execute `python3 -m http.server 4173 --bind 127.0.0.1` (no Windows, `py -m http.server 4173 --bind 127.0.0.1`) e acesse http://127.0.0.1:4173. Mantenha o terminal aberto; `Ctrl+C` encerra o servidor. O aplicativo não exige instalação de pacotes npm: as dependências abaixo são apenas para os testes.
+
+Na primeira visita, a home abre as boas-vindas. Use **Pular apresentação** ou **Começar** para abrir o acesso demonstrativo e então **Entrar na demonstração**. Nas visitas seguintes do mesmo navegador, a home abre diretamente. O menu permite revisitar todas as cinco HUs. Consumo e Indicações são atalhos informativos indisponíveis, não telas concluídas.
+
+### Testes
+
+Use Node.js 22. Na raiz, verifique a sintaxe e os três testes essenciais sem navegador:
+
+```bash
+for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do node --check "$arquivo" || exit 1; done
+node --test tests/mvp.test.mjs
+```
+
+Para o smoke dos fluxos principais, instale Playwright/Chromium e mantenha o servidor aberto:
+
+```bash
+npm install --no-save playwright@1.56.1
+npx playwright install chromium
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Em outro terminal na raiz: `node scripts/test-mvp.mjs`. Em Linux sem bibliotecas do navegador, use `npx playwright install --with-deps chromium` onde houver permissão para instalar dependências.
+
+A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `artifacts/falha.png`, sem commits automáticos. A suíte foi reduzida aos fluxos essenciais; não cobre todas as variantes, falhas e dispositivos. Consulte [verificação do MVP](docs/verificacao-mvp.md) para resultados vinculados ao commit e limitações.
+
 ## 6. Estrutura do repositório
 
 ```
 ├── index.html            # Home: card da HU02 e faturas
 ├── pages/
+│   ├── login.html        # Acesso demonstrativo, sem autenticação
 │   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
 │   ├── adesao.html       # HU03: acompanhamento de adesão
+│   ├── assistente.html   # HU01: perguntas e respostas predefinidas
+│   ├── fatura.html       # Detalhe com contexto da fatura
+│   ├── calculo-economia.html # HU05: conferência, sem fórmula oficial
+│   ├── simulacao-economia.html # Simulador pré-contratação separado
 │   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad
@@ -113,12 +148,12 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 | Marco | Aula | Status |
 | --- | --- | --- |
 | Mapa de jornada | 19 | Proposta, imagem e três Issues publicadas; revisão do squad pendente |
-| Histórias de usuário | 20 | A desenvolver na aula correspondente |
-| Wireframes | 21–23 | A desenvolver na aula correspondente |
-| Sprint Review I | 24 | A desenvolver na aula correspondente |
-| Implementação | 25–28 | Em andamento: primeiras versões do template, HU01, HU02 e HU04; integração completa e revisão do squad pendentes |
-| Sprint Review II | 29 | A desenvolver na aula correspondente |
-| Versão final | 30 | A desenvolver na aula correspondente |
+| Histórias de usuário | 20 | Cinco histórias documentadas; critérios e limites em [docs/historias.md](docs/historias.md), aceite pendente |
+| Wireframes | 21–23 | Arquivos disponíveis em [docs/wireframes](docs/wireframes/); revisão/aceite não presumidos |
+| Sprint Review I | 24 | Realização e feedback não comprovados por este registro |
+| Implementação | 25–28 | Cinco HUs com telas no PR #41; revisão humana e merge pendentes. [Plano da Implementação 2](docs/implementacao-2.md) |
+| Sprint Review II | 29 | 06/11/2026: MVP na main e apresentação de 10 minutos; [roteiro proposto](docs/sprints/review-ii-roteiro.md) |
+| Versão final | 30 | Congelamento em 12/11/2026; apresentação em 13 ou 18/11, conforme sorteio |
 
 ---
 
@@ -128,3 +163,5 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 - [Apresentação da aula 19](https://docs.google.com/presentation/d/1v_punRor5o8ZU-v9BN9I9VhaWDtIEyXWVMFbYb-s_Fg/edit), slides 4–8, 11 e 19
 - [Roteiro do repositório](https://docs.google.com/document/d/1K9OFyecp78Xt7IMWENCUfc8RL-i-K73yShUDiCTYdSA/edit)
+
+- [Roteiro oficial da Implementação 2 e Review II](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit)

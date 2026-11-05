@@ -52,20 +52,48 @@ export function abrirDialogo(titulo, conteudoHTML) {
   return caixa;
 }
 
+// O menu usa o mesmo contexto da rota, sem carregar marcadores da HU05 para a home.
+export function consultasDoMenu(search = '', pathname = '') {
+  const original = new URLSearchParams(search);
+  const comum = new URLSearchParams(original);
+  comum.delete('origem');
+  comum.delete('origemAssistente');
+  const assistente = new URLSearchParams(original);
+  if (original.get('origem') === 'assistente'
+      && ['fatura', 'home'].includes(original.get('origemAssistente'))) {
+    assistente.set('origem', original.get('origemAssistente'));
+  } else if (pathname.endsWith('/fatura.html')) {
+    assistente.set('origem', 'fatura');
+  }
+  assistente.delete('origemAssistente');
+  const conferencia = new URLSearchParams(original);
+  if (pathname.endsWith('/assistente.html') || pathname.endsWith('/fatura.html')) {
+    conferencia.set('origemAssistente', pathname.endsWith('/fatura.html')
+      || original.get('origem') === 'fatura' ? 'fatura' : 'home');
+    conferencia.set('origem', 'assistente');
+  }
+  const busca = params => params.size ? '?' + params.toString() : '';
+  return { comum: busca(comum), assistente: busca(assistente), conferencia: busca(conferencia) };
+}
+
 function abrirMenu() {
   const raiz = document.body.dataset.raiz || './';
-  const busca = escaparHTML(window.location.search); // mantém ?cenario= da demonstração
+  const consultas = consultasDoMenu(window.location.search, window.location.pathname);
+  const busca = escaparHTML(consultas.comum);
+  const buscaAssistente = escaparHTML(consultas.assistente);
+  const buscaConferencia = escaparHTML(consultas.conferencia);
   abrirDialogo('Menu', `
     <ul class="dialogo-menu">
       <li><a href="${raiz}index.html${busca}">Início<small>Faturas e acompanhamento da economia</small></a></li>
       <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>Etapas e previsão do primeiro benefício</small></a></li>
       <li><a href="${raiz}pages/simulacao-economia.html${busca}">Simular economia<small>Projeção ilustrativa antes da contratação</small></a></li>
+      <li><a href="${raiz}pages/calculo-economia.html${buscaConferencia}">Conferir economia<small>Confira períodos e bases, sem cálculo oficial</small></a></li>
       <li><a href="${raiz}pages/adesao.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
+      <li><a href="${raiz}pages/login.html">Acesso demonstrativo<small>Entrada visual, sem autenticação real</small></a></li>
       <li><a href="${raiz}pages/boas-vindas.html">Conheça a Bulbe<small>Apresentação do serviço</small></a></li>
-      <li><a href="${raiz}pages/assistente.html${busca}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>
-      <li><a href="${raiz}pages/modelo.html">Modelo de página<small>Template para os colegas copiarem</small></a></li>
+      <li><a href="${raiz}pages/assistente.html${buscaAssistente}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>
     </ul>
-    <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. Login, perfil e configurações não fazem parte desta entrega.</p>
+    <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. O acesso é demonstrativo, sem autenticação real. Perfil e configurações não foram implementados.</p>
   `);
 }
 

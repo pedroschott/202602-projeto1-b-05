@@ -1,4 +1,4 @@
-// Funções de acesso aos dados. Toda leitura de JSON passa por aqui.
+// Funções compartilhadas de acesso aos dados JSON.
 // Importante: fetch só funciona com o projeto aberto por um servidor (Live Server),
 // e não abrindo o arquivo direto no navegador (file://).
 
@@ -48,6 +48,11 @@ export function buscarFAQHU01() {
 // HU03: cenários fictícios do acompanhamento das cinco etapas de adesão.
 export function buscarAcompanhamentoHU03() {
   return lerJSON('hu03-adesao.json');
+}
+
+// HU05: configuração da conferência restaurada, separada do simulador.
+export function buscarEconomiaHU05() {
+  return lerJSON('hu05-economia.json');
 }
 
 // HU05: premissas ilustrativas para simulação antes da contratação.
