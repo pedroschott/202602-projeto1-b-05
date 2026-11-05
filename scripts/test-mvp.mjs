@@ -39,6 +39,7 @@ try {
 
   // 2. Acompanhamento e adesão pelo menu, incluindo o breakpoint mobile.
   for (const [nome, pronto] of [['A caminho da economia', '.linha-tempo'], ['Acompanhar adesão', '#hu03-titulo']]) {
+    await abrir('/index.html', '.card-espera');
     await page.getByRole('button', { name: 'Abrir menu' }).click();
     await page.getByRole('link', { name: new RegExp('^' + nome) }).click();
     await page.locator(pronto).waitFor();
