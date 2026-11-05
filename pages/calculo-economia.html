@@ -28,14 +28,19 @@
         <li data-step-label="2">Comparação</li>
         <li data-step-label="3">Entenda</li>
       </ol>
+      <a class="hu05-return" id="hu05-retorno" href="../index.html">Voltar ao início</a>
 
       <section class="hu05-step" id="hu05-step-1" aria-labelledby="hu05-title">
-        <h1 class="titulo-secao hu05-title" id="hu05-title">Vamos conferir sua economia?</h1>
-        <p class="hu05-intro">Informe os dados da fatura anterior à contratação e da sua primeira fatura após a Bulbe. Assim você consegue visualizar quais períodos e valores está comparando.</p>
+        <h1 class="titulo-secao hu05-title" id="hu05-title" tabindex="-1">Vamos conferir sua economia?</h1>
+        <p class="hu05-intro">Informe os dados da fatura anterior à contratação e da sua primeira fatura após a Bulbe. Você poderá conferir os valores, as bases e os períodos informados.</p>
         <aside class="hu05-tip">
           <strong>Antes de começar</strong>
-          <p>Use as datas inicial e final do período de consumo indicado em cada fatura. Selecione a mesma base de valor nas duas contas.</p>
+          <p>Use as datas inicial e final do período de consumo indicado em cada fatura. Os dados serão conferidos, mas isso não confirma por si só que as bases ou os períodos sejam comparáveis.</p>
         </aside>
+
+        <p id="hu05-status" class="hu05-status" role="status" aria-live="polite" aria-atomic="true">Carregando regras de conferência…</p>
+        <button class="link hu05-center-link" id="hu05-tentar" type="button" hidden>Tentar carregar novamente</button>
+
         <form id="hu05-form" novalidate>
           <div class="hu05-bill-grid">
             <fieldset class="hu05-bill">
@@ -46,7 +51,7 @@
               <input id="hu05-anterior-inicio" name="anteriorInicio" type="date" required>
               <label for="hu05-anterior-fim">Fim do período de consumo</label>
               <input id="hu05-anterior-fim" name="anteriorFim" type="date" required>
-              <label for="hu05-anterior-base">Base de comparação</label>
+              <label for="hu05-anterior-base">Base informada</label>
               <select id="hu05-anterior-base" name="anteriorBase" required>
                 <option value="total">Valor total da fatura</option>
                 <option value="energia">Componente de energia informado</option>
@@ -60,23 +65,22 @@
               <input id="hu05-atual-inicio" name="atualInicio" type="date" required>
               <label for="hu05-atual-fim">Fim do período de consumo</label>
               <input id="hu05-atual-fim" name="atualFim" type="date" required>
-              <label for="hu05-atual-base">Base de comparação</label>
+              <label for="hu05-atual-base">Base informada</label>
               <select id="hu05-atual-base" name="atualBase" required>
                 <option value="total">Valor total da fatura</option>
                 <option value="energia">Componente de energia informado</option>
               </select>
             </fieldset>
           </div>
-          <p id="hu05-feedback" class="hu05-feedback" role="alert" aria-live="polite"></p>
-          <button class="bulbe-button hu05-submit" type="submit">Conferir períodos e valores</button>
-          <button class="link hu05-center-link" id="hu05-tentar" type="button" hidden>Tentar carregar novamente</button>
+          <p id="hu05-feedback" class="hu05-feedback" role="alert" aria-live="assertive" aria-atomic="true"></p>
+          <button class="bulbe-button hu05-submit" type="submit" disabled>Conferir períodos e valores</button>
         </form>
         <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. Não insira dados reais de clientes.</p>
       </section>
 
       <section class="hu05-step" id="hu05-step-2" aria-labelledby="hu05-result-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-result-title">Confira sua comparação</h1>
-        <p class="hu05-intro">Estes são os valores, as bases e os períodos que você informou.</p>
+        <h1 class="titulo-secao hu05-title" id="hu05-result-title" tabindex="-1">Confira sua comparação</h1>
+        <p class="hu05-intro">Estes são os valores, as bases e os períodos que você informou. Nenhum valor de economia é calculado nesta etapa.</p>
         <div id="hu05-resumo" class="hu05-summary"></div>
         <div id="hu05-bloqueio" class="hu05-blocked" role="status" aria-live="polite"></div>
         <button class="bulbe-button hu05-submit" id="hu05-details" type="button">Entenda por que não há cálculo</button>
@@ -84,19 +88,19 @@
       </section>
 
       <section class="hu05-step" id="hu05-step-3" aria-labelledby="hu05-detail-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-detail-title">Como a economia deve ser conferida</h1>
-        <p class="hu05-intro">Para apresentar um resultado confiável, não basta comparar dois valores totais.</p>
+        <h1 class="titulo-secao hu05-title" id="hu05-detail-title" tabindex="-1">Como a economia deve ser conferida</h1>
+        <p class="hu05-intro">Para apresentar um resultado confiável, não basta comparar dois valores ou verificar apenas os rótulos e a duração dos períodos.</p>
         <section class="hu05-breakdown">
-          <h2>O que precisa ser equivalente</h2>
+          <h2>O que precisa ser confirmado</h2>
           <ul class="hu05-check-list">
-            <li>Os componentes da conta que entram na comparação.</li>
-            <li>As datas inicial e final de cada período de consumo.</li>
-            <li>A duração e as condições de consumo consideradas.</li>
-            <li>A regra oficial e a fórmula de cálculo confirmadas pela Bulbe.</li>
+            <li>Quais componentes da conta entram na comparação.</li>
+            <li>Quais condições tornam os períodos comparáveis.</li>
+            <li>Se e como os dados devem ser ajustados para uma comparação válida.</li>
+            <li>Qual regra oficial e fórmula foram confirmadas pela Bulbe.</li>
           </ul>
         </section>
         <div class="hu05-blocked hu05-blocked--detail" id="hu05-detalhe"></div>
-        <p class="aviso-ficticio">Enquanto essas informações não estiverem confirmadas, o protótipo não calcula nem exibe economia em reais ou percentual. Isso evita apresentar uma estimativa como se fosse um resultado comprovado.</p>
+        <p class="aviso-ficticio">Enquanto a metodologia oficial não estiver confirmada e implementada, o protótipo não calcula nem exibe economia em reais ou percentual.</p>
         <button class="bulbe-button hu05-submit" id="hu05-back" type="button">Voltar à comparação</button>
         <button class="link hu05-center-link" id="hu05-restart" type="button">Começar uma nova conferência</button>
       </section>
@@ -107,14 +111,8 @@
         <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l2 3v15l-3-2-4 2-4-2-3 2V3h2M8 8h8M8 12h8"/></svg>
         <span>Faturas</span>
       </a>
-      <button type="button" data-pendente="Consumo">
-        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7"/></svg>
-        <span>Consumo</span>
-      </button>
-      <button type="button" data-pendente="Indicações">
-        <svg class="bulbe-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M18 8a3 3 0 0 1 0 6M22 21v-2a4 4 0 0 0-3-4"/></svg>
-        <span>Indicações</span>
-      </button>
+      <button type="button" data-pendente="Consumo"><span>Consumo</span></button>
+      <button type="button" data-pendente="Indicações"><span>Indicações</span></button>
     </nav>
   </div>
   <script type="module" src="../assets/js/hu05.js"></script>
