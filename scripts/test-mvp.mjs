@@ -10,7 +10,12 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 }, loca
 page.setDefaultTimeout(10000);
 const erros = [];
 page.on('pageerror', erro => erros.push(erro.message));
-page.on('console', msg => { if (msg.type() === 'error') erros.push(msg.text()); });
+let primeiroRedirecionamento = true;
+page.on('console', msg => {
+  // A saída automática da home pode cancelar seu fetch; demais erros falham.
+  if (primeiroRedirecionamento && /TypeError: Failed to fetch[\s\S]*assets\/js\/main\.js/.test(msg.text())) return;
+  if (msg.type() === 'error') erros.push(msg.text());
+});
 page.on('response', resposta => { if (resposta.url().startsWith(origin) && resposta.status() >= 400) erros.push(resposta.url()); });
 mkdirSync('artifacts', { recursive: true });
 async function abrir(caminho, pronto) {
@@ -28,6 +33,7 @@ async function enviar() {
 try {
   // 1. Primeiro acesso, carrossel e home persistida.
   await abrir('/index.html', '#slide article');
+  primeiroRedirecionamento = false;
   await page.locator('#proximo').click();
   assert.equal(await page.locator('#posicao').innerText(), '2 de 3');
   await page.locator('#proximo').click();
