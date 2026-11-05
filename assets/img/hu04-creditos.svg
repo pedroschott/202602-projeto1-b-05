@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180">
+  <rect width="280" height="180" rx="20" fill="#eef4fd"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+    <!-- painel solar gerando energia -->
+    <path d="m30 104-10 34h66l-10-34z" fill="#08068d" stroke="#08068d"/>
+    <path d="M25 121h56M42 105l-3 32m14-32v32m14-32 3 32" stroke="#a8e8c6" stroke-width="2"/>
+    <path d="M53 139v12M40 152h26" stroke="#08068d"/>
+    <circle cx="53" cy="58" r="17" fill="#fff4ce" stroke="#e9b33d"/>
+    <path d="M53 30v-6m0 68v-6m28-28h6m-68 0h6" stroke="#e9b33d"/>
+    <!-- fluxo de créditos -->
+    <path d="M96 100c22-28 52-28 74 0" stroke="#26d07c" stroke-dasharray="2 10"/>
+    <path d="m162 92 9 9-12 3" stroke="#26d07c"/>
+    <path d="m128 62-10 18h10l-6 16 16-22h-10l6-12z" fill="#26d07c" stroke="#26d07c" stroke-width="2.5"/>
+    <!-- moedas de crédito -->
+    <ellipse cx="216" cy="140" rx="34" ry="10" fill="#a8e8c6" stroke="#16804a"/>
+    <path d="M182 140v-14m68 14v-14" stroke="#16804a"/>
+    <ellipse cx="216" cy="126" rx="34" ry="10" fill="#a8e8c6" stroke="#16804a"/>
+    <path d="M182 126v-14m68 14v-14" stroke="#16804a"/>
+    <ellipse cx="216" cy="112" rx="34" ry="10" fill="#26d07c" stroke="#16804a"/>
+    <path d="m207 112 6 5 11-10" stroke="#fff" stroke-width="3.5"/>
+  </g>
+</svg>
