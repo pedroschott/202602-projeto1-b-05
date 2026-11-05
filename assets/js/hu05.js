@@ -81,6 +81,7 @@ export function validarEntrada(entrada) {
 
 export function lerContextoAssistente(search) {
   const params = new URLSearchParams(search);
+  if (['origem', 'origemAssistente', 'cenario', 'id'].some(chave => params.getAll(chave).length > 1)) return null;
   if (params.get('origem') !== 'assistente') return null;
 
   const origemAssistente = params.get('origemAssistente');
@@ -88,8 +89,8 @@ export function lerContextoAssistente(search) {
 
   const cenarioRecebido = params.get('cenario');
   const idRecebido = params.get('id');
-  if (cenarioRecebido && !CENARIOS_VALIDOS.has(cenarioRecebido)) return null;
-  if (idRecebido && !/^[1-9]\d{0,8}$/.test(idRecebido)) return null;
+  if (params.has('cenario') && !CENARIOS_VALIDOS.has(cenarioRecebido)) return null;
+  if (params.has('id') && !/^[1-9]\d{0,8}$/.test(idRecebido)) return null;
   if (origemAssistente === 'fatura' && !idRecebido) return null;
 
   return {

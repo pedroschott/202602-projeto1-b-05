@@ -25,14 +25,21 @@
     {
       "id": "economia",
       "pergunta": "Como foi calculada minha economia?",
-      "resposta": "A projeção de benefício e as condições usadas estão na tela A caminho da economia. Uma estimativa não é desconto já lançado. Para comparar economia realizada, precisamos de períodos e bases comparáveis; esses detalhes ainda não estão disponíveis aqui.",
+      "resposta": "Na conferência de economia, você informa duas faturas para revisar valores, períodos e bases. A tela não calcula economia porque a metodologia oficial ainda não foi confirmada e implementada. O simulador pré-contratação é separado: usa a premissa acadêmica de até 15%, sem representar economia realizada, oferta ou garantia da Bulbe.",
+      "acao": "Conferir períodos e bases",
+      "destino": "conferencia"
+    },
+    {
+      "id": "previsao",
+      "pergunta": "Quando o benefício vai aparecer?",
+      "resposta": "A tela A caminho da economia mostra as etapas e a previsão disponíveis no cenário de demonstração. Previsão ou estimativa não é desconto já lançado. Sem confirmação nos dados, não há uma data garantida para o benefício aparecer.",
       "acao": "Ver acompanhamento do benefício",
       "destino": "acompanhamento"
     }
   ],
   "semResposta": {
     "pergunta": "Não encontrei informação suficiente",
-    "resposta": "Não tenho uma resposta cadastrada para essa pergunta nesta demonstração. Posso encaminhar você ao atendimento, sem inventar dados sobre sua cobrança.",
+    "resposta": "Não tenho uma resposta cadastrada para essa pergunta nesta demonstração. Posso mostrar como acessar os canais oficiais de atendimento, sem enviar sua pergunta ou inventar dados sobre sua cobrança.",
     "acao": "Falar com atendimento",
     "destino": "suporte"
   }
