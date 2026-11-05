@@ -31,7 +31,7 @@ Rodrigo também ajustou o mobile HU03. Correções posteriores assistidas são i
 
 ## Limitações essenciais
 
-- **HU04:** primeiro acesso local leva à demonstração. Não há login; os critérios originais de destino ao login continuam não cumpridos até decisão explícita do grupo.
+- **HU04:** Pedro autorizou em 05/11 a tela de acesso demonstrativa. Primeiro acesso → carrossel → acesso demonstrativo → home; Pular/falha também levam ao acesso. Sem autenticação real, cadastro ou coleta de credenciais. Os critérios originais ficam preservados, com aceite humano pendente.
 - **HU05:** conferência não calcula economia oficial. Bases/durações diferentes geram avisos. O simulador pré-contratação separado aplica até 15% como hipótese acadêmica, sem oferta, garantia ou validação de economia realizada.
 - **Produto:** sem pagamentos, envio de atendimento, backend, IA generativa ou dados de produção. Consumo e Indicações indisponíveis.
 - **Aceite:** sem feedback de clientes, aprovação da Bulbe ou redução de inadimplência comprovada. CI e revisão assistida não substituem revisão humana.
@@ -49,7 +49,7 @@ A execução da suíte reduzida deve ser conferida nos checks do [PR #41](https:
 - [ ] Conferir CI do head final e registrar resultado real; analisar falhas antes do merge.
 - [ ] Confirmar README, critérios e apresentação coerentes com o código demonstrado.
 - [ ] Registrar revisão humana de outro colega e tratar observações.
-- [ ] Decidir o desvio HU04 e comunicar o bloqueio de cálculo HU05.
+- [x] Registrar autorização de Pedro para acesso demonstrativo HU04, sem autenticação; manter explícito o bloqueio de cálculo HU05.
 - [ ] Integrar à main com autorização antes da entrega de 06/11.
 - [ ] Registrar feedback da Review II somente após a sessão.
 

@@ -5,7 +5,7 @@
 ## Blocos recebidos
 
 - **Sophia / HU05:** `feat/hu05-implementacao`, commit `3367900`, com a `main` `2c4a456` na ancestralidade. Conferência separada do simulador; validação de cronologia/sobreposição, carga/retentativa, foco, rolagem e retorno contextual. Bases e durações diferentes geram avisos, não bloqueiam a entrada. Não há fórmula oficial.
-- **Rodrigo / HU04 e mobile HU03:** `hu04-integracao-home`, commit `952f442`. Primeiro acesso local pela home, fallback quando o armazenamento está indisponível, teclado/gesto e ajustes mobile. A HU03 mantém autoria original de Padilha. Login não foi implementado.
+- **Rodrigo / HU04 e mobile HU03:** `hu04-integracao-home`, commit `952f442`. Primeiro acesso local pela home, fallback quando o armazenamento está indisponível, teclado/gesto e ajustes mobile. A HU03 mantém autoria original de Padilha. A contribuição original não incluía login. A integração final acrescenta acesso visual demonstrativo autorizado por Pedro em 05/11, sem atribuí-lo retroativamente a Rodrigo.
 - **Integração:** consulta e menu da conferência restaurados; simulador pré-contratação da `main` preservado. A rodada final conecta HU01 ↔ HU05 com contexto seguro, corrige o breakpoint HU03 e protege carga/retentativa do simulador. A HU01 mantém autoria original de Vinicius.
 
 ## Entrega e datas
@@ -17,7 +17,7 @@ Segundo o [roteiro oficial](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv
 - **13 ou 18/11:** apresentação final conforme sorteio, 15 minutos mais 5 de perguntas; todos falam.
 - Uma HU e tela própria por integrante, JSON via `fetch`, formulário validado em JavaScript, funcionamento mobile, README e revisão por outro colega.
 
-As cinco histórias têm telas. Isso não comprova todos os critérios: a HU04 exige login e a HU05 depende de metodologia oficial. Não reescrever critérios para contornar essas lacunas.
+As cinco histórias têm telas. Isso não comprova todos os critérios: a HU04 tem acesso visual demonstrativo, não autenticação real, e a HU05 depende de metodologia oficial. Não reescrever critérios para contornar essas lacunas.
 
 ## Navegação e limites
 
@@ -27,7 +27,7 @@ As cinco histórias têm telas. Isso não comprova todos os critérios: a HU04 e
 | Detalhe da fatura | HU01 com id e cenário; retorno à mesma fatura |
 | Assistente HU01 | Conferência HU05, acompanhamento HU02 e suporte demonstrativo |
 | Menu comum | Adesão HU03, boas-vindas HU04, conferência e simulador separados |
-| Boas-vindas HU04 | Começar/Pular abrem a home de demonstração, não login |
+| Boas-vindas HU04 | Começar/Pular → acesso demonstrativo → home; sem autenticação real |
 | Conferência HU05 | Formulário → revisão dos dados → explicação do bloqueio de cálculo |
 
 O primeiro acesso guarda memória apenas no navegador: não autentica nem reconhece outros dispositivos. Na HU05, bases com o mesmo rótulo e períodos de igual duração não comprovam comparabilidade. Não apresentar subtração ou percentual como economia oficial.
@@ -59,7 +59,7 @@ A suíte foi reduzida a poucos testes para facilitar manutenção. [Comandos rep
 
 - **Navegação/HU02:** percorrer home → detalhe → assistente → conferência → origem, conservando cenário/id. Conferir fatura atual e histórica, previsão versus benefício lançado e ausência de dados. Pix e suporte não enviam mensagens nem efetuam pagamentos.
 - **HU03:** etapa atual, próximo passo e rótulos legíveis no celular. As etapas são verticais até 430 px e horizontais a partir de 431 px. Não inventar prazos.
-- **HU04:** avançar/voltar, começar/pular e retorno após primeiro acesso. Verificar que ausência de armazenamento não bloqueia a home. O destino continua sendo demonstração, não login.
+- **HU04:** avançar/voltar, começar/pular e retorno após primeiro acesso. Verificar que ausência de armazenamento não bloqueia a home. O destino é a tela de acesso demonstrativo; depois, a home.
 - **HU05:** entrada válida, revisão e reinício; conferir datas invertidas, sobreposição e valores inválidos. Bases/durações diferentes são avisos. A conferência mantém cálculo oficial bloqueado; o simulador separado usa premissa acadêmica de até 15%, sem promessa comercial.
 - **Carga e acessibilidade:** quando necessário, exercitar falha/retentativa, teclado, foco e rolagem interna em cópia local. Restaurar dados antes de publicar. Essas variantes não são todas cobertas pelo smoke reduzido.
 
@@ -67,7 +67,7 @@ Registrar data, commit, ambiente, resultado e evidência real. Distinguir defeit
 
 ## Decisões antes do aceite
 
-- **HU04:** manter login nesta entrega ou registrar mudança explícita de escopo? O fluxo local não cumpre o texto atual.
+- **HU04:** Pedro autorizou em 05/11 a tela de acesso demonstrativa. O fluxo visual está implementado; autenticação real e cadastro continuam fora do protótipo. Revisão humana dos critérios ainda pendente.
 - **HU05:** obter metodologia oficial ou demonstrar apenas a conferência bloqueada, sem declarar conclusão integral.
 - **Conteúdo:** revisar FAQ, etapas e regras com grupo/Bulbe; nenhum feedback ou impacto foi presumido.
 - **Review II:** cada integrante deve explicar sua tela e contribuição efetiva. Combinar fala e registrar feedback somente depois da sessão; [roteiro](sprints/review-ii-roteiro.md).

@@ -48,8 +48,8 @@ function mostrarSlide() {
 
 function avancar() {
   if (atual === slides.length - 1) {
-    // Destino aprovado: home de demonstração. Não há login nesta entrega.
-    window.location.href = '../index.html';
+    // Entrada visual do protótipo, sem autenticação ou dados reais.
+    window.location.href = 'login.html';
     return;
   }
   atual++;
@@ -90,7 +90,7 @@ slide.addEventListener('touchend', (evento) => {
 iniciarLayout();
 carregarComEstados(slide, {
   carregar: buscarBoasVindas,
-  textoVazio: 'A apresentação ainda não tem conteúdo. Você pode pular para a demonstração.',
+  textoVazio: 'A apresentação ainda não tem conteúdo. Você pode seguir para o acesso demonstrativo.',
   mostrar: (dados) => {
     if (!Array.isArray(dados) || dados.some((item) => !item || typeof item.titulo !== 'string' || typeof item.texto !== 'string')) {
       throw new Error('Conteúdo da apresentação inválido');

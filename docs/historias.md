@@ -209,11 +209,11 @@ Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e
 
 ## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
-**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Nesta versão, Começar/Pular abrem a home de demonstração. O PR #41 inclui controle de primeiro acesso local pela home e fallback quando o armazenamento não está disponível, além de ajustes de teclado/gesto. Login continua ausente: Começar/Pular abrem a demonstração, não cumprem os critérios de destino ao login. Não há aceite ou mudança de requisito registrada.
+**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Começar/Pular abrem a tela `pages/login.html`, que explica o acesso demonstrativo e permite entrar na home. O PR #41 inclui controle de primeiro acesso local pela home e fallback quando o armazenamento não está disponível, além de ajustes de teclado/gesto. Pedro autorizou em 05/11 uma tela de acesso demonstrativa para completar o fluxo visual, sem backend. Não há autenticação real, cadastro ou coleta de credenciais; a revisão humana do PR continua pendente.
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
 **Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
 **Momento da jornada:** primeiro acesso ao app, antes do login  
-**Oportunidade de origem:** [a definir — link para a issue]  
+**Oportunidade de origem:** fase 1, Descoberta, do [mapa de jornada](jornada.md#mapa), com apoio da O1: explicar o intervalo até o primeiro ciclo e alinhar expectativas antes da adesão. Vínculo de rastreabilidade proposto na integração; validação do squad pendente, sem criar evidência ou aceite retroativo.
 **Tela proposta:** Boas-vindas (carrossel)
 
 ### História
@@ -243,7 +243,7 @@ Em um teste com protótipo, verificar se a pessoa consegue, sem ajuda, dizer o q
 
 ### Observação de consolidação
 
-A HU04 apresenta o serviço antes da entrada e não é uma história de explicação de fatura. O primeiro acesso local demonstrativo é uma implementação parcial: a história e os critérios originais exigem login. Manter esse desvio visível até decisão explícita do grupo, sem considerar o armazenamento local uma autenticação.
+A HU04 apresenta o serviço antes da entrada e não é uma história de explicação de fatura. Os critérios originais de login são preservados como referência. Em 05/11, Pedro autorizou a entrada visual demonstrativa, sem autenticação real. Começar/Pular e o caminho de falha agora levam a essa tela. Isso completa o fluxo de apresentação do protótipo, mas não equivale a login de produção nem ao aceite de todos os critérios pelo squad.
 
 
 ## HU05 — Calcular e conferir a economia

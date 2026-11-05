@@ -38,10 +38,16 @@ try {
   assert.equal(await page.locator('#posicao').innerText(), '2 de 3');
   await page.locator('#proximo').click();
   await page.locator('#proximo').click();
+  await page.locator('#entrar-demonstracao').click();
   await page.locator('.card-espera').waitFor();
   await page.reload();
   await page.locator('.card-espera').waitFor();
-  console.log('OK: boas-vindas → home e acesso seguinte');
+  await abrir('/pages/boas-vindas.html', '#slide article');
+  await page.getByRole('link', { name: 'Pular apresentação' }).click();
+  await page.locator('#entrar-demonstracao').waitFor();
+  await page.goBack();
+  await page.locator('#slide article').waitFor();
+  console.log('OK: boas-vindas → acesso demonstrativo → home, pular e voltar');
 
   // 2. Acompanhamento e adesão pelo menu, incluindo o breakpoint mobile.
   for (const [nome, pronto] of [['A caminho da economia', '.linha-tempo'], ['Acompanhar adesão', '#hu03-titulo']]) {
@@ -58,7 +64,29 @@ try {
   }
   await page.locator('[data-etapa="4"]').click();
   assert.equal(await page.locator('.hu03-step.is-selected').getAttribute('data-etapa'), '4');
-  console.log('OK: acompanhamento, adesão e layout mobile');
+  // Todas as telas do menu devem abrir, permitir retorno e caber no celular.
+  for (const [nome, pronto] of [
+    ['Início', '.card-espera'], ['A caminho da economia', '.linha-tempo'],
+    ['Simular economia', '#hu05-form'], ['Conferir economia', '#hu05-form'],
+    ['Acompanhar adesão', '#hu03-titulo'], ['Conheça a Bulbe', '#slide article'],
+    ['Acesso demonstrativo', '#entrar-demonstracao'],
+    ['Assistente virtual', '.hu01-perguntas']
+  ]) {
+    await abrir('/index.html', '.card-espera');
+    await page.getByRole('button', { name: 'Abrir menu' }).click();
+    await page.getByRole('link', { name: new RegExp('^' + nome) }).click();
+    await page.locator(pronto).waitFor();
+    for (const width of [360, 1280]) {
+      await page.setViewportSize({ width, height: 844 });
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, nome + ': sem rolagem horizontal');
+    }
+    await page.getByRole('button', { name: 'Falar com o suporte humano' }).click();
+    await page.getByRole('dialog').waitFor();
+    await page.keyboard.press('Escape');
+    assert.equal(await page.getByRole('dialog').count(), 0, 'Escape fecha o suporte');
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  console.log('OK: todos os destinos do menu, suporte e layout mobile/desktop');
 
   // 3. Fatura histórica → assistente → conferência → mesma fatura.
   await abrir('/pages/fatura.html?cenario=aguardando-creditos&id=202', '.hu01-fatura-total');

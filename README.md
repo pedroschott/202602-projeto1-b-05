@@ -40,7 +40,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 - **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
 - **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamentos para a HU02 e a conferência HU05, com retorno contextual. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
-- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. O bloco reunido no PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Login não foi implementado; o aceite desse requisito continua pendente.
+- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. O bloco reunido no PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Na finalização, Começar/Pular passam pela [tela de acesso demonstrativo](pages/login.html), autorizada por Pedro em 05/11. Ela não coleta credenciais nem autentica usuários; a integração assistida não altera a autoria original da HU04.
 - **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas verticais no mobile até 430 px e horizontais a partir de 431 px, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os ajustes de rótulos mobile de Rodrigo estão reunidos no PR #41; a correção final do breakpoint foi testada, preservando a autoria original da HU03. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
 
 - **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente. O bloco recebido de Sophia acrescenta validação de cronologia/sobreposição, carregamento/retentativa, foco e rolagem interna, além de retorno contextual preparado. Bases ou durações diferentes geram avisos na comparação, não bloqueios de entrada.
@@ -50,7 +50,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 **Integração em 05/11:** os blocos de Sophia e Rodrigo estão no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge na `main`. Correções assistidas de integração preservam a autoria original das HUs. A conferência HU05 e o [simulador acadêmico pré-contratação](pages/simulacao-economia.html) são distintos. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
 
-**Pendente:** login e decisão de escopo da HU04, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
+**Pendente:** autenticação real, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -73,6 +73,10 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 4. Clique com o botão direito em `index.html` e escolha **Open with Live Server**.
 
 > Abrir o `index.html` direto no navegador (duplo clique) não funciona: o `fetch` dos arquivos JSON exige um servidor.
+
+**Alternativa sem extensão:** com Python 3 instalado, abra o terminal na pasta clonada, execute `python3 -m http.server 4173 --bind 127.0.0.1` (no Windows, `py -m http.server 4173 --bind 127.0.0.1`) e acesse http://127.0.0.1:4173. Mantenha o terminal aberto; `Ctrl+C` encerra o servidor. O aplicativo não exige instalação de pacotes npm: as dependências abaixo são apenas para os testes.
+
+Na primeira visita, a home abre as boas-vindas. Use **Pular apresentação** ou **Começar** para abrir o acesso demonstrativo e então **Entrar na demonstração**. Nas visitas seguintes do mesmo navegador, a home abre diretamente. O menu permite revisitar todas as cinco HUs. Consumo e Indicações são atalhos informativos indisponíveis, não telas concluídas.
 
 ### Testes
 
@@ -100,6 +104,7 @@ A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `
 ```
 ├── index.html            # Home: card da HU02 e faturas
 ├── pages/
+│   ├── login.html        # Acesso demonstrativo, sem autenticação
 │   ├── boas-vindas.html   # HU04: apresentação inicial com JSON
 │   ├── acompanhamento.html  # HU02: A caminho da economia
 │   ├── adesao.html       # HU03: acompanhamento de adesão
