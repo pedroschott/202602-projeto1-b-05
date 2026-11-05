@@ -24,13 +24,13 @@
     <main class="bulbe-content hu05-content">
       <p class="hu05-eyebrow">SIMULAÇÃO ANTES DA CONTRATAÇÃO</p>
       <ol class="hu05-stepper" aria-label="Etapas da simulação ilustrativa">
-        <li class="is-active" data-step-label="1">Suas contas</li>
+        <li class="is-active" data-step-label="1" aria-current="step">Suas contas</li>
         <li data-step-label="2">Resultado</li>
         <li data-step-label="3">Entenda</li>
       </ol>
 
       <section class="hu05-step" id="hu05-step-1" aria-labelledby="hu05-title">
-        <h1 class="titulo-secao hu05-title" id="hu05-title">Vamos calcular sua economia?</h1>
+        <h1 class="titulo-secao hu05-title" id="hu05-title" tabindex="-1">Vamos calcular sua economia?</h1>
         <p class="hu05-intro">Para estimar quanto você pode economizar com a Bulbe, precisamos conhecer suas contas de luz dos últimos três meses.</p>
 
         <aside class="hu05-tip">
@@ -38,9 +38,13 @@
           <p>Tenha em mãos o valor total de cada conta, incluindo impostos e taxas, e o período de consumo indicado na fatura.</p>
         </aside>
 
-        <form id="hu05-form" novalidate>
+        <p id="hu05-status" class="hu05-status" role="status" aria-live="polite" aria-atomic="true">Carregando as premissas da simulação acadêmica…</p>
+        <button id="hu05-tentar" class="bulbe-button bulbe-button--secundario hu05-submit" type="button" hidden disabled>Tentar novamente</button>
+        <noscript><p class="hu05-feedback hu05-feedback--erro">Ative o JavaScript para carregar as premissas e usar esta simulação.</p></noscript>
+
+        <form id="hu05-form" aria-busy="true" novalidate>
           <h2 class="hu05-section-title">Suas contas de luz</h2>
-          <p class="hu05-muted">Preencha os três meses. Os períodos precisam ser diferentes.</p>
+          <p class="hu05-muted">Preencha três meses consecutivos, do mais antigo para o mais recente. Use valores com até duas casas decimais.</p>
           <div class="hu05-bill-grid">
             <fieldset class="hu05-bill">
               <legend>Mês 1</legend>
@@ -65,13 +69,13 @@
             </fieldset>
           </div>
           <p id="hu05-feedback" class="hu05-feedback" role="status" aria-live="polite"></p>
-          <button class="bulbe-button hu05-submit" type="submit">Calcular minha economia</button>
+          <button class="bulbe-button hu05-submit" type="submit" aria-describedby="hu05-status" disabled>Carregando premissas…</button>
         </form>
         <p class="aviso-ficticio">Esta é uma simulação acadêmica. O percentual de até 15% é uma premissa ilustrativa do projeto, não uma oferta, promessa ou garantia de economia real da Bulbe.</p>
       </section>
 
       <section class="hu05-step" id="hu05-step-2" aria-labelledby="hu05-result-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-result-title">Sua economia estimada</h1>
+        <h1 class="titulo-secao hu05-title" id="hu05-result-title" tabindex="-1">Sua economia estimada</h1>
         <p class="hu05-intro">Veja uma projeção baseada nos valores que você informou.</p>
         <article class="hu05-highlight">
           <span class="hu05-overline">Economia estimada por mês</span>
@@ -100,7 +104,7 @@
       </section>
 
       <section class="hu05-step" id="hu05-step-3" aria-labelledby="hu05-detail-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-detail-title">Entenda sua economia</h1>
+        <h1 class="titulo-secao hu05-title" id="hu05-detail-title" tabindex="-1">Entenda sua economia</h1>
         <p class="hu05-intro">A estimativa usa a média das suas três contas e aplica o percentual máximo definido para esta simulação acadêmica.</p>
         <div class="hu05-detail-summary">
           <div><span>Sua média atual</span><strong id="hu05-detail-average">—</strong></div>
