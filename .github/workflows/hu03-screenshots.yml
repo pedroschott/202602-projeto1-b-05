@@ -32,7 +32,7 @@ jobs:
           for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do
             node --check "$arquivo"
           done
-          node --test scripts/test-api.mjs scripts/test-hu02.mjs tests/*.mjs
+          node --test scripts/test-api.mjs scripts/test-hu02.mjs scripts/test-hu01-integracao.mjs tests/*.mjs
       - name: Instalar navegador de testes
         run: |
           npm install --no-save playwright@1.56.1
@@ -53,7 +53,10 @@ jobs:
           node scripts/test-hu03-mobile.mjs || resultado=1
           node scripts/test-hu04.mjs || resultado=1
           node scripts/test-hu04-primeiro-acesso.mjs || resultado=1
+          BULBE_BROWSER_TEST=1 node --test scripts/test-hu01-integracao.mjs || resultado=1
+          node scripts/test-hu05-simulacao.mjs || resultado=1
           node scripts/test-integracao.mjs || resultado=1
+          node scripts/test-mvp-smoke.mjs || resultado=1
           exit "$resultado"
       - name: Guardar evidências sem alterar o repositório
         if: always()

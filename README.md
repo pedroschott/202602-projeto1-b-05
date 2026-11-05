@@ -48,7 +48,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
 
-**Integração em 05/11 (UTC):** os blocos de Sophia e Rodrigo estão sendo reunidos no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge do PR na `main`. A conferência HU05 é restaurada como tela separada do [simulador pré-contratação](pages/simulacao-economia.html) herdado da `main`; a integração também restaura a exportação de consulta e o acesso à conferência no menu. O encaminhamento HU01 → HU05 de Vinicius continua pendente, mesmo com o retorno contextual já preparado na HU05. Consulte o [plano e histórico de evidências](docs/implementacao-2.md). 53/53 testes Node passaram localmente; o resultado Chromium no head publicado ainda está pendente.
+**Finalização em 05/11 (UTC):** os blocos de Sophia e Rodrigo estão reunidos no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), ainda sem merge na `main`. A conferência HU05 e o [simulador pré-contratação](pages/simulacao-economia.html) são telas distintas. A rodada final prepara HU01 → HU05 com contexto, correção do breakpoint mobile da HU03 e proteção de carregamento do simulador. Essas correções de integração não são atribuídas aos autores originais das HUs. Confira a [matriz de requisitos, evidências e pendências](docs/verificacao-mvp.md) antes de considerar o MVP pronto para merge.
 
 **Pendente:** login e decisão de escopo da HU04, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
@@ -80,7 +80,7 @@ Use Node.js 22. Na raiz do repositório, valide a sintaxe e execute os testes se
 
 ```bash
 for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do node --check "$arquivo" || exit 1; done
-node --test scripts/test-api.mjs scripts/test-hu02.mjs tests/*.mjs
+node --test scripts/test-api.mjs scripts/test-hu02.mjs scripts/test-hu01-integracao.mjs tests/*.mjs
 ```
 
 Para os testes de navegador, instale o Playwright e o Chromium:
@@ -98,12 +98,15 @@ node scripts/test-hu03.mjs
 node scripts/test-hu03-mobile.mjs
 node scripts/test-hu04.mjs
 node scripts/test-hu04-primeiro-acesso.mjs
+BULBE_BROWSER_TEST=1 node --test scripts/test-hu01-integracao.mjs
+node scripts/test-hu05-simulacao.mjs
 node scripts/test-integracao.mjs
+node scripts/test-mvp-smoke.mjs
 ```
 
 Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. As novas evidências de navegador ficam sob `artifacts/`; o roteiro original HU03 também gera capturas em `docs/telas`. A CI coleta `artifacts/` e as capturas HU03 como artefatos, sem commit automático.
 
-**Evidência histórica de 04/11 (não certifica o conjunto atual):** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. Essa execução antecede os blocos agora em integração. **Estado de 05/11 (UTC):** 53/53 testes Node locais passaram; Chromium do novo head pendente.
+**Evidência histórica de 04/11 (não certifica o conjunto atual):** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. Essa execução antecede os blocos agora em integração. **CI anterior em 05/11:** no head `4b53f86`, a [execução 41948447761](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41948447761) aprovou 53 testes Node, 12 casos HU04, 10 de primeiro acesso e 9 de integração, mas o mobile HU03 falhou em 401 px; larguras posteriores não foram executadas. A rodada final precisa de nova CI e inspeção antes do merge.
 
 ## 6. Estrutura do repositório
 

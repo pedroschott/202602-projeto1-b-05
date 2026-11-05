@@ -12,7 +12,7 @@
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
-**Status:** primeira implementação em HTML/CSS/JS com JSON via `fetch`, integrada à home e ao detalhe de faturas da HU02; revisão do squad, validação do conteúdo e confirmação do escopo do MVP pendentes. [Roteiro técnico e evidências](hu01-implementacao.md).
+**Status:** primeira implementação em HTML/CSS/JS com JSON via `fetch`, integrada à home e ao detalhe de faturas da HU02. Encaminhamento HU01 → HU05 e retorno contextual em finalização no PR #41, ainda dependentes de testes do head final; revisão do squad, validação do conteúdo e confirmação do escopo do MVP pendentes. [Roteiro técnico e evidências](hu01-implementacao.md).
 **Responsável:** Vinicius Gorini (@viniciusgorini)  
 **Prioridade proposta:** Alta  
 **Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
@@ -170,7 +170,7 @@ Fontes públicas consultadas em 20/10/2026, sem substituir o contrato individual
 
 ## HU03 — Acompanhar o andamento da contratação
 
-**Status:** proposta individual; aguarda alinhamento com as personas consolidadas e confirmação de entrada no MVP.  
+**Status:** tela implementada com JSON via `fetch` em `pages/adesao.html`. O PR #41 reúne ajustes mobile; após falha em 401 px na CI anterior, o breakpoint está em correção para nova verificação. Aceite dos critérios e confirmação das etapas com a Bulbe pendentes.  
 **Responsável:** Pedro Padilha (contribuição individual — Persona 5)  
 **Persona de referência:** [P1 — Cláudia Martins](personas/consolidadas.md#p1--cláudia-martins-acompanhar-e-acessar)  
 **Momento da jornada:** cadastro e período de espera pela conexão  
@@ -205,11 +205,11 @@ Em um teste com o protótipo, pedir à pessoa para identificar em qual etapa est
 
 ### Limites de escopo
 
-Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e a espera pela conexão. Não inclui explicar valores ou economia da primeira fatura (tema da HU01/HU04), nem detalhar a espera até o primeiro desconto e a projeção do benefício com foco na segunda fatura (tema da HU02). Os nomes e a sequência das etapas precisam ser confirmados com a Bulbe antes de serem apresentados como processo oficial.
+Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e a espera pela conexão. Não inclui explicar valores ou economia da primeira fatura (tema da HU01/HU05), nem detalhar a espera até o primeiro desconto e a projeção do benefício com foco na segunda fatura (tema da HU02). Os nomes e a sequência das etapas precisam ser confirmados com a Bulbe antes de serem apresentados como processo oficial.
 
 ## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
-**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Nesta versão, Começar/Pular abrem a home de demonstração. Login e controle para apresentar somente no primeiro acesso ainda estão pendentes.
+**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Nesta versão, Começar/Pular abrem a home de demonstração. O PR #41 inclui controle de primeiro acesso local pela home e fallback quando o armazenamento não está disponível, além de ajustes de teclado/gesto. Login continua ausente: Começar/Pular abrem a demonstração, não cumprem os critérios de destino ao login. Não há aceite ou mudança de requisito registrada.
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
 **Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
 **Momento da jornada:** primeiro acesso ao app, antes do login  
@@ -243,13 +243,12 @@ Em um teste com protótipo, verificar se a pessoa consegue, sem ajuda, dizer o q
 
 ### Observação de consolidação
 
-[a definir — verificar se esta história se sobrepõe a outra HU do squad, como login ou cadastro. Se não houver sobreposição, retirar esta seção.]
-Esta história se sobrepõe à HU01 e à HU03 na explicação dos valores e da economia. O que ela acrescenta é a relação entre a cobrança da Bulbe e a conta da Cemig durante a espera. O squad deve decidir se a HU04 segue como história própria ou se esse critério entra na HU01.
+A HU04 apresenta o serviço antes da entrada e não é uma história de explicação de fatura. O primeiro acesso local demonstrativo é uma implementação parcial: a história e os critérios originais exigem login. Manter esse desvio visível até decisão explícita do grupo, sem considerar o armazenamento local uma autenticação.
 
 
 ## HU05 — Calcular e conferir a economia
 
-**Status:** implementação em revisão; o protótipo coleta e apresenta valores, bases e períodos das duas faturas, mas bloqueia o cálculo enquanto a metodologia oficial não estiver confirmada.
+**Status:** implementação em revisão no PR #41, com cronologia/sobreposição, carga/retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes geram avisos na comparação. O protótipo apresenta valores, bases e períodos informados, mas bloqueia cálculo oficial. A conferência é distinta do simulador pré-contratação. Testes do head final e aceite dos critérios pendentes.
 **Responsável:** Sophia Miranda (@sophiacmiranda)
 **Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
 **Momento da jornada:** conferência da primeira fatura e avaliação da economia
@@ -281,7 +280,7 @@ Em um teste de compreensão, pedir à pessoa para apontar quais períodos foram 
 
 ### Limites de escopo e relação com outras histórias
 
-Esta história foca na **interação para conferir o cálculo da economia**. A HU01 explica os componentes da primeira fatura, enquanto a HU04 aborda também a relação entre as cobranças da Bulbe e da Cemig. A HU05 pode complementar essas histórias, mas o squad deve decidir se a conferência será uma tela própria ou parte da tela “Entenda sua fatura”.
+Esta história foca na **interação para conferir o cálculo da economia**. A HU01 oferece explicações e encaminhamentos sobre a fatura, enquanto a HU04 apresenta o serviço antes da entrada. A HU05 complementa a HU01 em tela própria, `pages/calculo-economia.html`, sem afirmar que a metodologia oficial de economia já foi confirmada.
 
 As regras oficiais, os dados necessários e a fórmula devem ser confirmados com a Bulbe antes de implementar o cálculo. Não se deve presumir que períodos ou valores sejam comparáveis sem essa confirmação.
 

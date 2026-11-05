@@ -1,24 +1,33 @@
 # Sprint Review II — roteiro proposto
 
-**06/11/2026 · 10 minutos · proposta para o grupo.** Não é ata nem registro de feedback ou aceite. Fonte e plano: [Implementação 2](../implementacao-2.md).
+**06/11/2026 · 10 minutos · demonstração ao vivo.** Não é ata nem registro de feedback ou aceite. Fonte: [roteiro oficial](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit). Preparação: [matriz do MVP](../verificacao-mvp.md).
 
-| Tempo | Demonstração proposta |
+| Tempo | Conteúdo proposto |
 | --- | --- |
-| 0:00–1:00 | Problema, personas e recorte do primeiro ciclo; dados fictícios e ausência de impacto medido |
-| 1:00–2:15 | Rodrigo: HU04, slides e entrada na demonstração; declarar a pendência de login |
-| 2:15–3:30 | HU03, autoria original de Pedro Padilha: etapa atual e próximo passo, com visual mobile; apresentador a combinar |
-| 3:30–4:45 | Pedro Schott: HU02, espera, ausência de previsão confirmada e distinção entre projeção e desconto |
-| 4:45–6:00 | Vinicius: HU01, pergunta pronta e retorno à fatura; demonstrar HU05 contextual somente se implementada e testada |
-| 6:00–7:15 | Sophia: HU05, validação do formulário, conferência e motivo de não calcular economia |
-| 7:15–8:30 | Integração, JSON via fetch, estados de erro e evidências reais de QA/revisão humana |
-| 8:30–10:00 | Limites, decisões pendentes e próximos passos até o congelamento de 12/11 |
+| 0:00–1:15 | Conceito: reduzir a incerteza no primeiro ciclo. Mostrar a dor e suas fontes, distinguindo evidências agregadas de hipóteses |
+| 1:15–2:15 | Ideação: personas fictícias, jornada e escolha das cinco HUs. Explicar por que acompanhamento, informação e conferência se complementam |
+| 2:15–3:00 | HU04: boas-vindas e entrada local demonstrativa. Dizer claramente que login não está implementado |
+| 3:00–4:00 | HU03: etapa da adesão e próximo passo; HU02: espera pelo benefício, projeção versus desconto lançado |
+| 4:00–5:15 | HU01: pergunta pronta, fatura contextual e encaminhamento HU05. Usar apenas o fluxo efetivamente testado no head demonstrado |
+| 5:15–6:30 | HU05: formulário, conferência e bloqueio de cálculo oficial. Distinguir do simulador pré-contratação |
+| 6:30–7:30 | Qualidade: JSON via fetch, validação JS, mobile e estados de erro; mostrar evidências reais da versão apresentada |
+| 7:30–8:30 | Entregue e excluído: login, cálculo oficial, pagamentos reais, Consumo/Indicações e validação com clientes |
+| 8:30–10:00 | Aprendizados técnicos observados, revisão/pendências e próximos passos até 12/11; receber feedback sem antecipá-lo |
 
-Divisão de fala e tempos são sugestões, não compromissos aceitos. Usar a versão efetivamente disponível na `main`, após revisão e merge autorizado. Não demonstrar uma branch incompleta como versão entregue.
+A distribuição de fala deve ser combinada com o grupo. A HU03 mantém autoria original de Pedro Padilha; apresentador a combinar, sem atribuir nova implementação a ele. Identificar o trabalho efetivo de cada integrante e os ajustes posteriores de integração.
 
-## Preparação
+## Antes da apresentação
 
-- Abrir em servidor HTTP, não por `file://`.
-- Separar uma tela própria e o trabalho efetivo de cada integrante; não atribuir integração assistida a colegas.
-- Conferir dados fictícios, links e uma largura mobile antes da sessão.
-- Apresentar somente testes que realmente tenham sido executados, com commit e resultado.
-- Anotar feedback e decisões depois da apresentação, distinguindo sugestões de compromissos confirmados. Este roteiro não preenche esse registro antecipadamente.
+- Usar a versão efetivamente disponível na `main`, após revisão e merge autorizado. Não apresentar draft como entrega concluída.
+- Abrir em servidor HTTP; preparar dados fictícios e uma largura mobile.
+- Conferir o resultado da nova CI. O resultado anterior falhou em 401 px na HU03 e não certifica a rodada final.
+- Apresentar somente testes executados, com commit/run e limites. Revisão assistida não substitui revisão humana de colega.
+- Não afirmar aumento de pagamentos, aprovação da Bulbe, entrevista, reunião ou feedback que não tenham ocorrido.
+
+## Depois da sessão
+
+Registrar data, participantes efetivos, feedback recebido, decisões confirmadas e próximos passos. Este roteiro não preenche esses registros antecipadamente.
+
+## Adaptação para a apresentação final
+
+Em 13 ou 18/11, conforme sorteio, haverá **15 minutos mais 5 de perguntas**, com fala de todos. Ampliar conceito, evidências, ideação e aprendizados, mantendo a demonstração e os limites explícitos. O congelamento é em 12/11. A apresentação final não deve reproduzir apenas uma sequência de telas ou confundir o roteiro de 10 minutos da Review II com o tempo final.
