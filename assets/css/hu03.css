@@ -215,11 +215,12 @@
   .hu03-circle { width: 34px; height: 34px; }
   .hu03-track { top: 16px; }
 }
-/* Ajuste mobile (Rodrigo Rigotto, Implementação 2): até 400 px os cinco
-   rótulos não cabem lado a lado sem quebrar no meio da palavra
-   ("Cadast-ro", "Validaç-ão"; medido em 320 a 398 px). Aqui as etapas ficam
-   em lista vertical. Só visual: ordem, nomes e estados vêm do hu03.js. */
-@media (max-width: 400px) {
+/* Ajuste mobile iniciado por Rodrigo Rigotto, Implementação 2.
+   Na integração, a fonte carregada ainda quebrava "Validação" em 401 px.
+   A lista vertical cobre toda a faixa mobile de até 430 px; acima dela,
+   a moldura de 430 px comporta as etapas horizontais. Só visual:
+   ordem, nomes e estados continuam vindo do hu03.js. */
+@media (max-width: 430px) {
   .hu03-steps {
     grid-template-columns: 1fr;
     row-gap: 10px;

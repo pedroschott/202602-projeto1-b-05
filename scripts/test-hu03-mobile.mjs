@@ -1,4 +1,4 @@
-// Teste do ajuste mobile da HU03 (etapas em lista vertical até 400 px).
+// Teste do ajuste mobile da HU03 (etapas em lista vertical até 430 px).
 // Só confere layout: a lógica e os dados da HU03 são testados em test-hu03.mjs.
 // Servidor: python3 -m http.server 4173 --bind 127.0.0.1
 // Teste:    node scripts/test-hu03-mobile.mjs
@@ -43,7 +43,7 @@ async function medirEtapas() {
 }
 
 try {
-  for (const [largura, vertical] of [[320, true], [360, true], [375, true], [390, true], [400, true], [401, false], [430, false], [1280, false]]) {
+  for (const [largura, vertical] of [[320, true], [360, true], [375, true], [390, true], [400, true], [401, true], [430, true], [431, false], [1280, false]]) {
     await page.setViewportSize({ width: largura, height: 900 });
     await page.goto(ORIGIN + '/pages/adesao.html');
     await page.locator('[data-etapa]').first().waitFor();
