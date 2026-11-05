@@ -47,6 +47,7 @@ try {
     await page.setViewportSize({ width: largura, height: 900 });
     await page.goto(ORIGIN + '/pages/adesao.html');
     await page.locator('[data-etapa]').first().waitFor();
+    await page.evaluate(() => document.fonts.ready);
     const medida = await medirEtapas();
     assert.equal(medida.semRolagem, true, `${largura}px sem rolagem horizontal`);
     assert.equal(medida.etapas.length, 5);

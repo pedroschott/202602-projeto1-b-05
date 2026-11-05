@@ -53,7 +53,8 @@ try {
     ['Acompanhar adesão', 'adesao.html', '#hu03-titulo'],
     ['Conheça a Bulbe', 'boas-vindas.html', '#slide article'],
     ['Assistente virtual', 'assistente.html', '.hu01-perguntas'],
-    ['Conferir economia', 'calculo-economia.html', '#hu05-form']
+    ['Conferir economia', 'calculo-economia.html', '#hu05-form'],
+    ['Simular economia', 'simulacao-economia.html', '#hu05-form']
   ]) {
     await abrir('/index.html', '.card-espera');
     await page.getByRole('button', { name: 'Abrir menu' }).click();
@@ -96,7 +97,7 @@ try {
   await page.locator('.hu01-perguntas').waitFor();
   await registrar('Pergunta não cadastrada, escape de HTML, suporte e fechamento');
 
-  // Carrossel atual: navegação manual. Primeiro acesso persistido fica com HU04.
+  // Carrossel: primeiro acesso e armazenamento são cobertos pela suíte HU04 dedicada.
   await abrir('/pages/boas-vindas.html', '#slide article');
   assert.equal(await page.locator('#anterior').isDisabled(), true);
   await page.locator('#proximo').click();
@@ -119,18 +120,35 @@ try {
   assert(await page.locator('#hu05-step-1').isVisible());
   assert.equal(await page.locator('[name="anteriorValor"]').evaluate(el => el.validity.valid), false);
   await preencherFaturas();
+  // Erros de entrada continuam bloqueando; diferenças de comparabilidade são avisos.
+  for (const [inicio, fim, mensagem] of [
+    ['2026-10-30', '2026-10-01', /data inicial/],
+    ['2026-08-01', '2026-08-30', /deve começar antes/],
+    ['2026-09-30', '2026-10-29', /se sobrepõem/]
+  ]) {
+    await page.locator('[name="atualInicio"]').fill(inicio);
+    await page.locator('[name="atualFim"]').fill(fim);
+    await page.locator('#hu05-form button[type="submit"]').click();
+    assert(await page.locator('#hu05-step-1').isVisible());
+    assert.match(await page.locator('#hu05-feedback').innerText(), mensagem);
+  }
+  await preencherFaturas();
   await page.locator('[name="atualBase"]').selectOption('energia');
-  await page.locator('#hu05-form button[type="submit"]').click();
-  assert.match(await page.locator('#hu05-feedback').innerText(), /mesma base/);
-  await page.locator('[name="atualBase"]').selectOption('total');
   await page.locator('[name="atualFim"]').fill('2026-10-31');
   await page.locator('#hu05-form button[type="submit"]').click();
-  assert.match(await page.locator('#hu05-feedback').innerText(), /durações diferentes/);
+  await page.locator('#hu05-step-2').waitFor();
+  assert.match(await page.locator('#hu05-resumo').innerText(), /bases selecionadas são diferentes/);
+  assert.match(await page.locator('#hu05-resumo').innerText(), /durações dos períodos são diferentes/);
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'hu05-result-title');
+  assert.equal(await page.locator('.bulbe-content').evaluate(el => el.scrollTop), 0);
+  await page.locator('#hu05-edit').click();
+  await page.locator('[name="atualBase"]').selectOption('total');
   await page.locator('[name="atualFim"]').fill('2026-10-30');
+  assert.equal(await page.locator('#hu05-resumo').innerText(), '');
   await page.locator('#hu05-form button[type="submit"]').click();
   await page.locator('#hu05-step-2').waitFor();
   assert.match(await page.locator('#hu05-resumo').innerText(), /100,00/);
-  assert.match(await page.locator('#hu05-bloqueio').innerText(), /não.*confirmados/);
+  assert.match(await page.locator('#hu05-bloqueio').innerText(), /não há metodologia oficial/);
   assert(await page.locator('#hu05-bloqueio').isVisible());
   const comparacao = await page.locator('#hu05-step-2').innerText();
   const moedas = (comparacao.match(/R\$\s*[\d.,]+/g) || []).map(texto => texto.replace(/\s+/g, ' '));
@@ -151,6 +169,68 @@ try {
   assert.equal(await page.locator('[name="atualValor"]').inputValue(), '');
   assert.equal(await page.locator('#hu05-resumo').innerText(), '');
   await registrar('HU05: validações atuais, conferência sem fórmula, edição e reinício');
+
+  // Loading e envio precoce não navegam nem habilitam a conferência.
+  let liberarResposta;
+  const esperaResposta = new Promise(resolve => { liberarResposta = resolve; });
+  const rotaHU05 = '**/data/hu05-economia.json';
+  await page.route(rotaHU05, async route => {
+    await esperaResposta;
+    await route.continue();
+  });
+  await page.goto(ORIGIN + '/pages/calculo-economia.html', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.querySelector('#hu05-status').getAttribute('aria-busy') === 'true');
+  assert.equal(await page.locator('#hu05-form button[type="submit"]').isDisabled(), true);
+  await page.locator('#hu05-form').evaluate(form => {
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  });
+  assert.match(await page.locator('#hu05-feedback').innerText(), /Aguarde/);
+  assert.equal(new URL(page.url()).pathname, '/pages/calculo-economia.html');
+  liberarResposta();
+  await page.waitForFunction(() => !document.querySelector('#hu05-form button[type="submit"]').disabled);
+  await page.unroute(rotaHU05);
+  for (const corpo of ['{ inválido', '{"tipo":"simulacao_academica"}']) {
+    await page.route(rotaHU05, route => route.fulfill({ contentType: 'application/json', body: corpo }));
+    await page.reload();
+    await page.locator('#hu05-tentar').waitFor();
+    assert.equal(await page.locator('#hu05-form button[type="submit"]').isDisabled(), true);
+    await page.unroute(rotaHU05);
+    await page.locator('#hu05-tentar').click();
+    await page.waitForFunction(() => !document.querySelector('#hu05-form button[type="submit"]').disabled);
+  }
+  // Nem flags verdadeiras liberam um cálculo que não existe.
+  await page.route(rotaHU05, route => route.fulfill({ contentType: 'application/json', body: JSON.stringify({
+    tipo: 'conferencia_economia', regrasCalculoConfirmadas: true,
+    basesComparaveisConfirmadas: true, metodologiaConfirmada: true
+  }) }));
+  await abrir('/pages/calculo-economia.html?origem=assistente&origemAssistente=fatura&cenario=aguardando-creditos&id=202', '#hu05-form');
+  await preencherFaturas();
+  await page.locator('#hu05-form button[type="submit"]').click();
+  assert(await page.locator('#hu05-bloqueio').isVisible());
+  assert.doesNotMatch(await page.locator('#hu05-step-2').innerText(), /\d(?:[.,]\d+)?\s*%/);
+  await page.locator('#hu05-retorno').click();
+  await page.locator('.hu01-perguntas').waitFor();
+  assert.equal(new URL(page.url()).searchParams.get('id'), '202');
+  assert.equal(new URL(page.url()).searchParams.get('origem'), 'fatura');
+  assert.equal(new URL(page.url()).searchParams.get('cenario'), 'aguardando-creditos');
+  await page.unroute(rotaHU05);
+  await registrar('HU05: carga lenta, envio repetido, JSON inválido, flags sem fórmula e retorno contextual');
+
+  // Simulador herdado da main: exemplo acadêmico separado da conferência oficial.
+  await abrir('/pages/simulacao-economia.html', '#hu05-form');
+  await page.waitForLoadState('networkidle');
+  assert.equal(await page.locator('#hu05-form button[type="submit"]').isDisabled(), false);
+  for (const [numero, mes] of [[1, '2026-07'], [2, '2026-08'], [3, '2026-09']]) {
+    await page.locator(`[name="valor${numero}"]`).fill('100');
+    await page.locator(`[name="periodo${numero}"]`).fill(mes);
+  }
+  await page.locator('#hu05-form button[type="submit"]').click();
+  await page.locator('#hu05-step-2').waitFor();
+  assert.match(await page.locator('#hu05-saving').innerText(), /15,00/);
+  assert.match(await page.locator('#hu05-percent').innerText(), /Até 15%/);
+  assert.match(await page.locator('#hu05-step-2').innerText(), /ilustrativ|acadêmic|premissa/i);
+  await registrar('Simulador separado: exemplo de três meses e premissa ilustrativa de até 15%');
 
   // Falha/retry em cada fonte JSON. Os erros injetados são esperados, não falhas de produção.
   for (const [caminho, json, pronto, tentar] of [
@@ -183,7 +263,8 @@ try {
     ['hu02', '/pages/acompanhamento.html', '.linha-tempo'],
     ['hu03', '/pages/adesao.html', '#hu03-titulo'],
     ['hu04', '/pages/boas-vindas.html', '#slide article'],
-    ['hu05', '/pages/calculo-economia.html', '#hu05-form']
+    ['hu05', '/pages/calculo-economia.html', '#hu05-form'],
+    ['simulador', '/pages/simulacao-economia.html', '#hu05-form']
   ];
   for (const width of [320, 360, 390]) {
     await page.setViewportSize({ width, height: 844 });
@@ -198,7 +279,7 @@ try {
       await page.screenshot({ path: `${evidencias}/${nome}-${width}.png`, animations: 'disabled' });
     }
   }
-  await registrar('Sete telas em 320, 360 e 390 px: sem rolagem horizontal, capturas geradas');
+  await registrar('Oito telas em 320, 360 e 390 px: sem rolagem horizontal, capturas geradas');
   assert.deepEqual(erros, [], 'Nenhum erro JavaScript não tratado');
 } catch (erro) {
   await page.screenshot({ path: `${evidencias}/falha.png`, animations: 'disabled' }).catch(() => {});

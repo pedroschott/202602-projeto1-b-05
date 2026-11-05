@@ -1,6 +1,16 @@
 # Implementação 2 — proposta de divisão e revisão
 
-**Estado em 04/11/2026:** preparação de um PR draft limitado a testes, CI e documentação; divisão de implementação para alinhamento com o squad. Não registra aceitação das tarefas pelos colegas, novas funcionalidades implementadas, feedback recebido ou aceite das histórias. Os resultados técnicos conhecidos estão separados na seção de evidências. A autoria das HUs existentes é preservada; integração assistida não é contribuição individual de outro integrante.
+**Estado em 05/11/2026 (UTC):** integração autorizada dos blocos de Sophia e Rodrigo no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41). O merge do PR na `main` não faz parte desta etapa. 53/53 testes Node do conjunto local passaram; o Chromium aguarda CI no head publicado; evidências de 04/11 abaixo descrevem a versão anterior, não o conjunto atual. A autoria das HUs existentes é preservada.
+
+## Blocos recebidos e integração atual
+
+- **Sophia / HU05:** branch `feat/hu05-implementacao`, head `336790015d17e7d28ab75550f482162e975d0680`, com a `main` `2c4a456` na ancestralidade. Restaura a conferência separada do simulador e acrescenta cronologia/sobreposição, proteção durante carga e retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes passam a avisos informativos na comparação, não erros que impedem a entrada. Não há fórmula oficial nem cálculo de economia comprovada.
+- **Rodrigo / HU04 e mobile HU03:** branch `hu04-integracao-home`, head `952f4420493a03f2eb3ba74046286fa845bf0883`. Primeiro acesso local pela home limpa; se `localStorage` estiver indisponível, segue sem forçar a apresentação. Ajustes de teclado/gesto e rótulos mobile da HU03. A autoria original de Padilha permanece. Login não foi implementado nem aceito como requisito cumprido.
+- **Integração geral:** restaurada a exportação de consulta da conferência em `api.js` e seu link no menu; preservado o simulador pré-contratação separado, herdado da `main`. A chamada de função inexistente do simulador, registrada no diagnóstico histórico, foi corrigida em `a4be6fa`; isso não constitui teste do conjunto atual.
+- **Vinicius / HU01:** encaminhamento HU01 → HU05 continua pendente. O retorno contextual preparado na HU05 não comprova o fluxo completo de ida e volta.
+- **Validação:** incorporar `tests/hu05.test.mjs` aos testes Node; ampliar Chromium com `test-hu03-mobile.mjs`, `test-hu04.mjs` e `test-hu04-primeiro-acesso.mjs`, além de atualizar `test-integracao.mjs`. Publicar os resultados somente após execução no novo head.
+
+**Limite herdado do simulador:** seu botão de envio nasce habilitado e o handler é registrado depois da consulta JSON. Uma submissão durante uma conexão lenta pode usar a navegação padrão do formulário. Diagnóstico estático, fora das correções deste merge; não confundir com os estados de carga já corrigidos da conferência. O teste integrado cobre o fluxo carregado e capturas, não esse envio antecipado.
 
 ## Entrega e datas
 
@@ -13,7 +23,7 @@ Segundo o [roteiro oficial](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv
 
 As cinco histórias já têm telas no repositório. Isso não significa que todos os critérios estejam cumpridos: a HU04 exige login e a HU05 depende de metodologia oficial para calcular economia. Não reescrever os critérios para contornar essas lacunas.
 
-## Mapa de navegação e lacunas
+## Mapa de navegação e lacunas atuais
 
 | Origem | Destino existente | Revisão proposta |
 | --- | --- | --- |
@@ -21,16 +31,16 @@ As cinco histórias já têm telas no repositório. Isso não significa que todo
 | Detalhe (`pages/fatura.html`) | Assistente HU01 e retorno à origem | Preservar id e cenário ao entrar e sair |
 | Assistente (`pages/assistente.html`) | Fatura, acompanhamento HU02 e suporte demonstrativo | Propor encaminhamento à HU05 e retorno contextual; não consta como implementado |
 | Menu comum | Adesão HU03, boas-vindas HU04 e conferência HU05 | Revisar links e navegação em telas pequenas |
-| Boas-vindas (`pages/boas-vindas.html`) | Home de demonstração ao começar/pular | Decidir escopo de login e controle do primeiro acesso |
-| Conferência (`pages/calculo-economia.html`) | Formulário → comparação → explicação do bloqueio | Revisar cronologia, carregamento, teclado, foco e rolagem |
+| Boas-vindas (`pages/boas-vindas.html`) | Home de demonstração ao começar/pular | Validar primeiro acesso local recebido; decidir escopo de login |
+| Conferência (`pages/calculo-economia.html`) | Formulário → comparação → explicação do bloqueio | Validar correções recebidas de cronologia, carga, foco e rolagem |
 
-O controle local de primeiro acesso seria apenas memória neste navegador, não autenticação nem reconhecimento entre dispositivos. Mesmo se adotado, não resolve os critérios de login da HU04.
+O controle local de primeiro acesso recebido é apenas memória neste navegador, não autenticação nem reconhecimento entre dispositivos. Não resolve os critérios de login da HU04.
 
 A HU05 já existe e permite conferir os dados informados. Não implementar uma subtração ou percentual como economia oficial: períodos de mesma duração e bases com o mesmo rótulo não comprovam comparabilidade segundo a Bulbe.
 
-## Divisão sugerida para não concentrar o trabalho
+## Plano original de divisão — 04/11/2026
 
-A orientação de Pedro é concentrar os novos blocos em **Rodrigo e Vinicius**, deixar uma parte menor para **Sophia** e reservar a **Pedro** a integração final, testes, CI e documentação. **Padilha fica fora de novas tarefas e revisões neste plano**; sua autoria histórica da HU03 permanece preservada. A tabela detalha essa orientação, mas não registra concordância ou entrega dos colegas.
+A orientação de Pedro é concentrar os novos blocos em **Rodrigo e Vinicius**, deixar uma parte menor para **Sophia** e reservar a **Pedro** a integração final, testes, CI e documentação. **Padilha fica fora de novas tarefas e revisões neste plano**; sua autoria histórica da HU03 permanece preservada. A tabela preserva o planejamento original, não registra aceite ou revisão humana. Os blocos recebidos em 05/11 estão descritos acima.
 
 | Integrante / HU original | Bloco proposto nesta rodada | Commits sugeridos | Revisão cruzada sugerida |
 | --- | --- | --- | --- |
@@ -45,12 +55,12 @@ Os títulos de commits descrevem entregas esperadas, não commits já existentes
 
 ## Fluxo em um único PR
 
-1. Abrir o PR draft de preparação com testes, CI e documentação. Confirmar a divisão e as decisões de HU04/HU05 com o grupo antes de iniciar o trabalho de cada colega.
+1. Usar o PR draft #41, originalmente aberto com testes, CI e documentação, para reunir os blocos recebidos. Confirmar a divisão e as decisões de HU04/HU05 com o grupo antes de iniciar o trabalho de cada colega.
 2. Reunir commits reais dos responsáveis em uma branch de integração; combinar sequência para arquivos compartilhados, especialmente `layout.js` e CSS comum.
 3. Descrever no PR os blocos por HU, limitações, autoria efetiva e evidências de execução. Manter critérios de aceite pendentes quando não verificados.
-4. Preparar CI em PR, `main` e execução manual, com `contents: read`: sintaxe de assets/scripts, testes Node API/HU02 e Chromium HU03/integração. Evidências como artefatos, sem commit/push automático de capturas. Confirmar o resultado real após publicar o draft.
+4. Preparar CI em PR, `main` e execução manual, com `contents: read`: sintaxe de assets/scripts, testes Node API/HU02/HU05 e Chromium HU03, mobile HU03, HU04, primeiro acesso e integração. Evidências como artefatos, sem commit/push automático de capturas. Confirmar o resultado real após publicar o draft.
 5. Solicitar revisão humana de outro colega. QA automatizado ou revisão assistida não substituem a revisão humana exigida.
-6. Manter o PR em draft enquanto os blocos e a revisão final estiverem pendentes. O merge só ocorre depois de revisão humana e decisão sobre a versão final; as correções por integrante continuam propostas, não implementadas.
+6. Manter o PR em draft enquanto os blocos e a revisão final estiverem pendentes. O merge só ocorre depois de revisão humana e decisão sobre a versão final; a chegada dos blocos de Sophia e Rodrigo não equivale ao aceite de todos os critérios; HU01 → HU05 permanece pendente.
 
 ## Plano de QA
 
@@ -59,8 +69,8 @@ Os títulos de commits descrevem entregas esperadas, não commits já existentes
 - **Navegação:** home → detalhe → assistente → origem para faturas atual e histórica; exercitar todos os cenários da HU02, id inexistente e dados incompletos. Quando implementada, incluir ida e volta HU01 ↔ HU05.
 - **HU02:** distinguir projeção de benefício lançado; conferir pendência do cliente, ausência de previsão e ausência de dados. Pix e suporte não devem simular pagamento ou envio real.
 - **HU03:** etapas e próxima ação legíveis em 320, 360 e 430 px; testar carga, erro, retentativa e ausência de informação. Não inventar prazos.
-- **HU04:** avançar/voltar, gesto, indicador, pular em cada slide, começar, imagem indisponível e erro de JSON. Testar primeiro acesso/retorno apenas após implementação; registrar explicitamente a pendência de login.
-- **HU05:** campos vazios, zero/negativos, datas invertidas dentro do período, períodos sobrepostos ou fora da ordem, bases diferentes e durações diferentes. Conferir entrada válida, revisão dos dados e reinício. Não exibir economia monetária ou percentual sem metodologia implementada e confirmada.
+- **HU04:** avançar/voltar, gesto, indicador, pular em cada slide, começar, imagem indisponível e erro de JSON. Testar primeiro acesso/retorno do bloco recebido, inclusive com armazenamento indisponível; registrar explicitamente a pendência de login.
+- **HU05:** campos vazios, zero/negativos, datas invertidas dentro do período, períodos sobrepostos ou fora da ordem, bases diferentes e durações diferentes (avisos informativos na comparação, sem bloqueio de entrada). Conferir entrada válida, revisão dos dados e reinício. Não exibir economia monetária ou percentual sem metodologia implementada e confirmada.
 - **Estados de consulta:** carga lenta visível, falha real do JSON e retentativa. Em testes locais, restaurar arquivos/dados antes de finalizar e não publicar uma simulação de falha.
 - **Acessibilidade e layout:** teclado, foco visível e útil ao mudar etapa, rótulos, alertas, rolagem interna e ausência de sobreposição com cabeçalho/rodapé. Conferir mobile e desktop.
 - **Técnico:** scripts existentes HU02/HU03, sintaxe dos scripts, links locais e diff; novos testes integrados/CI conforme implementação. Registrar separadamente falha de ambiente e defeito do produto.
@@ -72,7 +82,9 @@ Os títulos de commits descrevem entregas esperadas, não commits já existentes
 - Conteúdo e etapas operacionais: revisão com o grupo/Bulbe continua pendente; nenhum feedback ou validação foi presumido.
 - Fechar a divisão e a revisão cruzada antes de concluir o PR único. Cada integrante deve conseguir explicar sua tela, decisões e evidências na Review II.
 
-## Evidências registradas em 04/11/2026
+## Evidências históricas registradas em 04/11/2026
+
+Os resultados e diagnósticos desta seção pertencem aos commits citados. Não descrevem a validação dos blocos recebidos em 05/11 nem devem ser interpretados como defeitos ainda reproduzidos após as correções.
 
 - **Node:** 35/35 testes locais aprovados: 18 regressões HU02 e 17 verificações API/fontes JSON, referências HTML e configuração sem cálculo oficial. Sintaxe dos scripts do app e testes verificada.
 - **Chromium local:** bloqueado com `socket: Operation not permitted`; testes de navegador e QA visual não concluídos localmente. Não é aprovação nem reprovação das telas.

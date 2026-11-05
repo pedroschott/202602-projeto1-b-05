@@ -11,7 +11,8 @@ const consultas = [
   ['HU02', 'hu02-acompanhamento.json', api.buscarAcompanhamentoHU02],
   ['HU03', 'hu03-adesao.json', api.buscarAcompanhamentoHU03],
   ['HU04', 'hu04-boas-vindas.json', api.buscarBoasVindas],
-  ['HU05', 'hu05-economia.json', api.buscarEconomiaHU05]
+  ['HU05', 'hu05-economia.json', api.buscarEconomiaHU05],
+  ['HU05 simulador', 'hu05-simulacao.json', api.buscarSimulacaoEconomiaHU05]
 ];
 
 for (const [hu, arquivo, consultar] of consultas) {
@@ -41,7 +42,7 @@ for (const [hu, arquivo, consultar] of consultas) {
 
 test('HTML das telas aponta para arquivos locais existentes', async () => {
   const paginas = ['index.html', ...['acompanhamento', 'adesao', 'assistente',
-    'boas-vindas', 'calculo-economia', 'fatura', 'modelo'].map(p => `pages/${p}.html`)];
+    'boas-vindas', 'calculo-economia', 'simulacao-economia', 'fatura', 'modelo'].map(p => `pages/${p}.html`)];
   for (const pagina of paginas) {
     const url = new URL(pagina, raiz);
     // O modelo inclui exemplos comentados de arquivos que cada colega criará.

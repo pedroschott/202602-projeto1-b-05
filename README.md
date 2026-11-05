@@ -40,15 +40,15 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 - **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
 - **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamento para a HU02. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
-- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. Login e exibição automática somente no primeiro acesso ficam pendentes.
-- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas horizontais, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
+- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. O bloco em integração no PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Login não foi implementado; o aceite desse requisito continua pendente.
+- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas horizontais, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os ajustes de rótulos mobile de Rodrigo estão em integração no PR #41, preservando a autoria original da HU03. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
 
-- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente.
+- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente. O bloco de Sophia em integração acrescenta validação de cronologia/sobreposição, carregamento/retentativa, foco e rolagem interna, além de retorno contextual preparado. Bases ou durações diferentes geram avisos na comparação, não bloqueios de entrada.
 
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
 
-**Proposta para a próxima etapa:** consulte o [plano da Implementação 2](docs/implementacao-2.md) para lacunas de navegação, QA e divisão equilibrada sugerida em um único PR. As correções propostas não estão implementadas. O plano reserva os maiores blocos a Rodrigo e Vinicius, HU05 a Sophia e integração final a Pedro; Padilha não recebe trabalho novo e sua autoria histórica é preservada. Um PR draft de preparação reúne somente testes, CI e documentação para receber os próximos commits. Os blocos dos colegas dependem de alinhamento e não são apresentados como executados; merge fica fora desta etapa.
+**Integração em 05/11 (UTC):** os blocos de Sophia e Rodrigo estão sendo reunidos no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge do PR na `main`. A conferência HU05 é restaurada como tela separada do [simulador pré-contratação](pages/simulacao-economia.html) herdado da `main`; a integração também restaura a exportação de consulta e o acesso à conferência no menu. O encaminhamento HU01 → HU05 de Vinicius continua pendente, mesmo com o retorno contextual já preparado na HU05. Consulte o [plano e histórico de evidências](docs/implementacao-2.md). 53/53 testes Node passaram localmente; o resultado Chromium no head publicado ainda está pendente.
 
 **Pendente:** login e decisão de escopo da HU04, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
@@ -79,8 +79,8 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 Use Node.js 22. Na raiz do repositório, valide a sintaxe e execute os testes sem navegador:
 
 ```bash
-for arquivo in assets/js/*.js scripts/*.mjs; do node --check "$arquivo" || exit 1; done
-node --test scripts/test-api.mjs scripts/test-hu02.mjs
+for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do node --check "$arquivo" || exit 1; done
+node --test scripts/test-api.mjs scripts/test-hu02.mjs tests/*.mjs
 ```
 
 Para os testes de navegador, instale o Playwright e o Chromium:
@@ -95,12 +95,15 @@ Deixe o servidor aberto e, em outro terminal na raiz, execute:
 
 ```bash
 node scripts/test-hu03.mjs
+node scripts/test-hu03-mobile.mjs
+node scripts/test-hu04.mjs
+node scripts/test-hu04-primeiro-acesso.mjs
 node scripts/test-integracao.mjs
 ```
 
-Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. O teste integrado salva evidências em `artifacts/mvp`; o teste HU03 gera capturas em `docs/telas`. Na CI, as evidências são artefatos, sem commit automático.
+Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. As novas evidências de navegador ficam sob `artifacts/`; o roteiro original HU03 também gera capturas em `docs/telas`. A CI coleta `artifacts/` e as capturas HU03 como artefatos, sem commit automático.
 
-**Estado em 04/11:** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. O PR de preparação não implementa as correções propostas das HUs.
+**Evidência histórica de 04/11 (não certifica o conjunto atual):** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. Essa execução antecede os blocos agora em integração. **Estado de 05/11 (UTC):** 53/53 testes Node locais passaram; Chromium do novo head pendente.
 
 ## 6. Estrutura do repositório
 
@@ -113,6 +116,7 @@ Em Linux sem as dependências do Chromium, use `npx playwright install --with-de
 │   ├── assistente.html   # HU01: perguntas e respostas predefinidas
 │   ├── fatura.html       # Detalhe com contexto da fatura
 │   ├── calculo-economia.html # HU05: conferência, sem fórmula oficial
+│   ├── simulacao-economia.html # Simulador pré-contratação separado
 │   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad

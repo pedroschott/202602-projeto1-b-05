@@ -60,6 +60,7 @@ function abrirMenu() {
       <li><a href="${raiz}index.html${busca}">Início<small>Faturas e acompanhamento da economia</small></a></li>
       <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>Etapas e previsão do primeiro benefício</small></a></li>
       <li><a href="${raiz}pages/simulacao-economia.html${busca}">Simular economia<small>Projeção ilustrativa antes da contratação</small></a></li>
+      <li><a href="${raiz}pages/calculo-economia.html${busca}">Conferir economia<small>Confira períodos e bases, sem cálculo oficial</small></a></li>
       <li><a href="${raiz}pages/adesao.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
       <li><a href="${raiz}pages/boas-vindas.html">Conheça a Bulbe<small>Apresentação do serviço</small></a></li>
       <li><a href="${raiz}pages/assistente.html${busca}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>

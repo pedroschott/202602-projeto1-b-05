@@ -29,10 +29,10 @@ jobs:
           node-version: '22'
       - name: Verificar sintaxe e testes sem navegador
         run: |
-          for arquivo in assets/js/*.js scripts/*.mjs; do
+          for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do
             node --check "$arquivo"
           done
-          node --test scripts/test-api.mjs scripts/test-hu02.mjs
+          node --test scripts/test-api.mjs scripts/test-hu02.mjs tests/*.mjs
       - name: Instalar navegador de testes
         run: |
           npm install --no-save playwright@1.56.1
@@ -46,10 +46,13 @@ jobs:
           done
           cat /tmp/mvp-server.log
           exit 1
-      - name: Testar HU03 e integração das cinco histórias
+      - name: Testar HU03, HU04 e integração das histórias
         run: |
           resultado=0
           node scripts/test-hu03.mjs || resultado=1
+          node scripts/test-hu03-mobile.mjs || resultado=1
+          node scripts/test-hu04.mjs || resultado=1
+          node scripts/test-hu04-primeiro-acesso.mjs || resultado=1
           node scripts/test-integracao.mjs || resultado=1
           exit "$resultado"
       - name: Guardar evidências sem alterar o repositório
@@ -58,7 +61,7 @@ jobs:
         with:
           name: mvp-evidencias-${{ github.sha }}
           path: |
-            artifacts/mvp/
+            artifacts/
             docs/telas/hu03-adesao.png
             docs/telas/hu03-adesao-inferior.png
           if-no-files-found: warn

@@ -217,6 +217,7 @@ try {
   for (const [largura, altura] of [[320, 640], [360, 740], [430, 932], [1280, 800]]) {
     await page.setViewportSize({ width: largura, height: altura });
     await abrir();
+    await page.evaluate(() => document.fonts.ready);
     assert.equal(await semRolagemHorizontal(), true, `${largura}px sem rolagem horizontal`);
     for (const seletor of ['#slide h2', '#slide p', '#anterior', '#proximo', '.pular-apresentacao']) {
       const caixa = await page.locator(seletor).boundingBox();
