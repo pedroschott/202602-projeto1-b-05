@@ -11,6 +11,10 @@ const context = await browser.newContext({
   deviceScaleFactor: 1,
   locale: 'pt-BR'
 });
+// HU04: a home abre a apresentação no primeiro acesso; este teste parte de quem já a viu.
+await context.addInitScript(() => {
+  try { localStorage.setItem('bulbe.hu04.apresentacaoVista', 'sim'); } catch (erro) { /* sem armazenamento */ }
+});
 const page = await context.newPage();
 const uncaught = [];
 const failedRequests = [];

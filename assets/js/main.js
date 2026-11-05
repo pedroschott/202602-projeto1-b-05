@@ -7,6 +7,10 @@ import {
   formatarMoeda, formatarData, formatarReferencia, temNumero
 } from './layout.js';
 import { cenarioDaURL, htmlCardEspera } from './hu02.js';
+import { abrirApresentacaoNoPrimeiroAcesso } from './hu04-primeiro-acesso.js';
+
+// HU04: no primeiro acesso deste navegador, a home sem parâmetros abre a apresentação.
+abrirApresentacaoNoPrimeiroAcesso('./');
 
 const SITUACOES_FATURA = {
   em_aberto: 'Em aberto',

@@ -15,6 +15,10 @@ const browser = await chromium.launch({
     ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {})
 });
 const context = await browser.newContext({ viewport: { width: 360, height: 800 }, locale: 'pt-BR' });
+// HU04: a home abre a apresentação no primeiro acesso; este teste parte de quem já a viu.
+await context.addInitScript(() => {
+  try { localStorage.setItem('bulbe.hu04.apresentacaoVista', 'sim'); } catch (erro) { /* sem armazenamento */ }
+});
 const page = await context.newPage();
 const erros = [];
 const verificacoes = [];
