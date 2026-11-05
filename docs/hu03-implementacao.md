@@ -9,12 +9,12 @@ Responsável: Pedro Padilha. Implementação acadêmica com dados fictícios, al
 - `data/hu03-adesao.json`: cinco cenários fictícios.
 - `assets/js/api.js`: leitura via fetch.
 - `assets/js/layout.js`: acesso pelo menu da home.
-- `scripts/test-hu03.mjs`: testes em Chromium (página HTTP, cenários, responsividade, suporte, teclado, erro e retry).
+- `scripts/test-mvp.mjs`: smoke Chromium compartilhado; comandos no [README](../README.md#testes).
 
 A implementação antiga foi retirada do diretório `docs/wireframes/Telas Prontas/` para evitar duplicação. Ela continua disponível no histórico de commits do GitHub; a versão mantida é `pages/adesao.html` e seus arquivos em `assets/` e `data/`.
 
 ## Capturas da tela integrada (390 × 844 px)
-Capturas geradas a cada execução aprovada do GitHub Actions, incluindo as revisões solicitadas pelo squad.
+Capturas históricas da implementação HU03. A CI atual guarda apenas captura de falha como artefato, sem atualizar estas imagens automaticamente.
 As imagens foram produzidas pelo Chromium no GitHub Actions, com o projeto servido por HTTP.
 
 ![HU03 — tela inicial](telas/hu03-adesao.png)
@@ -32,7 +32,9 @@ Abra `index.html` pela extensão Live Server do VS Code e escolha **Acompanhar a
 - `pages/adesao.html?cenario=primeira-fatura` — etapa 5, com link para faturas.
 - `pages/adesao.html?cenario=inexistente` — cenário ausente/estado vazio.
 
-## Verificações
+## Verificações históricas da HU03
+
+O checklist abaixo registra a implementação original, não a cobertura da suíte reduzida atual.
 - [x] Carregamento HTTP e leitura do JSON com fetch no Chromium do GitHub Actions.
 - [x] Cinco etapas, cinco cenários, link de faturas e estado vazio.
 - [x] Tratamento de erro HTTP 503 e recuperação pelo botão "Tentar novamente".
@@ -44,7 +46,7 @@ Abra `index.html` pela extensão Live Server do VS Code e escolha **Acompanhar a
 - [x] Capturas em `docs/telas/` com cabeçalho e navegação visual do squad.
 - [ ] Conferência final do fluxo pela equipe e aprovação visual do grupo.
 
-**Automação:** [GitHub Actions — HU03](https://github.com/pedroschott/202602-projeto1-b-05/actions/workflows/hu03-screenshots.yml).
+**Automação:** [GitHub Actions — MVP](https://github.com/pedroschott/202602-projeto1-b-05/actions/workflows/hu03-screenshots.yml).
 
 ## Limitações
 As etapas e atualizações são ilustrativas; a Bulbe ainda precisa confirmar o fluxo. A seleção de uma etapa apenas mostra informações gerais; ela não altera o status atual, o próximo passo nem o andamento real. Não há login, pagamento ou comunicação com cliente real. O teste automatizado usa um servidor HTTP estático equivalente ao Live Server, e não a extensão específica do VS Code.

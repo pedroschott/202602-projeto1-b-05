@@ -31,34 +31,11 @@ Abra `index.html` com Live Server. Não abrir por `file://`, pois a leitura JSON
 10. Histórico no cenário `desconto-lancado`: usar a fatura 202 (Outubro/26, paga), entrar no assistente e na HU05, voltar e confirmar o mesmo cenário/id.
 11. Usar cenário inválido, id vazio ou duplicado e origem desconhecida: o assistente deve explicar a ausência de contexto válido, oferecer respostas gerais e retornar à home sem exibir dados de outra fatura.
 
-## Integração HU01 → HU05 em 05/11/2026 (UTC)
+## Integração HU01 → HU05
 
-- A pergunta cadastrada sobre cálculo de economia abre `pages/calculo-economia.html`, preservando `cenario` e `id` válidos e acrescentando `origem=assistente` e `origemAssistente=fatura|home`.
-- A HU05 usa seu contrato de retorno existente para reabrir o assistente com `origem=fatura|home`. O assistente mantém o retorno final à fatura ou à home. Não há preenchimento automático de valores nem aplicação de fórmulas.
-- O contexto só aceita os cinco cenários HU02, ids positivos com até nove dígitos e origens conhecidas. Parâmetros duplicados, vazios ou inválidos descartam o contexto da fatura. Parâmetros extras não são propagados nos destinos da HU01.
-- Os destinos da FAQ usam uma lista fechada. A pergunta desconhecida continua escapada e o suporte apenas mostra um diálogo com link para os canais oficiais, sem enviar o texto.
-- Testes Node específicos: **10 aprovados**. Cobrem o contrato real de retorno da HU05, os cinco cenários, faturas 201/202/302, histórico 202 em `desconto-lancado`, navegação repetida, reconciliação do menu compartilhado, parâmetros inválidos, destinos da FAQ e ausência de dados inventados.
-- O teste adicional de interface real está implementado, mas **não foi executado localmente** por restrição de inicialização do Chromium. Sua execução na CI é necessária para certificar cliques, histórico do navegador, suporte e ausência de requisições de envio. Os testes Node não substituem essa evidência visual/interativa.
+A FAQ abre a conferência preservando cenário, id e origem válidos. O retorno passa pelo assistente e chega à mesma fatura ou home, sem preencher valores nem aplicar fórmulas. Contextos vazios, duplicados ou inválidos são descartados; destinos da FAQ seguem uma lista fechada.
 
-```bash
-# Sem navegador
-node --test scripts/test-hu01-integracao.mjs
-
-# Com o servidor HTTP na porta 4173 e Playwright/Chromium instalados
-BULBE_BROWSER_TEST=1 node --test scripts/test-hu01-integracao.mjs
-```
-
-## Evidência histórica de 03/11/2026
-
-Estes resultados pertencem à primeira versão e não certificam, por si, o conjunto integrado atual.
-
-- Sintaxe dos scripts alterados e `git diff --check`.
-- Home → assistente, perguntas prontas, suporte e retorno.
-- Fatura atual (202) e histórica (201) → assistente com referência/valor corretos → retorno ao mesmo id/cenário.
-- Encaminhamento de economia para HU02.
-- Pergunta desconhecida e escape de texto com marcação HTML (nenhuma imagem injetada).
-- JSON indisponível: erro real de consulta, restauração e tentativa novamente com sucesso. FAQ vazia e fatura inexistente.
-- Assistente sem rolagem horizontal em 320 e 360 px. Outros fluxos móveis e carrossel devem fazer parte da revisão do squad.
+Os comandos atuais estão no [README](../README.md#testes). A suíte reduzida mantém o fluxo principal; o roteiro manual acima cobre variantes adicionais. [Resultados e limites da integração](verificacao-mvp.md).
 
 ## Limites
 

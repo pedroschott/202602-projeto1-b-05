@@ -48,7 +48,7 @@ A hipótese de solução combina acompanhamento da espera, acesso à fatura e ex
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
 
-**Finalização em 05/11 (UTC):** os blocos de Sophia e Rodrigo estão reunidos no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), ainda sem merge na `main`. A conferência HU05 e o [simulador pré-contratação](pages/simulacao-economia.html) são telas distintas. A rodada final corrigiu e testou HU01 → HU05 com contexto seguro, o breakpoint mobile da HU03 e a proteção de carregamento/retentativa do simulador. A CI final foi aprovada; revisão humana e merge continuam pendentes. Essas correções de integração não são atribuídas aos autores originais das HUs. Confira a [matriz de requisitos, evidências e pendências](docs/verificacao-mvp.md) antes de considerar o MVP pronto para merge.
+**Integração em 05/11:** os blocos de Sophia e Rodrigo estão no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge na `main`. Correções assistidas de integração preservam a autoria original das HUs. A conferência HU05 e o [simulador acadêmico pré-contratação](pages/simulacao-economia.html) são distintos. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
 
 **Pendente:** login e decisão de escopo da HU04, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
@@ -76,14 +76,14 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 ### Testes
 
-Use Node.js 22. Na raiz do repositório, valide a sintaxe e execute os testes sem navegador:
+Use Node.js 22. Na raiz, verifique a sintaxe e os três testes essenciais sem navegador:
 
 ```bash
 for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do node --check "$arquivo" || exit 1; done
-node --test scripts/test-api.mjs scripts/test-hu02.mjs scripts/test-hu01-integracao.mjs tests/*.mjs
+node --test tests/mvp.test.mjs
 ```
 
-Para os testes de navegador, instale o Playwright e o Chromium:
+Para o smoke dos fluxos principais, instale Playwright/Chromium e mantenha o servidor aberto:
 
 ```bash
 npm install --no-save playwright@1.56.1
@@ -91,24 +91,9 @@ npx playwright install chromium
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Deixe o servidor aberto e, em outro terminal na raiz, execute:
+Em outro terminal na raiz: `node scripts/test-mvp.mjs`. Em Linux sem bibliotecas do navegador, use `npx playwright install --with-deps chromium` onde houver permissão para instalar dependências.
 
-```bash
-node scripts/test-hu03.mjs
-node scripts/test-hu03-mobile.mjs
-node scripts/test-hu04.mjs
-node scripts/test-hu04-primeiro-acesso.mjs
-BULBE_BROWSER_TEST=1 node --test scripts/test-hu01-integracao.mjs
-node scripts/test-hu05-simulacao.mjs
-node scripts/test-integracao.mjs
-node scripts/test-mvp-smoke.mjs
-```
-
-Em Linux sem as dependências do Chromium, use `npx playwright install --with-deps chromium` em ambiente com permissão para instalar os pacotes necessários. As novas evidências de navegador ficam sob `artifacts/`; o roteiro original HU03 também gera capturas em `docs/telas`. A CI coleta `artifacts/` e as capturas HU03 como artefatos, sem commit automático.
-
-**Evidência histórica de 04/11 (não certifica o conjunto atual):** 35/35 testes Node aprovados (17 API/fontes e 18 HU02). A [CI de integração](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41915874300) passou para o head `419b735`, incluindo Chromium HU03 e os sete fluxos de integração. Gerou 21 capturas mobile, além das duas capturas HU03. A inspeção visual parcial ainda encontrou rótulos de etapas HU03 quebrados em 320/390 px. O simulador pré-contratação adicionado à main no PR #38 não está coberto por essa suíte. Essa execução antecede os blocos agora em integração. **CI anterior em 05/11:** no head `4b53f86`, a [execução 41948447761](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41948447761) aprovou 53 testes Node, 12 casos HU04, 10 de primeiro acesso e 9 de integração, mas o mobile HU03 falhou em 401 px; larguras posteriores não foram executadas. Essa falha foi corrigida e verificada na CI final abaixo.
-
-**Resultado final em 05/11:** [CI 41953862665](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/41953862665) aprovada no head `20f378a`: 79 testes Node aprovados, zero falhas e um teste de navegador intencionalmente pulado nessa etapa e executado em Chromium. Passaram HU01 contextual, HU03 funcional/mobile (incluindo 401 px), HU04, primeiro acesso, simulador, integração e smoke. A inspeção visual de 14 capturas foi parcial, sem defeito impeditivo nos trechos examinados; não equivale a Safari/iOS real ou aceite da Bulbe. [Cobertura, limites e evidências](docs/verificacao-mvp.md#verificação-final--05112026-utc). Artefatos disponíveis até 12/11. PR #41 ainda draft; `main` não alterada.
+A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `artifacts/falha.png`, sem commits automáticos. A suíte foi reduzida aos fluxos essenciais; não cobre todas as variantes, falhas e dispositivos. Consulte [verificação do MVP](docs/verificacao-mvp.md) para resultados vinculados ao commit e limitações.
 
 ## 6. Estrutura do repositório
 
@@ -161,7 +146,7 @@ Em Linux sem as dependências do Chromium, use `npx playwright install --with-de
 | Histórias de usuário | 20 | Cinco histórias documentadas; critérios e limites em [docs/historias.md](docs/historias.md), aceite pendente |
 | Wireframes | 21–23 | Arquivos disponíveis em [docs/wireframes](docs/wireframes/); revisão/aceite não presumidos |
 | Sprint Review I | 24 | Realização e feedback não comprovados por este registro |
-| Implementação | 25–28 | Cinco HUs com telas; CI final aprovada no PR #41, revisão humana e merge pendentes. [Plano da Implementação 2](docs/implementacao-2.md) |
+| Implementação | 25–28 | Cinco HUs com telas no PR #41; revisão humana e merge pendentes. [Plano da Implementação 2](docs/implementacao-2.md) |
 | Sprint Review II | 29 | 06/11/2026: MVP na main e apresentação de 10 minutos; [roteiro proposto](docs/sprints/review-ii-roteiro.md) |
 | Versão final | 30 | Congelamento em 12/11/2026; apresentação em 13 ou 18/11, conforme sorteio |
 

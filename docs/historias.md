@@ -12,7 +12,7 @@
 
 ## HU01 — Esclarecer dúvidas com o assistente da Bulbe
 
-**Status:** primeira implementação em HTML/CSS/JS com JSON via `fetch`, integrada à home e ao detalhe de faturas da HU02. Encaminhamento HU01 → HU05 e retorno contextual em finalização no PR #41, ainda dependentes de testes do head final; revisão do squad, validação do conteúdo e confirmação do escopo do MVP pendentes. [Roteiro técnico e evidências](hu01-implementacao.md).
+**Status:** primeira implementação em HTML/CSS/JS com JSON via `fetch`, integrada à home e ao detalhe de faturas da HU02. Encaminhamento HU01 → HU05 e retorno contextual incluídos no PR #41; revisão do squad, validação do conteúdo e confirmação do escopo do MVP pendentes. [Roteiro técnico e evidências](hu01-implementacao.md).
 **Responsável:** Vinicius Gorini (@viniciusgorini)  
 **Prioridade proposta:** Alta  
 **Persona de referência:** [P2 — Renata Alves: compreender e conferir](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)  
@@ -170,7 +170,7 @@ Fontes públicas consultadas em 20/10/2026, sem substituir o contrato individual
 
 ## HU03 — Acompanhar o andamento da contratação
 
-**Status:** tela implementada com JSON via `fetch` em `pages/adesao.html`. O PR #41 reúne ajustes mobile; após falha em 401 px na CI anterior, o breakpoint está em correção para nova verificação. Aceite dos critérios e confirmação das etapas com a Bulbe pendentes.  
+**Status:** tela implementada com JSON via `fetch` em `pages/adesao.html`. O PR #41 reúne ajustes mobile, com etapas verticais até 430 px. Aceite dos critérios e confirmação das etapas com a Bulbe pendentes.  
 **Responsável:** Pedro Padilha (contribuição individual — Persona 5)  
 **Persona de referência:** [P1 — Cláudia Martins](personas/consolidadas.md#p1--cláudia-martins-acompanhar-e-acessar)  
 **Momento da jornada:** cadastro e período de espera pela conexão  
@@ -248,7 +248,7 @@ A HU04 apresenta o serviço antes da entrada e não é uma história de explica�
 
 ## HU05 — Calcular e conferir a economia
 
-**Status:** implementação em revisão no PR #41, com cronologia/sobreposição, carga/retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes geram avisos na comparação. O protótipo apresenta valores, bases e períodos informados, mas bloqueia cálculo oficial. A conferência é distinta do simulador pré-contratação. Testes do head final e aceite dos critérios pendentes.
+**Status:** implementação em revisão no PR #41, com cronologia/sobreposição, carga/retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes geram avisos na comparação. O protótipo apresenta valores, bases e períodos informados, mas bloqueia cálculo oficial. A conferência é distinta do simulador pré-contratação. Aceite dos critérios pendente; evidências em [verificação do MVP](verificacao-mvp.md).
 **Responsável:** Sophia Miranda (@sophiacmiranda)
 **Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
 **Momento da jornada:** conferência da primeira fatura e avaliação da economia

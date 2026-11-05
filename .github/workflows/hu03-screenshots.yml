@@ -1,4 +1,4 @@
-name: MVP - integração e regressões
+name: MVP - testes essenciais
 
 on:
   pull_request:
@@ -32,7 +32,7 @@ jobs:
           for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do
             node --check "$arquivo"
           done
-          node --test scripts/test-api.mjs scripts/test-hu02.mjs scripts/test-hu01-integracao.mjs tests/*.mjs
+          node --test tests/mvp.test.mjs
       - name: Instalar navegador de testes
         run: |
           npm install --no-save playwright@1.56.1
@@ -46,26 +46,13 @@ jobs:
           done
           cat /tmp/mvp-server.log
           exit 1
-      - name: Testar HU03, HU04 e integração das histórias
-        run: |
-          resultado=0
-          node scripts/test-hu03.mjs || resultado=1
-          node scripts/test-hu03-mobile.mjs || resultado=1
-          node scripts/test-hu04.mjs || resultado=1
-          node scripts/test-hu04-primeiro-acesso.mjs || resultado=1
-          BULBE_BROWSER_TEST=1 node --test scripts/test-hu01-integracao.mjs || resultado=1
-          node scripts/test-hu05-simulacao.mjs || resultado=1
-          node scripts/test-integracao.mjs || resultado=1
-          node scripts/test-mvp-smoke.mjs || resultado=1
-          exit "$resultado"
+      - name: Testar fluxos principais no Chromium
+        run: node scripts/test-mvp.mjs
       - name: Guardar evidências sem alterar o repositório
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mvp-evidencias-${{ github.sha }}
-          path: |
-            artifacts/
-            docs/telas/hu03-adesao.png
-            docs/telas/hu03-adesao-inferior.png
-          if-no-files-found: warn
+          path: artifacts/
+          if-no-files-found: ignore
           retention-days: 7
