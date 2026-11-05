@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 180">
+  <rect width="280" height="180" rx="20" fill="#eef4fd"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+    <!-- celular com o app -->
+    <rect x="96" y="16" width="88" height="152" rx="14" fill="#fff" stroke="#08068d"/>
+    <path d="M98 30a12 12 0 0 1 12-12h60a12 12 0 0 1 12 12v22H98z" fill="#08068d" stroke="#08068d"/>
+    <path d="M128 32h24" stroke="#fff" stroke-width="3"/>
+    <!-- etapas da espera -->
+    <circle cx="114" cy="72" r="6" fill="#26d07c" stroke="#26d07c"/>
+    <path d="M114 78v14" stroke="#26d07c" stroke-width="3"/>
+    <circle cx="114" cy="98" r="6" fill="#fff4ce" stroke="#e9b33d"/>
+    <path d="M114 104v14" stroke="#d1d9e0" stroke-width="3"/>
+    <circle cx="114" cy="124" r="6" fill="#fff" stroke="#d1d9e0"/>
+    <path d="M128 72h40M128 98h32M128 124h24" stroke="#d1d9e0" stroke-width="5"/>
+    <rect x="108" y="142" width="64" height="14" rx="7" fill="#08068d" stroke="#08068d"/>
+    <!-- fatura -->
+    <path d="M30 56h44v62l-7-5-8 5-7-5-8 5-7-5-7 5z" fill="#fff" stroke="#08068d"/>
+    <path d="M40 72h24M40 84h24M40 96h14" stroke="#a8e8c6" stroke-width="3"/>
+    <!-- sino de aviso -->
+    <path d="M216 92c0-14 6-24 18-24s18 10 18 24l6 12h-48z" fill="#fff4ce" stroke="#e9b33d"/>
+    <path d="M228 110a6 6 0 0 0 12 0" stroke="#e9b33d"/>
+    <circle cx="250" cy="66" r="7" fill="#26d07c" stroke="#26d07c"/>
+  </g>
+</svg>
