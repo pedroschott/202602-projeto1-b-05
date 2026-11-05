@@ -256,3 +256,39 @@
 @media (prefers-reduced-motion: reduce) {
   .hu03-fill { transition: none; }
 }
+
+/* Orientações HU03: só apontar pendências presentes no JSON do cenário. */
+.hu03-pendency h2 {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--bulbe-primary);
+  margin-bottom: 6px;
+}
+.hu03-pendency p:last-child {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--bulbe-muted);
+}
+.hu03-pendency.is-action-required {
+  border-color: #dbbc7b;
+  background: #fffcf3;
+}
+.hu03-pendency.is-action-required h2 { color: #73541d; }
+.hu03-cemig {
+  display: block;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 14px;
+  background: #eef4ff;
+  border: 1px solid #cfdbf7;
+  color: var(--bulbe-text);
+}
+.hu03-cemig[hidden] { display: none; }
+.hu03-cemig strong { display: block; font-size: 12px; margin-bottom: 5px; }
+.hu03-cemig p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--bulbe-muted);
+}
