@@ -20,7 +20,7 @@ A distribuição de fala deve ser combinada com o grupo. A HU03 mantém autoria 
 
 - Usar a versão efetivamente disponível na `main`, após revisão e merge autorizado. Não apresentar draft como entrega concluída.
 - Abrir em servidor HTTP; preparar dados fictícios e uma largura mobile.
-- Conferir o resultado da nova CI. O resultado anterior falhou em 401 px na HU03 e não certifica a rodada final.
+- Usar a CI final 41953862665, aprovada no head `20f378a`; a falha anterior em 401 px foi corrigida. Conferir se o head apresentado corresponde ao testado e comunicar os limites da inspeção visual parcial.
 - Apresentar somente testes executados, com commit/run e limites. Revisão assistida não substitui revisão humana de colega.
 - Não afirmar aumento de pagamentos, aprovação da Bulbe, entrevista, reunião ou feedback que não tenham ocorrido.
 
