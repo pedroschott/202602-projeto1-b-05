@@ -5,7 +5,7 @@
 ## Blocos recebidos
 
 - **Sophia / HU05:** `feat/hu05-implementacao`, commit `3367900`, com a `main` `2c4a456` na ancestralidade. Conferência separada do simulador; validação de cronologia/sobreposição, carga/retentativa, foco, rolagem e retorno contextual. Bases e durações diferentes geram avisos, não bloqueiam a entrada. Não há fórmula oficial.
-- **Rodrigo / HU04 e mobile HU03:** `hu04-integracao-home`, commit `952f442`. Primeiro acesso local pela home, fallback quando o armazenamento está indisponível, teclado/gesto e ajustes mobile. A HU03 mantém autoria original de Padilha. A contribuição original não incluía login. A integração final acrescenta acesso visual demonstrativo autorizado por Pedro em 05/11, sem atribuí-lo retroativamente a Rodrigo.
+- **Rodrigo / HU04 e mobile HU03:** `hu04-integracao-home`, commit `952f442`. Primeiro acesso local pela home, fallback quando o armazenamento está indisponível, teclado/gesto e ajustes mobile. A HU03 mantém autoria original de Padilha. A contribuição original não incluía login. A integração final acrescenta acesso visual demonstrativo, sem atribuí-lo retroativamente a Rodrigo.
 - **Integração:** consulta e menu da conferência restaurados; simulador pré-contratação da `main` preservado. A rodada final conecta HU01 ↔ HU05 com contexto seguro, corrige o breakpoint HU03 e protege carga/retentativa do simulador. A HU01 mantém autoria original de Vinicius.
 
 ## Entrega e datas
@@ -67,7 +67,7 @@ Registrar data, commit, ambiente, resultado e evidência real. Distinguir defeit
 
 ## Decisões antes do aceite
 
-- **HU04:** Pedro autorizou em 05/11 a tela de acesso demonstrativa. O fluxo visual está implementado; autenticação real e cadastro continuam fora do protótipo. Revisão humana dos critérios ainda pendente.
+- **HU04:** A tela de acesso é demonstrativa. O fluxo visual está implementado; autenticação real e cadastro continuam fora do protótipo. Revisão humana dos critérios ainda pendente.
 - **HU05:** obter metodologia oficial ou demonstrar apenas a conferência bloqueada, sem declarar conclusão integral.
 - **Conteúdo:** revisar FAQ, etapas e regras com grupo/Bulbe; nenhum feedback ou impacto foi presumido.
 - **Review II:** cada integrante deve explicar sua tela e contribuição efetiva. Combinar fala e registrar feedback somente depois da sessão; [roteiro](sprints/review-ii-roteiro.md).
