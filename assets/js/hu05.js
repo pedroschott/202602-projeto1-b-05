@@ -8,7 +8,7 @@ const CENARIOS_VALIDOS = new Set([
   'desconto-lancado'
 ]);
 const BASES_VALIDAS = new Set(['total', 'energia']);
-const MENSAGEM_BLOQUEIO = 'A economia continua indisponível: não há metodologia oficial e critérios de comparabilidade confirmados e implementados. Bases com o mesmo rótulo e períodos com a mesma duração, isoladamente, não comprovam equivalência. Os dados abaixo servem apenas para conferência.';
+const MENSAGEM_BLOQUEIO = 'Ainda não calculamos a economia: falta a metodologia oficial da Bulbe para comparar as faturas. Estes dados servem só para conferência.';
 
 export function dataISOValida(valor) {
   if (typeof valor !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(valor)) return false;
@@ -181,7 +181,7 @@ function iniciar() {
     });
     // A rolagem pertence ao contêiner interno, não à janela.
     content.scrollTo({ top: 0, behavior: 'auto' });
-    etapas[numero - 1].querySelector('h1').focus({ preventScroll: true });
+    etapas[numero - 1].querySelector('.hu05-title').focus({ preventScroll: true });
   }
 
   function mostrarErro(mensagem) {
@@ -224,7 +224,7 @@ function iniciar() {
     });
     resumo.appendChild(linha);
 
-    const titulo = criarElemento('h2', 'Conferência de comparabilidade');
+    const titulo = criarElemento('h3', 'Pontos de atenção');
     const lista = criarElemento('ul', undefined, 'hu05-check-list');
     comparabilidade.diferencas.forEach(mensagem => lista.appendChild(criarElemento('li', mensagem)));
     resumo.append(titulo, lista);
@@ -246,7 +246,7 @@ function iniciar() {
       await buscarConfiguracaoHU05();
       regrasDisponiveis = true;
       status.className = 'hu05-status hu05-status--ok';
-      status.textContent = 'Dados de conferência carregados. O cálculo permanece bloqueado até existir metodologia oficial confirmada e implementada.';
+      status.textContent = 'Regras de conferência carregadas.';
       submit.disabled = false;
     } catch (erro) {
       regrasDisponiveis = false;
