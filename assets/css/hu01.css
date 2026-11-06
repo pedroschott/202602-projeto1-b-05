@@ -6,7 +6,7 @@
 .hu01-content .faixa-azul h1{color:#fff;margin-bottom:0}
 .hu01-content .folha{padding-top:20px}
 .hu01-bot{display:flex;align-items:flex-end;gap:8px;margin:0 32px 16px 0}
-.hu01-avatar{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--bulbe-primary);color:var(--bulbe-green);font-weight:700;font-size:15px}
+.hu01-avatar{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--bulbe-primary);color:#fff;font-weight:700;font-size:15px}
 .hu01-bot .hu01-mensagem{margin:0;padding:12px 14px;border:0;border-radius:16px 16px 16px 4px;background:var(--bulbe-surface);font-size:var(--bulbe-fs-corpo);line-height:1.5}
 .hu01-bot .hu01-mensagem p{margin:0}
 .hu01-mensagem.hu01-minha{margin:0 0 16px 48px;padding:12px 14px;border:0;border-radius:16px 16px 4px 16px;background:var(--bulbe-primary);color:#fff;font-size:var(--bulbe-fs-corpo)}
