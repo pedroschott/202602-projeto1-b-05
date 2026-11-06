@@ -6,7 +6,7 @@
 // - estimativa e desconto lançado aparecem separados e com nomes diferentes;
 // - sem dados suficientes, não inventa valor nem previsão.
 
-import { escaparHTML, formatarMoeda, formatarReferencia, temNumero } from './layout.js';
+import { escaparHTML, formatarMoeda, formatarReferencia, temNumero, icone } from './layout.js';
 
 const NOMES_ETAPAS = ['Adesão', 'Créditos', 'Primeiro desconto'];
 
@@ -84,13 +84,13 @@ export function textoDescontoLancado(acomp) {
   return { valor, fatura };
 }
 
-const SIMBOLOS = { concluida: '✓', atual: '◷', pendente: '' };
+const ICONES_ETAPA = { concluida: icone('check', 'bulbe-icon--pequeno'), atual: icone('relogio', 'bulbe-icon--pequeno'), pendente: '' };
 const TEXTO_ESTADO = { concluida: 'concluída', atual: 'etapa atual', pendente: 'ainda não começou' };
 
 function htmlBarras(etapas) {
   const itens = etapas.map((etapa) => `
       <li class="${etapa.estado}">
-        <span aria-hidden="true">${SIMBOLOS[etapa.estado]}</span> ${etapa.nome}
+        ${ICONES_ETAPA[etapa.estado]} ${etapa.nome}
         <span class="sr-only">(${TEXTO_ESTADO[etapa.estado]})</span>
       </li>`).join('');
   return `<ol class="barras">${itens}</ol>`;
@@ -110,7 +110,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
 
   if (!etapas) {
     return `
-      <section class="card-espera" aria-labelledby="titulo-espera">
+      <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
         <div class="card-espera-topo"><h2 id="titulo-espera">Acompanhamento da economia</h2></div>
         <p class="legenda">Não conseguimos identificar a etapa atual. Nenhum progresso é exibido até essa informação chegar.</p>
         ${htmlPendencia(acomp)}
@@ -123,9 +123,9 @@ export function htmlCardEspera(acomp, linkDetalhe) {
   if (descontoFoiLancado(acomp)) {
     const { valor, fatura } = textoDescontoLancado(acomp);
     return `
-      <section class="card-espera" aria-labelledby="titulo-espera">
+      <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
         <div class="card-espera-topo">
-          <h2 id="titulo-espera"><span aria-hidden="true">☀</span> Seu primeiro desconto foi lançado</h2>
+          <h2 id="titulo-espera">${icone('sol', 'card-espera-sol')} Seu primeiro desconto foi lançado</h2>
           <span class="selo-etapa">Concluído</span>
         </div>
         <p class="valor-estimado valor-realizado"><strong>${valor}</strong> de desconto${fatura}</p>
@@ -133,20 +133,20 @@ export function htmlCardEspera(acomp, linkDetalhe) {
         ${htmlPendencia(acomp)}
         <div class="card-espera-rodape">
           <span>Valor lançado, não é estimativa</span>
-          <a href="${link}">Ver detalhes ›</a>
+          <a href="${link}">Ver detalhes ${icone('seta', 'bulbe-icon--pequeno')}</a>
         </div>
       </section>`;
   }
 
   const simulacao = calcularSimulacao(acomp.simulacao);
   const valor = simulacao
-    ? `<p class="valor-estimado"><strong>${formatarMoeda(simulacao.porCiclo)}</strong> / ciclo estimado*</p>`
+    ? `<p class="valor-estimado"><strong>${formatarMoeda(simulacao.porCiclo)}</strong> / ciclo estimado</p>`
     : '<p class="valor-estimado">Estimativa indisponível: faltam dados para calcular.</p>';
 
   return `
-    <section class="card-espera" aria-labelledby="titulo-espera">
+    <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
       <div class="card-espera-topo">
-        <h2 id="titulo-espera"><span aria-hidden="true">☀</span> Sua economia está a caminho</h2>
+        <h2 id="titulo-espera">${icone('sol', 'card-espera-sol')} Sua economia está a caminho</h2>
         <span class="selo-etapa">Etapa ${numeroEtapaAtual(etapas)} de ${etapas.length}</span>
       </div>
       ${valor}
@@ -154,7 +154,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
       ${htmlPendencia(acomp)}
       <div class="card-espera-rodape">
         <span>${textoPrevisao(acomp)}</span>
-        <a href="${link}">Acompanhar ›</a>
+        <a href="${link}">Acompanhar ${icone('seta', 'bulbe-icon--pequeno')}</a>
       </div>
     </section>`;
 }
@@ -192,7 +192,8 @@ export function htmlLinhaDoTempo(acomp) {
     return `${htmlPendencia(acomp)}<p class="estado">Etapa atual indisponível. Nenhum progresso é exibido até essa informação chegar.</p>`;
   }
   const itens = etapas.map((etapa, indice) => {
-    const marco = etapa.estado === 'concluida' ? '✓' : (etapa.estado === 'atual' ? '◷' : indice + 1);
+    const marco = etapa.estado === 'concluida' ? icone('check', 'bulbe-icon--pequeno')
+      : (etapa.estado === 'atual' ? icone('relogio', 'bulbe-icon--pequeno') : indice + 1);
     const { titulo, texto } = detalheMarco(indice, etapa.estado, acomp);
     return `
       <li class="${etapa.estado}">
