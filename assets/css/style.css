@@ -25,7 +25,6 @@
   --bulbe-nav-height: 72px;
   --bulbe-page-padding: 24px;
   --bulbe-radius: 12px;
-  --bulbe-sombra: 0 6px 20px rgba(8, 6, 141, 0.10);
   /* Escala única de texto: toda história usa estes tamanhos. */
   --bulbe-fs-titulo: 24px;
   --bulbe-fs-secao: 18px;
@@ -461,10 +460,9 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
   vertical-align: -3px;
 }
 
-/* Card de destaque: branco, com sombra leve, sobre a folha */
+/* Card de destaque: borda simples, sem sombra (como no app da Bulbe) */
 .bulbe-card--destaque {
-  border-color: transparent;
-  box-shadow: var(--bulbe-sombra);
+  border: 1px solid var(--bulbe-border);
 }
 
 /* Dica/aviso curto em azul claro */
