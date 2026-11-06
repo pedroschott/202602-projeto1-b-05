@@ -107,7 +107,6 @@ function abrirMenu() {
       <li><a href="${raiz}pages/boas-vindas.html">Conheça a Bulbe<small>Apresentação do serviço</small></a></li>
       <li><a href="${raiz}pages/assistente.html${buscaAssistente}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>
     </ul>
-    <p class="aviso-ficticio">Protótipo acadêmico com dados fictícios. O acesso é demonstrativo, sem autenticação real. Perfil e configurações não foram implementados.</p>
   `);
 }
 
