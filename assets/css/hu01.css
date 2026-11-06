@@ -11,8 +11,8 @@
 .hu01-bot .hu01-mensagem p{margin:0}
 .hu01-mensagem.hu01-minha{margin:0 0 16px 48px;padding:12px 14px;border:0;border-radius:16px 16px 4px 16px;background:var(--bulbe-primary);color:#fff;font-size:var(--bulbe-fs-corpo)}
 .hu01-rotulo{margin:20px 0 8px;font-size:var(--bulbe-fs-legenda);font-weight:600;color:var(--bulbe-muted)}
-.hu01-perguntas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-.hu01-perguntas button{min-height:40px;display:inline-flex;align-items:center;gap:6px;padding:8px 14px 8px 10px;border:1px solid var(--bulbe-primary);border-radius:999px;background:var(--bulbe-blue-light);color:var(--bulbe-primary);font-size:var(--bulbe-fs-apoio);font-weight:500;text-align:left;line-height:1.3}
+.hu01-perguntas{display:grid;gap:8px;margin:0 0 16px}
+.hu01-perguntas button{min-height:48px;display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid #d6e4f7;border-radius:8px;background:var(--bulbe-blue-light);color:var(--bulbe-primary);font-size:var(--bulbe-fs-corpo);font-weight:500;text-align:left;line-height:1.35}
 .hu01-perguntas button .bulbe-icon{flex:none;width:18px;height:18px}
 .hu01-perguntas button:hover{background:#dfe9fb}
 .hu01-acoes .bulbe-button{font-size:var(--bulbe-fs-corpo)}
