@@ -110,7 +110,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
 
   if (!etapas) {
     return `
-      <section class="card-espera" aria-labelledby="titulo-espera">
+      <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
         <div class="card-espera-topo"><h2 id="titulo-espera">Acompanhamento da economia</h2></div>
         <p class="legenda">Não conseguimos identificar a etapa atual. Nenhum progresso é exibido até essa informação chegar.</p>
         ${htmlPendencia(acomp)}
@@ -123,7 +123,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
   if (descontoFoiLancado(acomp)) {
     const { valor, fatura } = textoDescontoLancado(acomp);
     return `
-      <section class="card-espera" aria-labelledby="titulo-espera">
+      <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
         <div class="card-espera-topo">
           <h2 id="titulo-espera">${icone('sol', 'card-espera-sol')} Seu primeiro desconto foi lançado</h2>
           <span class="selo-etapa">Concluído</span>
@@ -144,7 +144,7 @@ export function htmlCardEspera(acomp, linkDetalhe) {
     : '<p class="valor-estimado">Estimativa indisponível: faltam dados para calcular.</p>';
 
   return `
-    <section class="card-espera" aria-labelledby="titulo-espera">
+    <section class="card-espera bulbe-card--destaque" aria-labelledby="titulo-espera">
       <div class="card-espera-topo">
         <h2 id="titulo-espera">${icone('sol', 'card-espera-sol')} Sua economia está a caminho</h2>
         <span class="selo-etapa">Etapa ${numeroEtapaAtual(etapas)} de ${etapas.length}</span>
