@@ -1,6 +1,6 @@
 # Primeiro Ciclo
 
-> Proposta de solução do Squad 05, Turma B. Persona fictícia e escopo inicial para revisão do squad.
+> Solução do Squad 05, Turma B: MVP navegável com cinco histórias de usuário integradas, usando personas e dados fictícios.
 
 > Projeto em Ciência de Dados I · Ibmec BH · 2º semestre de 2026
 > Cliente: **Bulbe Energia** · Turma **B** · Squad **05**
@@ -33,22 +33,24 @@ Os perfis são propostas para revisão do squad e ainda não foram validados com
 
 ## 3. Solução
 
-A hipótese de solução combina acompanhamento da espera, acesso à fatura e explicação dos valores. As oportunidades estão documentadas em `docs/jornada.md`. Histórias e wireframes seguem em revisão pelo squad.
+A solução combina boas-vindas, acompanhamento da adesão e da espera, acesso à fatura e explicação dos valores. As oportunidades estão documentadas em `docs/jornada.md`, e as histórias em `docs/historias.md`.
 
 ### O que já está implementado
 
 - **Template HTML comum** do squad: CSS ([`assets/css/style.css`](assets/css/style.css)), JavaScript de cabeçalho, menu, suporte e estados de carregamento ([`assets/js/layout.js`](assets/js/layout.js)), logos originais e o modelo [`pages/modelo.html`](pages/modelo.html). Guia de uso: [docs/template.md](docs/template.md).
 - **HU01 — Assistente contextual** (Vinicius Gorini): primeira implementação em [`pages/assistente.html`](pages/assistente.html), com entrada pela home e pelo detalhe em [`pages/fatura.html`](pages/fatura.html). Perguntas/respostas predefinidas em JSON via `fetch`, contexto e retorno à fatura, suporte e encaminhamentos para a HU02 e a conferência HU05, com retorno contextual. Sem IA real ou confirmação de pagamento. [Roteiro e evidências](docs/hu01-implementacao.md).
 - **HU02 — Acompanhar a espera até o benefício aparecer** (Pedro Schott): home ([`index.html`](index.html)) com card de acompanhamento, segunda fatura, Pix e detalhes demonstrativos e histórico; página [“A caminho da economia”](pages/acompanhamento.html). Dados fictícios em [`data/hu02-acompanhamento.json`](data/hu02-acompanhamento.json).
-- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. O bloco reunido no PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Na finalização, Começar/Pular passam pela [tela de acesso demonstrativo](pages/login.html), sem autenticação real. Ela não coleta credenciais nem autentica usuários; a integração assistida não altera a autoria original da HU04.
-- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas verticais no mobile até 430 px e horizontais a partir de 431 px, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os ajustes de rótulos mobile de Rodrigo estão reunidos no PR #41; a correção final do breakpoint foi testada, preservando a autoria original da HU03. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
+- **HU04 — Boas-vindas** (Rodrigo Rigotto): primeira versão em [`pages/boas-vindas.html`](pages/boas-vindas.html), acessível pelo menu “Conheça a Bulbe”. Três slides com conteúdo fictício em JSON via `fetch`, navegação e opção de pular para a demonstração. A integração do PR #41 acrescenta primeiro acesso local pela home, com fallback seguro se o armazenamento não estiver disponível, além de ajustes de teclado e gesto. Na finalização, Começar/Pular passam pela [tela de acesso demonstrativo](pages/login.html), sem autenticação real. Ela não coleta credenciais nem autentica usuários; a integração assistida não altera a autoria original da HU04.
+- **HU03 — Acompanhar adesão** (Pedro Padilha): tela integrada em [`pages/adesao.html`](pages/adesao.html), com cinco etapas verticais no mobile até 430 px e horizontais a partir de 431 px, dados fictícios carregados de [`data/hu03-adesao.json`](data/hu03-adesao.json), CSS próprio e componentes do template compartilhado. Os ajustes de rótulos mobile de Rodrigo entraram com o PR #41; a correção final do breakpoint foi testada, preservando a autoria original da HU03. Os arquivos de implementação ficam na estrutura comum do squad; a versão antiga pode ser consultada pelo histórico do GitHub. [Roteiro de testes](docs/hu03-implementacao.md).
 
-- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente. O bloco recebido de Sophia acrescenta validação de cronologia/sobreposição, carregamento/retentativa, foco e rolagem interna, além de retorno contextual preparado. Bases ou durações diferentes geram avisos na comparação, não bloqueios de entrada.
+- **HU05 — Conferir economia** (Sophia Miranda): tela própria em [`pages/calculo-economia.html`](pages/calculo-economia.html), além do [simulador acadêmico pré-contratação](pages/simulacao-economia.html), formulário validado em JavaScript e regras fictícias em JSON via `fetch`. Exibe os períodos, bases e valores informados; não calcula economia enquanto a metodologia oficial estiver pendente. O bloco recebido de Sophia acrescenta validação de cronologia/sobreposição, carregamento/retentativa, foco e rolagem interna, além de retorno contextual preparado. Bases ou durações diferentes geram avisos na comparação, não bloqueios de entrada.
 
 Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (aguardando créditos), `?cenario=previsao-confirmada`, `?cenario=pendencia-cliente`, `?cenario=dados-incompletos` e `?cenario=desconto-lancado`. Pix, detalhes e suporte não fazem pagamentos nem enviam mensagens.
 
 
-**Integração em 05/11:** os blocos de Sophia e Rodrigo estão no [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), sem merge na `main`. Correções assistidas de integração preservam a autoria original das HUs. A conferência HU05 e o [simulador acadêmico pré-contratação](pages/simulacao-economia.html) são distintos. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
+**Integração:** as cinco HUs estão na `main` desde 05/11, pelos PRs [#41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41) (integração do MVP) e [#42](https://github.com/pedroschott/202602-projeto1-b-05/pull/42) (ilustrações do carrossel da HU04). Correções de integração preservam a autoria original das HUs. A conferência HU05 e o simulador acadêmico são telas distintas. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
+
+**Em revisão:** [#43](https://github.com/pedroschott/202602-projeto1-b-05/pull/43) (HU03: pendência demonstrativa, orientação Cemig e testes) e [#44](https://github.com/pedroschott/202602-projeto1-b-05/pull/44) (feedback de revisão e padronização visual entre as telas).
 
 **Pendente:** autenticação real, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
@@ -115,16 +117,25 @@ A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `
 │   └── modelo.html       # Modelo para novas telas
 ├── assets/
 │   ├── css/style.css     # Estilos comuns do squad
-│   ├── css/hu02.css      # Estilos da HU02
+│   ├── css/hu01.css … hu05.css # Estilos de cada história
 │   ├── js/layout.js      # Menu, suporte, diálogos e estados de carregamento
 │   ├── js/api.js         # Leitura dos dados (fetch)
-│   ├── js/hu02.js        # Regras da HU02 (etapas, previsão, simulação)
 │   ├── js/main.js        # Lógica da home
-│   ├── js/acompanhamento.js # Lógica da página de acompanhamento
-│   └── img/              # Logos originais
+│   ├── js/hu01.js        # HU01: assistente e detalhe da fatura
+│   ├── js/hu02.js        # HU02: etapas, previsão e simulação
+│   ├── js/acompanhamento.js # HU02: página "A caminho da economia"
+│   ├── js/hu03.js        # HU03: etapas da adesão
+│   ├── js/boas-vindas.js # HU04: carrossel de boas-vindas
+│   ├── js/hu04-primeiro-acesso.js # HU04: memória local do primeiro acesso
+│   ├── js/login.js       # Acesso demonstrativo
+│   ├── js/hu05.js        # HU05: conferência de economia
+│   ├── js/hu05-simulacao.js # Simulador pré-contratação
+│   └── img/              # Logos e ilustrações do carrossel
 ├── data/                 # Dados fictícios em JSON
 ├── docs/                 # Jornada, histórias, wireframes e sprints
-└── .github/              # Modelos de Issue e de Pull Request
+├── tests/                # Testes de regras em Node
+├── scripts/              # Smoke dos fluxos no Chromium (Playwright)
+└── .github/              # Modelos de Issue e de PR, e CI
 ```
 
 ## 7. Quadro do projeto
@@ -137,11 +148,11 @@ A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `
 
 | Integrante | GitHub | Papel principal |
 | --- | --- | --- |
-| Pedro Marcondes Dombeck Schott | [@pedroschott](https://github.com/pedroschott) | A combinar com o squad |
-| Rodrigo Araújo Rigotto |  [@rodrigorigotto](https://github.com/rodrigorigotto)  | A combinar com o squad |
-| Sophia Cardoso Miranda | [@sophiacmiranda](https://github.com/sophiacmiranda) | A combinar com o squad |
-| Vinicius Gorini | Usuário a confirmar | A combinar com o squad |
-| Pedro Padilha | Usuário a confirmar | A combinar com o squad |
+| Vinicius Gorini | [@viniciusgorini](https://github.com/viniciusgorini) | HU01: assistente da fatura |
+| Pedro Marcondes Dombeck Schott | [@pedroschott](https://github.com/pedroschott) | HU02: espera pelo benefício; integração do MVP |
+| Pedro Padilha | [@PPadilha19](https://github.com/PPadilha19) | HU03: status da adesão |
+| Rodrigo Araújo Rigotto | [@rodrigorigotto](https://github.com/rodrigorigotto) | HU04: boas-vindas |
+| Sophia Cardoso Miranda | [@sophiacmiranda](https://github.com/sophiacmiranda) | HU05: conferência de economia e simulador |
 
 ## 9. Entregas
 
@@ -151,7 +162,7 @@ A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `
 | Histórias de usuário | 20 | Cinco histórias documentadas; critérios e limites em [docs/historias.md](docs/historias.md), aceite pendente |
 | Wireframes | 21–23 | Arquivos disponíveis em [docs/wireframes](docs/wireframes/); revisão/aceite não presumidos |
 | Sprint Review I | 24 | Realização e feedback não comprovados por este registro |
-| Implementação | 25–28 | Cinco HUs com telas no PR #41; revisão humana e merge pendentes. [Plano da Implementação 2](docs/implementacao-2.md) |
+| Implementação | 25–28 | Cinco HUs integradas na `main` (PRs #41 e #42); ajustes em revisão nos PRs #43 e #44. [Plano da Implementação 2](docs/implementacao-2.md) |
 | Sprint Review II | 29 | 06/11/2026: MVP na main e apresentação de 10 minutos; [roteiro proposto](docs/sprints/review-ii-roteiro.md) |
 | Versão final | 30 | Congelamento em 12/11/2026; apresentação em 13 ou 18/11, conforme sorteio |
 
