@@ -1,5 +1,5 @@
 import { buscarAcompanhamentoHU03 } from './api.js';
-import { iniciarLayout, carregarComEstados, escaparHTML } from './layout.js';
+import { iniciarLayout, carregarComEstados, escaparHTML, icone } from './layout.js';
 
 iniciarLayout();
 const alvo = document.querySelector('#hu03-conteudo');
@@ -48,9 +48,7 @@ function mostrar({ etapas, estado }) {
 
   alvo.innerHTML =
     '<section class="hu03-card" aria-labelledby="titulo-jornada">' +
-      '<div class="hu03-head"><div><p class="hu03-overline">ANDAMENTO DO PROCESSO</p>' +
-      '<h2 id="titulo-jornada">Sua jornada</h2></div>' +
-      '<span class="hu03-pill">Protótipo</span></div>' +
+      '<div class="hu03-head"><h2 id="titulo-jornada">Sua jornada</h2></div>' +
       '<p class="hu03-current-label">Etapa atual: <strong>' +
         escaparHTML(etapas[etapaAtual].nome) + '</strong></p>' +
       '<div class="hu03-steps" role="group" aria-label="Etapas ilustrativas da adesão">' +
@@ -63,11 +61,11 @@ function mostrar({ etapas, estado }) {
         '<span><i class="hu03-legend-dot is-current" aria-hidden="true"></i>Etapa atual</span>' +
         '<span><i class="hu03-legend-dot is-waiting" aria-hidden="true"></i>Aguardando</span>' +
       '</div>' +
-      '<p class="hu03-hint">Selecione uma etapa para consultar detalhes. Isso não muda seu andamento.</p>' +
+      '<p class="hu03-hint">Toque em uma etapa para ver os detalhes.</p>' +
     '</section>' +
     '<section class="hu03-status" aria-labelledby="hu03-situacao">' +
-      '<div class="hu03-status-icon" aria-hidden="true">✓</div>' +
-      '<div><p class="hu03-overline">SITUAÇÃO ATUAL · EXEMPLO</p>' +
+      '<div class="hu03-status-icon">' + icone('check') + '</div>' +
+      '<div><p class="hu03-overline">Situação atual</p>' +
         '<h2 id="hu03-situacao"></h2><p id="hu03-resumo-atual"></p>' +
       '</div></section>' +
     '<section class="hu03-card hu03-details" aria-live="polite">' +
@@ -75,15 +73,15 @@ function mostrar({ etapas, estado }) {
       '<h2 id="hu03-titulo"></h2><p id="hu03-descricao"></p>' +
     '</section>' +
     '<section class="hu03-card hu03-next">' +
-      '<div class="hu03-next-icon" aria-hidden="true">→</div><div>' +
-        '<p class="hu03-overline">SEU PRÓXIMO PASSO</p>' +
+      '<div class="hu03-next-icon">' + icone('seta') + '</div><div>' +
+        '<p class="hu03-overline">Seu próximo passo</p>' +
         '<h2 id="hu03-proxima"></h2><p id="hu03-orientacao"></p>' +
         '<div id="hu03-acao"></div>' +
       '</div></section>' +
     '<section class="hu03-update">' +
-      '<strong>◷ Última atualização</strong><p id="hu03-update-texto"></p>' +
+      '<strong>' + icone('relogio', 'bulbe-icon--pequeno') + ' Última atualização</strong><p id="hu03-update-texto"></p>' +
     '</section>' +
-    '<aside class="hu03-note">ⓘ Demonstração acadêmica com dados fictícios. ' +
+    '<aside class="hu03-note">Demonstração acadêmica com dados fictícios. ' +
       'O fluxo e as atualizações devem ser confirmados com a Bulbe.</aside>';
 
   const botoes = [...alvo.querySelectorAll('[data-etapa]')];
@@ -115,13 +113,13 @@ function mostrar({ etapas, estado }) {
       botao.classList.toggle('is-current', indice === etapaAtual);
       botao.classList.toggle('is-selected', indice === etapaSelecionada);
       botao.setAttribute('aria-pressed', String(indice === etapaSelecionada));
-      botao.querySelector('.hu03-circle').textContent =
-        indice < etapaAtual ? '✓' : String(indice + 1);
+      botao.querySelector('.hu03-circle').innerHTML =
+        indice < etapaAtual ? icone('check', 'bulbe-icon--pequeno') : String(indice + 1);
     });
     const consultandoAtual = etapaSelecionada === etapaAtual;
     alvo.querySelector('#hu03-detalhe-modo').textContent = consultandoAtual
-      ? 'DETALHES DA ETAPA ATUAL'
-      : 'CONSULTA DA ETAPA · ' + situacaoEtapa(etapaSelecionada).toUpperCase();
+      ? 'Detalhes da etapa atual'
+      : 'Etapa consultada · ' + situacaoEtapa(etapaSelecionada).toLowerCase();
     alvo.querySelector('#hu03-titulo').textContent = etapa.titulo;
     alvo.querySelector('#hu03-descricao').textContent = etapa.descricao;
   }
