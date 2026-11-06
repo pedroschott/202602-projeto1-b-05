@@ -89,7 +89,7 @@ function iniciar() {
     });
     // O conteúdo rola dentro da moldura do app, não na janela.
     content.scrollTo({ top: 0, behavior: 'auto' });
-    etapas[numero - 1].querySelector('h1').focus({ preventScroll: true });
+    etapas[numero - 1].querySelector('.hu05-title').focus({ preventScroll: true });
   }
 
   function mostrarErro(mensagem) {
@@ -114,8 +114,6 @@ function iniciar() {
       '#hu05-saving': resultado?.economia,
       '#hu05-average': resultado?.media,
       '#hu05-projected': resultado?.projetado,
-      '#hu05-detail-average': resultado?.media,
-      '#hu05-detail-projected': resultado?.projetado,
       '#hu05-detail-base': resultado?.media,
       '#hu05-detail-saving': resultado?.economia,
       '#hu05-detail-total': resultado?.projetado
@@ -141,7 +139,7 @@ function iniciar() {
     try {
       regras = await carregarPremissasSimulacao();
       status.className = 'hu05-status hu05-status--ok';
-      status.textContent = 'Premissas carregadas. A estimativa é acadêmica e não representa cálculo oficial ou garantia de economia.';
+      status.textContent = 'Premissas carregadas.';
       submit.disabled = false;
       limparErro();
     } catch (erro) {

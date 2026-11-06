@@ -1,5 +1,5 @@
 import { buscarFAQHU01, buscarAcompanhamentoHU02 } from './api.js';
-import { iniciarLayout, carregarComEstados, escaparHTML as e, formatarMoeda, formatarReferencia, formatarData, temNumero, abrirSuporte } from './layout.js';
+import { iniciarLayout, carregarComEstados, escaparHTML as e, formatarMoeda, formatarReferencia, formatarData, temNumero, abrirSuporte, icone } from './layout.js';
 
 // O contexto usa a mesma lista de cenários e o mesmo formato de id aceitos pela HU05.
 // Parâmetros ambíguos ou inválidos não podem apontar para outra fatura por engano.
@@ -79,7 +79,7 @@ function iniciarHU01() {
   document.querySelector('#voltar-hu01').href = document.body.dataset.hu01 === 'fatura' ? home : retorno;
 
   function mostrarResposta(resposta, pergunta = resposta.pergunta) {
-    alvo.innerHTML = `<div class="hu01-mensagem hu01-minha">${e(pergunta)}</div><div class="hu01-mensagem"><p>${e(resposta.resposta)}</p></div><div class="hu01-acoes"><button class="bulbe-button" id="destino-resposta">${e(resposta.acao)}</button><button class="bulbe-button bulbe-button--secundario" id="outra-pergunta">Fazer outra pergunta</button></div><p class="legenda hu01-aviso">${e(faq.aviso)}</p>`;
+    alvo.innerHTML = `<div class="hu01-mensagem hu01-minha"><span class="sr-only">Você: </span>${e(pergunta)}</div><div class="hu01-bot"><span class="hu01-avatar" aria-hidden="true">B</span><div class="hu01-mensagem"><span class="sr-only">Assistente: </span><p>${e(resposta.resposta)}</p></div></div><div class="hu01-acoes"><button class="bulbe-button" id="destino-resposta">${e(resposta.acao)}</button><button class="bulbe-button bulbe-button--secundario" id="outra-pergunta">Fazer outra pergunta</button></div><p class="legenda hu01-aviso">${e(faq.aviso)}</p>`;
     document.querySelector('#destino-resposta').addEventListener('click', () => {
       if (resposta.destino === 'suporte') abrirSuporte(pergunta);
       else if (resposta.destino === 'conferencia') location.href = navegacao.conferencia;
@@ -90,11 +90,11 @@ function iniciarHU01() {
     document.querySelector('#outra-pergunta').addEventListener('click', mostrarPerguntas);
   }
   function mostrarPerguntas() {
-    alvo.innerHTML = '<div class="hu01-mensagem"><strong>Olá!</strong><p>Escolha uma dúvida para começarmos. Você não precisa digitar.</p></div><div class="hu01-perguntas" aria-label="Perguntas sugeridas"></div>';
+    alvo.innerHTML = '<div class="hu01-bot"><span class="hu01-avatar" aria-hidden="true">B</span><div class="hu01-mensagem"><strong>Olá!</strong><p>Escolha uma dúvida abaixo. Você não precisa digitar.</p></div></div><h2 class="hu01-rotulo" id="hu01-sugestoes">Perguntas frequentes</h2><div class="hu01-perguntas" aria-labelledby="hu01-sugestoes"></div>';
     const lista = alvo.querySelector('.hu01-perguntas');
     faq.perguntas.forEach(pergunta => {
       const botao = document.createElement('button');
-      botao.type = 'button'; botao.textContent = pergunta.pergunta;
+      botao.type = 'button'; botao.innerHTML = `${icone('pergunta')}<span>${e(pergunta.pergunta)}</span>`;
       botao.addEventListener('click', () => mostrarResposta(pergunta));
       lista.appendChild(botao);
     });
@@ -138,7 +138,7 @@ function iniciarHU01() {
         ? obterFaturaHU01(await buscarAcompanhamentoHU02(cenario), contexto) : null,
       textoVazio: 'Fatura não localizada neste cenário. Volte ao início para escolher uma fatura disponível.',
       mostrar: f => {
-        alvo.innerHTML = `<article class="bulbe-card"><h2>${e(formatarReferencia(f.referencia))}</h2><p class="hu01-fatura-total">${temNumero(f.valor) ? e(formatarMoeda(f.valor)) : 'Valor indisponível'}</p><dl class="dados-lista"><div><dt>Vencimento</dt><dd>${f.vencimento ? e(formatarData(f.vencimento)) : 'Não informado'}</dd></div><div><dt>Situação</dt><dd>${e(({em_aberto:'Em aberto',paga:'Paga',vencida:'Vencida'})[f.situacao] || 'Indisponível')}</dd></div></dl><p class="legenda">${e(f.observacao || 'Sem observação disponível.')}</p></article><article class="hu01-convite hu01-convite--claro"><span class="legenda">ASSISTENTE VIRTUAL</span><h2>Não entendeu esse valor?</h2><p>Pergunte sobre a fatura selecionada, sem perder o contexto.</p><a class="bulbe-button" href="${e(navegacao.assistenteFatura)}">Perguntar sobre esta fatura</a></article><h2 class="titulo-secao">Componentes da cobrança</h2><p>O detalhamento dos componentes ainda está indisponível. Não há dados suficientes para explicar a soma dos itens ou confirmar cobrança duplicada.</p><p class="aviso-ficticio">Dados fictícios de demonstração. Esta tela não realiza nem confirma pagamentos.</p><a class="link" href="${e(home + '#faturas')}">Voltar à lista de faturas</a>`;
+        alvo.innerHTML = `<article class="bulbe-card"><h2>${e(formatarReferencia(f.referencia))}</h2><p class="hu01-fatura-total">${temNumero(f.valor) ? e(formatarMoeda(f.valor)) : 'Valor indisponível'}</p><dl class="dados-lista"><div><dt>Vencimento</dt><dd>${f.vencimento ? e(formatarData(f.vencimento)) : 'Não informado'}</dd></div><div><dt>Situação</dt><dd>${e(({em_aberto:'Em aberto',paga:'Paga',vencida:'Vencida'})[f.situacao] || 'Indisponível')}</dd></div></dl><p class="legenda">${e(f.observacao || 'Sem observação disponível.')}</p></article><article class="hu01-convite hu01-convite--claro"><span class="legenda">Assistente virtual</span><h2>Não entendeu esse valor?</h2><p>Pergunte sobre a fatura selecionada, sem perder o contexto.</p><a class="bulbe-button" href="${e(navegacao.assistenteFatura)}">Perguntar sobre esta fatura</a></article><h2 class="titulo-secao">Componentes da cobrança</h2><p>O detalhamento dos componentes ainda está indisponível. Não há dados suficientes para explicar a soma dos itens ou confirmar cobrança duplicada.</p><p class="aviso-ficticio">Dados fictícios de demonstração. Esta tela não realiza nem confirma pagamentos.</p><a class="link" href="${e(home + '#faturas')}">Voltar à lista de faturas</a>`;
       }
     });
   }

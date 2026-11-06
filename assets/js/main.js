@@ -128,7 +128,7 @@ function mostrarHome(acomp) {
   const linkDetalhe = `pages/acompanhamento.html${window.location.search}`;
   document.querySelector('#conteudo-home').innerHTML = `
     ${htmlCardEspera(acomp, linkDetalhe)}
-    <article class="hu01-convite"><span class="legenda">ASSISTENTE VIRTUAL</span><h2>Vamos entender sua conta?</h2><p>Escolha uma pergunta e receba uma explicação simples sobre a cobrança.</p><a class="bulbe-button" href="pages/assistente.html${window.location.search ? '?' + escaparHTML(new URLSearchParams(window.location.search).toString()) : ''}">Conversar com o assistente</a></article>
+    <article class="hu01-convite hu01-convite--claro"><span class="legenda">Assistente virtual</span><h2>Dúvidas sobre a sua conta?</h2><p>Escolha uma pergunta pronta e entenda a cobrança.</p><a class="bulbe-button bulbe-button--secundario" href="pages/assistente.html${window.location.search ? '?' + escaparHTML(new URLSearchParams(window.location.search).toString()) : ''}">Conversar com o assistente</a></article>
     <h2 class="titulo-secao" id="faturas" tabindex="-1">Faturas</h2>
     ${htmlFaturas(faturasCarregadas)}`;
 

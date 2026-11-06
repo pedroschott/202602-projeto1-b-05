@@ -25,6 +25,12 @@
   --bulbe-nav-height: 72px;
   --bulbe-page-padding: 24px;
   --bulbe-radius: 12px;
+  /* Escala única de texto: toda história usa estes tamanhos. */
+  --bulbe-fs-titulo: 24px;
+  --bulbe-fs-secao: 18px;
+  --bulbe-fs-corpo: 15px;
+  --bulbe-fs-apoio: 13px;
+  --bulbe-fs-legenda: 12px;
 }
 
 * {
@@ -150,9 +156,16 @@ p {
 }
 
 .faixa-azul h1 {
-  font-size: 24px;
+  font-size: var(--bulbe-fs-titulo);
   line-height: 1.35;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.faixa-azul .faixa-sub {
+  margin-top: 4px;
+  font-size: var(--bulbe-fs-apoio);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .folha {
@@ -165,8 +178,8 @@ p {
 /* ---------- Textos e botões ---------- */
 
 .titulo-secao {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: var(--bulbe-fs-secao);
+  font-weight: 600;
   color: var(--bulbe-text);
   margin: 24px 0 12px;
 }
@@ -437,3 +450,172 @@ p {
   box-shadow: 0 0 0 3px var(--bulbe-primary);
 }
 input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3px; }
+
+/* ---------- Componentes comuns entre histórias ---------- */
+
+.bulbe-icon--pequeno {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.4;
+  vertical-align: -3px;
+}
+
+/* Card de destaque: borda simples, sem sombra (como no app da Bulbe) */
+.bulbe-card--destaque {
+  border: 1px solid var(--bulbe-border);
+}
+
+/* Dica/aviso curto em azul claro */
+.bulbe-dica {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-radius: var(--bulbe-radius);
+  background: var(--bulbe-blue-light);
+  color: var(--bulbe-text);
+  font-size: var(--bulbe-fs-apoio);
+  line-height: 1.5;
+}
+
+.bulbe-dica strong {
+  color: var(--bulbe-primary);
+}
+
+/* Campos de formulário */
+.bulbe-campo {
+  display: block;
+  min-width: 0;
+}
+
+.bulbe-campo span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--bulbe-text);
+  font-size: var(--bulbe-fs-legenda);
+  font-weight: 500;
+}
+
+.bulbe-campo input,
+.bulbe-campo select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--bulbe-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--bulbe-text);
+  font-size: var(--bulbe-fs-corpo);
+}
+
+.bulbe-campo input:focus-visible,
+.bulbe-campo select:focus-visible {
+  border-color: var(--bulbe-primary);
+  outline: 3px solid var(--bulbe-blue-light);
+  outline-offset: 0;
+}
+
+/* Etapas numeradas (1 · 2 · 3) */
+.bulbe-etapas {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 0;
+  margin: 0 0 20px;
+  counter-reset: etapa;
+}
+
+.bulbe-etapas li {
+  position: relative;
+  padding-top: 30px;
+  color: var(--bulbe-muted);
+  font-size: var(--bulbe-fs-legenda);
+  text-align: center;
+}
+
+.bulbe-etapas li::before {
+  counter-increment: etapa;
+  content: counter(etapa);
+  position: absolute;
+  top: 0;
+  left: calc(50% - 12px);
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bulbe-blue-light);
+  color: var(--bulbe-muted);
+  font-weight: 600;
+}
+
+.bulbe-etapas li::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: calc(50% + 16px);
+  width: calc(100% - 24px);
+  height: 2px;
+  background: var(--bulbe-border);
+}
+
+.bulbe-etapas li:last-child::after {
+  display: none;
+}
+
+.bulbe-etapas li.is-active,
+.bulbe-etapas li.is-done {
+  color: var(--bulbe-primary);
+  font-weight: 600;
+}
+
+.bulbe-etapas li.is-active::before {
+  background: var(--bulbe-primary);
+  color: #fff;
+}
+
+.bulbe-etapas li.is-done::before {
+  content: '';
+  background: var(--bulbe-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2308068d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+.bulbe-etapas li.is-done::after {
+  background: var(--bulbe-green);
+}
+
+/* Detalhes recolhíveis ("Como calculamos") */
+.bulbe-detalhes {
+  margin: 12px 0;
+  font-size: var(--bulbe-fs-apoio);
+  color: var(--bulbe-muted);
+}
+
+.bulbe-detalhes summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--bulbe-primary);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.bulbe-detalhes summary::-webkit-details-marker {
+  display: none;
+}
+
+.bulbe-detalhes summary .bulbe-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.bulbe-detalhes[open] summary .bulbe-icon {
+  transform: rotate(90deg);
+}
+
+.bulbe-detalhes p + p {
+  margin-top: 6px;
+}

@@ -21,110 +21,91 @@
       </button>
     </header>
 
-    <main class="bulbe-content hu05-content">
-      <p class="hu05-eyebrow">SIMULAÇÃO ANTES DA CONTRATAÇÃO</p>
-      <ol class="hu05-stepper" aria-label="Etapas da simulação ilustrativa">
-        <li class="is-active" data-step-label="1" aria-current="step">Suas contas</li>
-        <li data-step-label="2">Resultado</li>
-        <li data-step-label="3">Entenda</li>
-      </ol>
+    <main class="bulbe-content bulbe-content--faixa hu05-content">
+      <div class="faixa-azul">
+        <h1>Simular economia</h1>
+        <p class="faixa-sub">Uma estimativa rápida a partir das suas contas de luz.</p>
+      </div>
+      <div class="folha">
+        <ol class="bulbe-etapas" aria-label="Etapas da simulação ilustrativa">
+          <li class="is-active" data-step-label="1" aria-current="step">Suas contas</li>
+          <li data-step-label="2">Resultado</li>
+          <li data-step-label="3">Entenda</li>
+        </ol>
 
-      <section class="hu05-step" id="hu05-step-1" aria-labelledby="hu05-title">
-        <h1 class="titulo-secao hu05-title" id="hu05-title" tabindex="-1">Vamos calcular sua economia?</h1>
-        <p class="hu05-intro">Para estimar quanto você pode economizar com a Bulbe, precisamos conhecer suas contas de luz dos últimos três meses.</p>
+        <section class="hu05-step" id="hu05-step-1" aria-labelledby="hu05-title">
+          <h2 class="hu05-title" id="hu05-title" tabindex="-1">Suas últimas 3 contas</h2>
+          <p class="hu05-intro">Informe o mês e o valor total de cada conta, da mais antiga para a mais recente.</p>
 
-        <aside class="hu05-tip">
-          <strong>É simples!</strong>
-          <p>Tenha em mãos o valor total de cada conta, incluindo impostos e taxas, e o período de consumo indicado na fatura.</p>
-        </aside>
+          <p id="hu05-status" class="hu05-status" role="status" aria-live="polite" aria-atomic="true">Carregando as premissas da simulação acadêmica…</p>
+          <button id="hu05-tentar" class="bulbe-button bulbe-button--secundario hu05-submit" type="button" hidden disabled>Tentar novamente</button>
+          <noscript><p class="hu05-feedback hu05-feedback--erro">Ative o JavaScript para carregar as premissas e usar esta simulação.</p></noscript>
 
-        <p id="hu05-status" class="hu05-status" role="status" aria-live="polite" aria-atomic="true">Carregando as premissas da simulação acadêmica…</p>
-        <button id="hu05-tentar" class="bulbe-button bulbe-button--secundario hu05-submit" type="button" hidden disabled>Tentar novamente</button>
-        <noscript><p class="hu05-feedback hu05-feedback--erro">Ative o JavaScript para carregar as premissas e usar esta simulação.</p></noscript>
-
-        <form id="hu05-form" aria-busy="true" novalidate>
-          <h2 class="hu05-section-title">Suas contas de luz</h2>
-          <p class="hu05-muted">Preencha três meses consecutivos, do mais antigo para o mais recente. Use valores com até duas casas decimais.</p>
-          <div class="hu05-bill-grid">
+          <form id="hu05-form" aria-busy="true" novalidate>
+            <div class="hu05-bill-grid">
             <fieldset class="hu05-bill">
-              <legend>Mês 1</legend>
-              <label for="hu05-valor-1">Valor da conta (R$)</label>
-              <input id="hu05-valor-1" name="valor1" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 780,00" required>
-              <label for="hu05-periodo-1">Período de consumo</label>
-              <input id="hu05-periodo-1" name="periodo1" type="month" required>
+              <legend>Conta 1</legend>
+              <label class="bulbe-campo" for="hu05-periodo-1"><span>Mês</span>
+                <input id="hu05-periodo-1" name="periodo1" type="month" required></label>
+              <label class="bulbe-campo" for="hu05-valor-1"><span>Valor (R$)</span>
+                <input id="hu05-valor-1" name="valor1" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 780,00" required></label>
             </fieldset>
             <fieldset class="hu05-bill">
-              <legend>Mês 2</legend>
-              <label for="hu05-valor-2">Valor da conta (R$)</label>
-              <input id="hu05-valor-2" name="valor2" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 815,00" required>
-              <label for="hu05-periodo-2">Período de consumo</label>
-              <input id="hu05-periodo-2" name="periodo2" type="month" required>
+              <legend>Conta 2</legend>
+              <label class="bulbe-campo" for="hu05-periodo-2"><span>Mês</span>
+                <input id="hu05-periodo-2" name="periodo2" type="month" required></label>
+              <label class="bulbe-campo" for="hu05-valor-2"><span>Valor (R$)</span>
+                <input id="hu05-valor-2" name="valor2" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 815,00" required></label>
             </fieldset>
             <fieldset class="hu05-bill">
-              <legend>Mês 3</legend>
-              <label for="hu05-valor-3">Valor da conta (R$)</label>
-              <input id="hu05-valor-3" name="valor3" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 773,80" required>
-              <label for="hu05-periodo-3">Período de consumo</label>
-              <input id="hu05-periodo-3" name="periodo3" type="month" required>
+              <legend>Conta 3</legend>
+              <label class="bulbe-campo" for="hu05-periodo-3"><span>Mês</span>
+                <input id="hu05-periodo-3" name="periodo3" type="month" required></label>
+              <label class="bulbe-campo" for="hu05-valor-3"><span>Valor (R$)</span>
+                <input id="hu05-valor-3" name="valor3" type="number" min="0.01" max="1000000" step="0.01" inputmode="decimal" placeholder="Ex.: 773,80" required></label>
             </fieldset>
+            </div>
+            <p id="hu05-feedback" class="hu05-feedback" role="status" aria-live="polite"></p>
+            <button class="bulbe-button hu05-submit" type="submit" aria-describedby="hu05-status" disabled>Carregando premissas…</button>
+          </form>
+          <p class="hu05-nota">Simulação acadêmica com até 15% de redução. Não é oferta nem garantia.</p>
+        </section>
+
+        <section class="hu05-step" id="hu05-step-2" aria-labelledby="hu05-result-title" hidden>
+          <h2 class="hu05-title" id="hu05-result-title" tabindex="-1">Sua economia estimada</h2>
+          <article class="hu05-highlight bulbe-card--destaque">
+            <span class="hu05-overline">Economia estimada por mês</span>
+            <strong id="hu05-saving">—</strong>
+            <span id="hu05-percent">—</span>
+          </article>
+          <div class="hu05-comparison">
+            <article class="hu05-comparison-card">
+              <span>Sua média atual</span>
+              <strong id="hu05-average">—</strong>
+            </article>
+            <article class="hu05-comparison-card">
+              <span>Com a Bulbe*</span>
+              <strong id="hu05-projected">—</strong>
+            </article>
           </div>
-          <p id="hu05-feedback" class="hu05-feedback" role="status" aria-live="polite"></p>
-          <button class="bulbe-button hu05-submit" type="submit" aria-describedby="hu05-status" disabled>Carregando premissas…</button>
-        </form>
-        <p class="aviso-ficticio">Esta é uma simulação acadêmica. O percentual de até 15% é uma premissa ilustrativa do projeto, não uma oferta, promessa ou garantia de economia real da Bulbe.</p>
-      </section>
+          <p class="hu05-nota">*Até 15% sobre a média das três contas. Não é cálculo oficial.</p>
+          <button class="bulbe-button hu05-submit" id="hu05-details" type="button">Ver como calculamos</button>
+          <button class="link hu05-center-link" id="hu05-restart" type="button">Simular novamente</button>
+        </section>
 
-      <section class="hu05-step" id="hu05-step-2" aria-labelledby="hu05-result-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-result-title" tabindex="-1">Sua economia estimada</h1>
-        <p class="hu05-intro">Veja uma projeção baseada nos valores que você informou.</p>
-        <article class="hu05-highlight">
-          <span class="hu05-overline">Economia estimada por mês</span>
-          <strong id="hu05-saving">—</strong>
-          <span id="hu05-percent">—</span>
-        </article>
-        <div class="hu05-comparison">
-          <article class="hu05-comparison-card">
-            <span>Sua média atual</span>
-            <strong id="hu05-average">—</strong>
-            <small>por mês</small>
-          </article>
-          <article class="hu05-comparison-card">
-            <span>Com a Bulbe*</span>
-            <strong id="hu05-projected">—</strong>
-            <small>estimativa por mês</small>
-          </article>
-        </div>
-        <aside class="hu05-tip">
-          <strong>Energia mais sustentável</strong>
-          <p>Além da possível economia, a proposta da Bulbe é oferecer energia de fontes renováveis, sem que você precise mudar sua rotina.</p>
-        </aside>
-        <p class="hu05-muted hu05-note">*Projeção ilustrativa com aplicação do percentual máximo de 15% sobre a média das três contas. Não é cotação ou cálculo oficial da Bulbe.</p>
-        <button class="bulbe-button hu05-submit" id="hu05-details" type="button">Ver o detalhamento da economia</button>
-        <button class="link hu05-center-link" id="hu05-restart" type="button">Simular novamente</button>
-      </section>
-
-      <section class="hu05-step" id="hu05-step-3" aria-labelledby="hu05-detail-title" hidden>
-        <h1 class="titulo-secao hu05-title" id="hu05-detail-title" tabindex="-1">Entenda sua economia</h1>
-        <p class="hu05-intro">A estimativa usa a média das suas três contas e aplica o percentual máximo definido para esta simulação acadêmica.</p>
-        <div class="hu05-detail-summary">
-          <div><span>Sua média atual</span><strong id="hu05-detail-average">—</strong></div>
-          <div class="hu05-detail-arrow" aria-hidden="true">↓</div>
-          <div><span>Estimativa com a Bulbe</span><strong id="hu05-detail-projected">—</strong></div>
-        </div>
-        <section class="hu05-breakdown" aria-labelledby="hu05-breakdown-title">
-          <h2 id="hu05-breakdown-title">Como chegamos ao resultado</h2>
+        <section class="hu05-step" id="hu05-step-3" aria-labelledby="hu05-detail-title" hidden>
+          <h2 class="hu05-title" id="hu05-detail-title" tabindex="-1">Como calculamos</h2>
           <dl class="hu05-breakdown-list">
             <div><dt>Média das três contas</dt><dd id="hu05-detail-base">—</dd></div>
-            <div><dt>Percentual máximo aplicado</dt><dd id="hu05-detail-rate">—</dd></div>
+            <div><dt>Percentual máximo</dt><dd id="hu05-detail-rate">—</dd></div>
             <div><dt>Redução estimada</dt><dd id="hu05-detail-saving">—</dd></div>
             <div class="hu05-total"><dt>Valor mensal projetado</dt><dd id="hu05-detail-total">—</dd></div>
           </dl>
-          <p class="hu05-muted">Não exibimos uma divisão por energia, distribuição, encargos ou impostos porque não temos acesso à metodologia nem aos componentes tarifários necessários para calcular esses valores corretamente.</p>
+          <p class="hu05-nota">A economia real depende da sua unidade consumidora e da proposta comercial.</p>
+          <button class="bulbe-button hu05-submit" id="hu05-contract" type="button">Quero ser cliente Bulbe</button>
+          <button class="link hu05-center-link" id="hu05-back" type="button">Voltar ao resultado</button>
         </section>
-        <p class="aviso-ficticio">A economia real pode ser menor ou inexistente e depende das condições da unidade consumidora, das regras aplicáveis e da proposta comercial. Os 15% são apenas o teto usado nesta demonstração.</p>
-        <button class="bulbe-button hu05-submit" id="hu05-contract" type="button">Quero ser cliente Bulbe</button>
-        <button class="link hu05-center-link" id="hu05-back" type="button">Voltar ao resultado</button>
-      </section>
+      </div>
     </main>
 
     <nav class="bulbe-nav" aria-label="Navegação principal">

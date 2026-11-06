@@ -5,9 +5,11 @@
 
 .boas-vindas h1 {
   color: var(--bulbe-primary);
-  font-size: 24px;
-  line-height: 1.4;
-  margin-bottom: 8px;
+  font-size: var(--bulbe-fs-titulo);
+  line-height: 1.3;
+  margin: 0 auto 4px;
+  max-width: 16em;
+  text-wrap: balance;
 }
 
 .slide-boas-vindas {
@@ -24,12 +26,20 @@
 .slide-boas-vindas h2 {
   color: var(--bulbe-primary);
   font-size: 20px;
-  margin-bottom: 12px;
+  line-height: 1.3;
+  margin: 0 auto 8px;
+  max-width: 16em;
+  text-wrap: balance;
 }
 
+/* Coluna de texto estreita e balanceada: evita linhas longas e uma palavra sozinha no fim. */
 .slide-boas-vindas p {
-  font-size: 14px;
-  line-height: 1.7;
+  max-width: 30ch;
+  margin: 0 auto;
+  font-size: var(--bulbe-fs-corpo);
+  line-height: 1.55;
+  color: var(--bulbe-text);
+  text-wrap: balance;
 }
 
 .rodape-boas-vindas {

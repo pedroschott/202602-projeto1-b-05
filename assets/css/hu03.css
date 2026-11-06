@@ -1,6 +1,6 @@
 /* Estilos próprios da HU03; cabeçalho, logo e navegação vêm do CSS comum. */
 .hu03-intro {
-  font-size: 13px;
+  font-size: var(--bulbe-fs-apoio);
   color: var(--bulbe-muted);
   margin: 0 0 18px;
   line-height: 1.6;
@@ -20,9 +20,8 @@
   margin-bottom: 12px;
 }
 .hu03-overline {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .04em;
+  font-size: var(--bulbe-fs-legenda);
+  font-weight: 500;
   color: var(--bulbe-muted);
   line-height: 1.4;
   margin-bottom: 5px;
@@ -43,7 +42,7 @@
   font-weight: 600;
 }
 .hu03-current-label {
-  font-size: 13px;
+  font-size: var(--bulbe-fs-apoio);
   color: var(--bulbe-text);
   margin-bottom: 16px;
 }
@@ -166,19 +165,19 @@
   border-radius: 12px;
   background: #d9f7e6;
   color: var(--bulbe-success);
-  font-size: 25px;
 }
+.hu03-status-icon .bulbe-icon { stroke-width: 2.6; }
 .hu03-status h2 {
   font-size: 16px;
   font-weight: 600;
-  color: #155c3b;
+  color: var(--bulbe-primary);
   line-height: 1.4;
   margin-bottom: 5px;
 }
-.hu03-status p:last-child, .hu03-next p:last-child, .hu03-details p:last-child {
-  font-size: 12px;
-  color: var(--bulbe-muted);
-  line-height: 1.6;
+.hu03-status p:last-child, #hu03-orientacao, .hu03-details p:last-child {
+  font-size: var(--bulbe-fs-apoio);
+  color: var(--bulbe-text);
+  line-height: 1.5;
 }
 .hu03-details h2 { margin-bottom: 6px; }
 .hu03-next { display: flex; gap: 12px; }
@@ -190,23 +189,20 @@
   place-items: center;
   border-radius: 10px;
   background: var(--bulbe-blue-light);
-  font-size: 24px;
   color: var(--bulbe-primary);
 }
-.hu03-update { margin-bottom: 14px; font-size: 12px; }
-.hu03-update p { font-size: 12px; color: var(--bulbe-muted); }
+.hu03-update { margin-bottom: 14px; font-size: var(--bulbe-fs-apoio); color: var(--bulbe-text); }
+.hu03-update strong { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.hu03-update p { font-size: var(--bulbe-fs-apoio); color: var(--bulbe-muted); }
 .hu03-note {
-  padding: 11px;
-  border-radius: 8px;
-  background: var(--bulbe-warning-bg);
-  color: #72521a;
-  font-size: 12px;
+  color: var(--bulbe-muted);
+  font-size: var(--bulbe-fs-legenda);
   line-height: 1.5;
 }
 .hu03-next-action {
   display: inline-flex;
   margin-top: 10px;
-  font-size: 12px;
+  font-size: var(--bulbe-fs-apoio);
   font-weight: 600;
   color: var(--bulbe-primary);
 }
@@ -233,7 +229,7 @@
     justify-content: flex-start;
     gap: 12px;
     padding: 0;
-    font-size: 13px;
+    font-size: var(--bulbe-fs-apoio);
     text-align: left;
     overflow-wrap: normal;
   }
