@@ -7,6 +7,20 @@
 
 let dialogo = null;
 
+// Ícones de linha usados em mais de uma história (mesmo traço do cabeçalho).
+// Sempre decorativos: o estado também aparece em texto ao lado.
+const CAMINHOS_ICONES = {
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  relogio: 'M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18',
+  sol: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',
+  pergunta: 'M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17.5v.01M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18',
+  seta: 'M9 6l6 6-6 6'
+};
+
+export function icone(nome, classe = '') {
+  return `<svg class="bulbe-icon ${classe}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${CAMINHOS_ICONES[nome]}"/></svg>`;
+}
+
 // Escapa texto antes de colocar dentro de innerHTML.
 export function escaparHTML(texto) {
   return String(texto)
