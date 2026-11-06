@@ -28,6 +28,15 @@ function validar(dados) {
     throw new Error('Estado atual da HU03 incompleto ou inválido.');
   }
 
+  // Uma pendência só é exibida se vier informada explicitamente nos dados.
+  if (estado.pendencia != null &&
+      (typeof estado.pendencia !== 'object' ||
+      !['titulo', 'detalhe', 'acao'].every((campo) =>
+        typeof estado.pendencia[campo] === 'string' &&
+        estado.pendencia[campo].trim()))) {
+    throw new Error('Pendência da HU03 incompleta ou inválida.');
+  }
+
   return { etapas: dados.etapas, estado };
 }
 
@@ -78,6 +87,18 @@ function mostrar({ etapas, estado }) {
         '<h2 id="hu03-proxima"></h2><p id="hu03-orientacao"></p>' +
         '<div id="hu03-acao"></div>' +
       '</div></section>' +
+    '<section class="hu03-card hu03-pendency" aria-labelledby="hu03-pendencia-titulo">' +
+      '<p class="hu03-overline">PENDÊNCIAS E AÇÕES</p>' +
+      '<h2 id="hu03-pendencia-titulo"></h2>' +
+      '<p id="hu03-pendencia-detalhe"></p>' +
+    '</section>' +
+    '<aside class="hu03-cemig">' +
+      '<strong>Sobre a conta da Cemig durante a espera</strong>' +
+      '<p>O material do projeto orienta continuar pagando a Cemig durante o período ' +
+      'indicado pela Bulbe. Confirme pelo atendimento oficial quais orientações ' +
+      'se aplicam ao seu caso. Esta demonstração não informa prazos de conexão, ' +
+      'datas de pagamento ou situação real das suas faturas.</p>' +
+    '</aside>' +
     '<section class="hu03-update">' +
       '<strong>' + icone('relogio', 'bulbe-icon--pequeno') + ' Última atualização</strong><p id="hu03-update-texto"></p>' +
     '</section>' +
@@ -92,11 +113,27 @@ function mostrar({ etapas, estado }) {
   preenchimento.style.width = (etapaAtual / (etapas.length - 1) * 100) + '%';
   alvo.querySelector('#hu03-situacao').textContent = estado.statusAtual;
   alvo.querySelector('#hu03-resumo-atual').textContent = estado.resumoAtual;
-  alvo.querySelector('#hu03-proxima').textContent = etapaAtual === 4
-    ? 'Consultar sua primeira fatura'
-    : 'Próxima etapa: ' + etapas[etapaAtual].proxima;
-  alvo.querySelector('#hu03-orientacao').textContent = etapas[etapaAtual].orientacao;
+  const pendencia = estado.pendencia || null;
+  alvo.querySelector('#hu03-proxima').textContent = pendencia
+    ? 'Ação necessária: ' + pendencia.titulo
+    : etapaAtual === 4
+      ? 'Consultar sua primeira fatura'
+      : 'Próxima etapa: ' + etapas[etapaAtual].proxima;
+  alvo.querySelector('#hu03-orientacao').textContent = pendencia
+    ? pendencia.acao
+    : etapas[etapaAtual].orientacao;
   alvo.querySelector('#hu03-update-texto').textContent = estado.ultimaAtualizacao;
+
+  const secaoPendencia = alvo.querySelector('.hu03-pendency');
+  secaoPendencia.classList.toggle('is-action-required', Boolean(pendencia));
+  alvo.querySelector('#hu03-pendencia-titulo').textContent = pendencia
+    ? pendencia.titulo : 'Nenhuma pendência informada';
+  alvo.querySelector('#hu03-pendencia-detalhe').textContent = pendencia
+    ? pendencia.detalhe
+    : 'Neste cenário demonstrativo, não há ação pendente registrada. ' +
+      'Continue acompanhando as atualizações.';
+  // Orientação de espera não é mostrada no cenário da fatura já disponível.
+  alvo.querySelector('.hu03-cemig').hidden = etapaAtual === 4;
 
   if (etapaAtual === 4) {
     const link = document.createElement('a');
