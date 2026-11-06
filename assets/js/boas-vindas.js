@@ -87,12 +87,45 @@ slide.addEventListener('touchend', (evento) => {
   }
 }, { passive: true });
 
+// Navegação pelas setas do teclado, além dos botões e do gesto.
+// A seta para a direita não sai da apresentação no último slide:
+// para sair, a pessoa usa o botão "Começar" ou "Pular apresentação".
+document.addEventListener('keydown', (evento) => {
+  if (slides.length === 0) return;
+  if (evento.key === 'ArrowRight' && atual < slides.length - 1) {
+    atual++;
+    mostrarSlide();
+  } else if (evento.key === 'ArrowLeft' && atual > 0) {
+    atual--;
+    mostrarSlide();
+  }
+});
+
+// Confere se cada slide do JSON tem título e texto em formato de texto.
+function conteudoValido(dados) {
+  if (!Array.isArray(dados)) {
+    return false;
+  }
+  for (const item of dados) {
+    if (!item) {
+      return false;
+    }
+    if (typeof item.titulo !== 'string') {
+      return false;
+    }
+    if (typeof item.texto !== 'string') {
+      return false;
+    }
+  }
+  return true;
+}
+
 iniciarLayout();
 carregarComEstados(slide, {
   carregar: buscarBoasVindas,
   textoVazio: 'A apresentação ainda não tem conteúdo. Você pode seguir para o acesso demonstrativo.',
   mostrar: (dados) => {
-    if (!Array.isArray(dados) || dados.some((item) => !item || typeof item.titulo !== 'string' || typeof item.texto !== 'string')) {
+    if (!conteudoValido(dados)) {
       throw new Error('Conteúdo da apresentação inválido');
     }
     slides = dados;
