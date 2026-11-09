@@ -252,3 +252,74 @@
 @media (prefers-reduced-motion: reduce) {
   .hu03-fill { transition: none; }
 }
+
+/* Orientações HU03: só apontar pendências presentes no JSON do cenário. */
+.hu03-pendency h2 {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--bulbe-primary);
+  margin-bottom: 6px;
+}
+.hu03-pendency p:last-child {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--bulbe-muted);
+}
+.hu03-pendency.is-action-required {
+  border-color: #dbbc7b;
+  background: #fffcf3;
+}
+.hu03-pendency.is-action-required h2 { color: #73541d; }
+.hu03-cemig {
+  display: block;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 14px;
+  background: #eef4ff;
+  border: 1px solid #cfdbf7;
+  color: var(--bulbe-text);
+}
+.hu03-cemig[hidden] { display: none; }
+.hu03-cemig strong { display: block; font-size: 12px; margin-bottom: 5px; }
+.hu03-cemig p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--bulbe-muted);
+}
+
+
+/* HU03 — revisão tipográfica após feedback docente.
+   Quatro níveis de texto, pesos 400/600 e respiro consistente.
+   Escopo restrito à HU03, sem alterar o CSS comum do squad. */
+.faixa-azul h1 { font-size: 22px; font-weight: 600; line-height: 1.35; }
+.hu03-intro { font-size: 14px; line-height: 1.65; margin-bottom: 20px; }
+.hu03-card { padding: 18px 16px; margin-bottom: 16px; }
+.hu03-head { margin-bottom: 14px; }
+.hu03-overline { font-size: 12px; font-weight: 600; letter-spacing: .02em; line-height: 1.5; margin-bottom: 6px; }
+.hu03-head h2, .hu03-next h2, .hu03-details h2,
+.hu03-status h2, .hu03-pendency h2 {
+  font-size: 18px; font-weight: 600; line-height: 1.4;
+}
+.hu03-current-label { font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+.hu03-step { font-size: 12px; font-weight: 400; }
+.hu03-step.is-current { font-weight: 600; }
+.hu03-circle { font-weight: 600; }
+.hu03-status { padding: 18px 16px; margin-bottom: 16px; }
+.hu03-status h2 { margin-bottom: 8px; }
+.hu03-status p:last-child, .hu03-next p:last-child,
+.hu03-details p:last-child, .hu03-pendency p:last-child,
+.hu03-cemig p {
+  font-size: 14px; line-height: 1.65;
+}
+.hu03-details h2, .hu03-pendency h2 { margin-bottom: 8px; }
+.hu03-next { gap: 12px; }
+.hu03-next-action { font-size: 14px; }
+.hu03-update, .hu03-update p { font-size: 12px; line-height: 1.6; }
+.hu03-note { font-size: 12px; line-height: 1.6; padding: 12px; }
+.hu03-cemig { padding: 14px; margin-bottom: 16px; }
+.hu03-cemig strong { font-size: 14px; font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+@media (max-width: 430px) {
+  .hu03-step { font-size: 14px; }
+}

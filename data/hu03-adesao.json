@@ -67,6 +67,17 @@
       "statusAtual": "Primeira fatura disponível",
       "resumoAtual": "Neste exemplo, a primeira fatura está disponível para consulta.",
       "ultimaAtualizacao": "Primeira fatura disponível — demonstração"
+    },
+    "pendencia-cliente": {
+      "etapaAtual": 1,
+      "statusAtual": "Validação com pendência",
+      "resumoAtual": "Neste exemplo, uma informação de contato precisa ser confirmada para continuar o cadastro.",
+      "ultimaAtualizacao": "Pendência demonstrativa identificada na validação — sem data real",
+      "pendencia": {
+        "titulo": "Confirmar dados de contato",
+        "detalhe": "Neste cenário fictício, a confirmação do telefone informado no cadastro está pendente.",
+        "acao": "Confira seus dados de contato pelos canais oficiais da Bulbe. Este protótipo não recebe nem atualiza dados reais."
+      }
     }
   }
 }
