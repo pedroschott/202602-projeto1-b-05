@@ -4,7 +4,46 @@
   Regra do grupo: mudanças de cores, cabeçalho, logo ou navegação entram aqui,
   e não no CSS de cada história.
 */
+/* 1ª via: Poppins servida pelo Google Fonts. */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/*
+  2ª via: cópia local da Poppins (mesmos arquivos woff2 do Google Fonts,
+  subconjunto latin, que cobre o português). Só é usada se a 1ª via falhar
+  (sem internet, Google bloqueado ou arquivo não carregado).
+  Licença: assets/fonts/poppins/OFL.txt.
+*/
+@font-face {
+  font-family: 'Poppins Local';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/poppins/poppins-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins Local';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/poppins/poppins-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins Local';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/poppins/poppins-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins Local';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/poppins/poppins-700.woff2') format('woff2');
+}
 
 :root {
   --bulbe-primary: #08068d;
@@ -20,7 +59,8 @@
   --bulbe-success: #16804a;
   --bulbe-error: #b42318;
   --bulbe-warning-bg: #fff4e6;
-  --bulbe-font: 'Poppins', sans-serif;
+  /* Ordem: Google (1ª via) → cópia local (2ª via) → fonte do sistema. */
+  --bulbe-font: 'Poppins', 'Poppins Local', sans-serif;
   --bulbe-header-height: 64px;
   --bulbe-nav-height: 72px;
   --bulbe-page-padding: 24px;
