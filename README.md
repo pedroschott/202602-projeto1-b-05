@@ -50,7 +50,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 **Integração:** as cinco HUs estão na `main` desde 05/11, pelos PRs [#41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41) (integração do MVP) e [#42](https://github.com/pedroschott/202602-projeto1-b-05/pull/42) (ilustrações do carrossel da HU04). Correções de integração preservam a autoria original das HUs. A conferência HU05 e o simulador acadêmico são telas distintas. [Requisitos, evidências e pendências](docs/verificacao-mvp.md).
 
-**Em revisão:** [#43](https://github.com/pedroschott/202602-projeto1-b-05/pull/43) (HU03: pendência demonstrativa, orientação Cemig e testes) e [#44](https://github.com/pedroschott/202602-projeto1-b-05/pull/44) (feedback de revisão e padronização visual entre as telas).
+**Atualização de 10/11:** os PRs [#43](https://github.com/pedroschott/202602-projeto1-b-05/pull/43) (pendências HU03 e orientação Cemig), [#44](https://github.com/pedroschott/202602-projeto1-b-05/pull/44) (padronização visual), [#46](https://github.com/pedroschott/202602-projeto1-b-05/pull/46) (teclado no carrossel) e [#47](https://github.com/pedroschott/202602-projeto1-b-05/pull/47) (fonte local) também estão integrados. A [CI da main `df276b1`](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/42608108121), executada em 09/11, passou sintaxe, três testes Node e quatro grupos de smoke Chromium. Esse resultado não substitui a conferência manual nem certifica alterações posteriores.
 
 **Pendente:** autenticação real, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
@@ -162,10 +162,16 @@ A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `
 | Histórias de usuário | 20 | Cinco histórias documentadas; critérios e limites em [docs/historias.md](docs/historias.md), aceite pendente |
 | Wireframes | 21–23 | Arquivos disponíveis em [docs/wireframes](docs/wireframes/); revisão/aceite não presumidos |
 | Sprint Review I | 24 | Realização e feedback não comprovados por este registro |
-| Implementação | 25–28 | Cinco HUs integradas na `main` (PRs #41 e #42); ajustes em revisão nos PRs #43 e #44. [Plano da Implementação 2](docs/implementacao-2.md) |
+| Implementação | 25–28 | Cinco HUs e ajustes dos PRs #41–#44, #46 e #47 integrados na `main`; CI de `df276b1` aprovada em 09/11. [Plano da Implementação 2](docs/implementacao-2.md) |
 | Sprint Review II | 29 | 06/11/2026: MVP na main e apresentação de 10 minutos; [roteiro proposto](docs/sprints/review-ii-roteiro.md) |
 | Versão final | 30 | Congelamento em 12/11/2026; apresentação em 13 ou 18/11, conforme sorteio |
 
 ---
 
 > Os registros de clientes e faturas deste repositório são fictícios. Nenhum dado pessoal real de cliente da Bulbe Energia é utilizado; os indicadores agregados citados vêm do material da disciplina.
+
+## Fontes
+
+- [Apresentação da aula 19](https://docs.google.com/presentation/d/1v_punRor5o8ZU-v9BN9I9VhaWDtIEyXWVMFbYb-s_Fg/edit), slides 4–8, 11 e 19
+- [Roteiro do repositório](https://docs.google.com/document/d/1K9OFyecp78Xt7IMWENCUfc8RL-i-K73yShUDiCTYdSA/edit)
+- [Roteiro oficial da Implementação 2 e Review II](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit)
