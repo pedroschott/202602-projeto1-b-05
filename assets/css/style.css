@@ -663,7 +663,7 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
 /* ---------- Menu lateral (hambúrguer) ---------- */
 
 .dialogo--menu {
-  width: min(320px, 86vw);
+  width: min(300px, 80vw);
   max-width: none;
   height: 100dvh;
   max-height: none;
@@ -677,6 +677,16 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
 
 .dialogo--menu[open] {
   animation: menu-entra 0.22s ease-out;
+}
+
+.dialogo--menu.saindo {
+  transform: translateX(-100%);
+  transition: transform 0.18s ease-in;
+}
+
+.dialogo--menu.saindo::backdrop {
+  opacity: 0;
+  transition: opacity 0.18s ease-in;
 }
 
 @keyframes menu-entra {

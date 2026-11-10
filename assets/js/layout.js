@@ -46,18 +46,63 @@ function pegarDialogo() {
     dialogo.className = 'dialogo';
     dialogo.setAttribute('aria-labelledby', 'dialogo-titulo');
     document.body.appendChild(dialogo);
-    dialogo.addEventListener('click', (evento) => {
-      // clicar no fundo escuro (fora da caixa) ou em [data-fechar] fecha o diálogo
+    const foraDaCaixa = (evento) => {
       const caixa = dialogo.getBoundingClientRect();
-      const foraDaCaixa = evento.target === dialogo && (
-        evento.clientX < caixa.left || evento.clientX > caixa.right ||
-        evento.clientY < caixa.top || evento.clientY > caixa.bottom);
-      if (foraDaCaixa || evento.target.closest('[data-fechar]')) {
-        dialogo.close();
+      return evento.clientX < caixa.left || evento.clientX > caixa.right ||
+        evento.clientY < caixa.top || evento.clientY > caixa.bottom;
+    };
+    // Clicar ou tocar no fundo escuro, ou em [data-fechar], fecha o diálogo.
+    // O fundo (::backdrop) pertence ao próprio <dialog>, por isso o alvo é ele.
+    dialogo.addEventListener('click', (evento) => {
+      if ((evento.target === dialogo && foraDaCaixa(evento)) || evento.target.closest('[data-fechar]')) {
+        fecharDialogo();
+      }
+    });
+    // No menu lateral, arrastar para a esquerda também fecha.
+    let inicioToque = null;
+    dialogo.addEventListener('touchstart', (evento) => {
+      const toque = evento.touches[0];
+      inicioToque = { x: toque.clientX, y: toque.clientY };
+    }, { passive: true });
+    dialogo.addEventListener('touchend', (evento) => {
+      if (!inicioToque || !dialogo.classList.contains('dialogo--menu')) {
+        return;
+      }
+      const toque = evento.changedTouches[0];
+      const dx = toque.clientX - inicioToque.x;
+      const dy = toque.clientY - inicioToque.y;
+      inicioToque = null;
+      if (dx < -60 && Math.abs(dx) > Math.abs(dy)) {
+        fecharDialogo();
+      }
+    });
+    // Esc também passa pela animação de saída do menu.
+    dialogo.addEventListener('cancel', (evento) => {
+      if (dialogo.classList.contains('dialogo--menu')) {
+        evento.preventDefault();
+        fecharDialogo();
       }
     });
   }
   return dialogo;
+}
+
+// Fecha o diálogo; o menu lateral desliza para fora antes de fechar.
+function fecharDialogo() {
+  if (!dialogo?.open) {
+    return;
+  }
+  const animar = dialogo.classList.contains('dialogo--menu') &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!animar) {
+    dialogo.close();
+    return;
+  }
+  dialogo.classList.add('saindo');
+  setTimeout(() => {
+    dialogo.classList.remove('saindo');
+    dialogo.close();
+  }, 180);
 }
 
 // titulo: texto simples. conteudoHTML: HTML já escapado pela página.
