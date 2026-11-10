@@ -1,6 +1,6 @@
 # MVP — requisitos, evidências e liberação
 
-**05/11/2026 · PR #41.** Verificação técnica, não aceite final. Fonte: [roteiro oficial da Implementação 2](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit). [Integração e divisão](implementacao-2.md).
+**Atualizado em 10/11/2026 · main `df276b1`.** Verificação técnica, não aceite final. Fonte: [roteiro oficial da Implementação 2](https://docs.google.com/document/d/14SpYXCmTpKkOcLHv6X9748ZEXL4ni0p1azWpK9Lz4sI/edit). [Integração e divisão](implementacao-2.md).
 
 ## Matriz de entrega
 
@@ -14,8 +14,8 @@
 | Mobile | Layout responsivo e smoke Chromium | Emulação não certifica Safari/iOS ou todos os estados |
 | HTML/CSS/JS vanilla | `pages/`, `assets/`, `data/` | Playwright é ferramenta de teste, não framework do app |
 | README e dados fictícios | Instruções e limitações no README | Não inserir dados reais de clientes |
-| Processo e contribuições | Commits e PR #41 | Revisão de colega e registro de contribuições efetivas |
-| MVP na main em 06/11 | Branch de integração | Draft não é entrega; revisão e merge autorizado pendentes |
+| Processo e contribuições | Commits e PR #41, aprovado por Rodrigo | Registrar contribuições efetivas; aprovação técnica não equivale a aceite da Bulbe |
+| MVP na main em 06/11 | PR #41 integrado em 05/11; ajustes posteriores integrados até 09/11 | Integração confirmada; não comprova apresentação ou aceite final |
 
 ## Autoria das telas
 
@@ -42,15 +42,21 @@ A [CI 41953862665](https://github.com/pedroschott/202602-projeto1-b-05/actions/r
 
 A revisão de 05/11 reduz a automação para **três testes Node e quatro grupos de smoke Chromium**. A aplicação permanece preservada; variantes extensas de falha, parâmetros e dispositivos deixam de ter cobertura automatizada dedicada. Comandos no [README](../README.md#testes); revisão manual sugerida no [plano de QA](implementacao-2.md#qa-essencial-e-revisão-manual).
 
-A execução da suíte reduzida deve ser conferida nos checks do [PR #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41) para o commit apresentado. Em falha, a CI guarda `artifacts/falha.png`, sem commits automáticos nem coleção de imagens de sucesso. Não reutilizar contagens da suíte anterior como resultado da suíte atual.
+A [CI 42608108121](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/42608108121), executada em 09/11 na main `df276b1bdd62cce364cad2258372d97d2713fa2a`, concluiu com sucesso a verificação de sintaxe, os três testes Node e os quatro grupos de smoke Chromium. O smoke inclui primeiro acesso, navegação e suporte, layouts mobile/desktop, pendência e primeira fatura da HU03, retorno contextual fatura → assistente → conferência → mesma fatura e simulação acadêmica. O resultado foi conferido no GitHub em 10/11; não houve nova execução local nesta atualização documental.
+
+O [PR #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41) recebeu aprovação de Rodrigo e foi integrado em 05/11. Os PRs #42, #43, #44, #46 e #47 também estão na main. Esses registros não comprovam revisão humana de todos os critérios, teste com clientes ou feedback da apresentação.
+
+Em falha, a CI guarda `artifacts/falha.png`, sem commits automáticos nem coleção de imagens de sucesso. Não reutilizar contagens da suíte anterior como resultado da suíte atual. A CI aprovada não cobre todas as variantes de falha, inspeção visual ou Safari/iOS real. Alterações posteriores precisam de nova conferência do commit demonstrado.
 
 ## Checklist de liberação
 
-- [ ] Conferir CI do head final e registrar resultado real; analisar falhas antes do merge.
+- [x] Conferir a CI da main `df276b1`: aprovada em 09/11, conforme registro acima.
+- [ ] Conferir novamente a CI e o fluxo manual no commit escolhido para o congelamento, após eventuais correções.
 - [ ] Confirmar README, critérios e apresentação coerentes com o código demonstrado.
-- [ ] Registrar revisão humana de outro colega e tratar observações.
+- [x] Registrar a aprovação de Rodrigo no PR #41.
+- [ ] Confirmar a revisão humana dos critérios ainda pendentes e tratar observações reais.
 - [x] Documentar acesso demonstrativo HU04, sem autenticação; manter explícito o bloqueio de cálculo HU05.
-- [ ] Integrar à main com autorização antes da entrega de 06/11.
+- [x] Confirmar integração do PR #41 à main em 05/11.
 - [ ] Registrar feedback da Review II somente após a sessão.
 
 ## Apresentações e avaliação

@@ -1,6 +1,6 @@
 # Implementação 2 — integração e revisão
 
-**05/11/2026:** o [PR draft #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41) reúne as cinco HUs, sem merge na `main`. As contribuições originais permanecem no histórico; ajustes assistidos de integração não constituem implementação individual dos colegas. [Matriz de requisitos, evidências e pendências](verificacao-mvp.md).
+**Atualizado em 10/11/2026:** o [PR #41](https://github.com/pedroschott/202602-projeto1-b-05/pull/41), com as cinco HUs, foi aprovado por Rodrigo e integrado à `main` em 05/11. Os PRs #42, #43, #44, #46 e #47 também foram integrados. A main verificada é `df276b1`, com CI aprovada em 09/11. As contribuições originais permanecem no histórico; ajustes assistidos de integração não constituem implementação individual dos colegas. [Matriz de requisitos, evidências e pendências](verificacao-mvp.md).
 
 ## Blocos recebidos
 
