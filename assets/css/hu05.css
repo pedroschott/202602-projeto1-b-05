@@ -7,9 +7,6 @@
 .hu05-intro { margin-bottom: 16px; color: var(--bulbe-muted); font-size: var(--bulbe-fs-apoio); line-height: 1.5; }
 .hu05-nota { margin: 12px 0; color: var(--bulbe-muted); font-size: var(--bulbe-fs-legenda); line-height: 1.5; }
 
-/* Voltar (conferência), em branco sobre a faixa azul */
-.hu05-return { display: inline-flex; align-items: center; min-height: 36px; margin-bottom: 4px; color: #fff; font-size: var(--bulbe-fs-apoio); }
-.hu05-return::before { content: '‹'; margin-right: 6px; font-size: 18px; line-height: 1; }
 
 /* Estado de carregamento: só aparece quando carrega ou falha */
 .hu05-status { margin: 0 0 12px; padding: 10px 12px; border-radius: 8px; background: var(--bulbe-blue-light); color: var(--bulbe-text); font-size: var(--bulbe-fs-legenda); }

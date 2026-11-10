@@ -110,10 +110,12 @@
   border-color: var(--bulbe-success);
   color: #073d26;
 }
-.hu03-step.is-selected:not(.is-current) { color: var(--bulbe-primary); }
+/* Selecionada: círculo azul sólido, sem anel duplo. */
+.hu03-step.is-selected { color: var(--bulbe-primary); font-weight: 600; }
 .hu03-step.is-selected .hu03-circle {
-  outline: 2px solid var(--bulbe-primary);
-  outline-offset: 3px;
+  background: var(--bulbe-primary);
+  border-color: var(--bulbe-primary);
+  color: #fff;
 }
 .hu03-step:focus-visible {
   outline: 2px solid var(--bulbe-primary);
@@ -323,3 +325,6 @@
 @media (max-width: 430px) {
   .hu03-step { font-size: 14px; }
 }
+
+.hu03-pendency[hidden], #hu03-acao[hidden] { display: none; }
+#hu03-descricao, #hu03-pendencia-detalhe { font-size: var(--bulbe-fs-apoio); line-height: 1.5; color: var(--bulbe-text); }

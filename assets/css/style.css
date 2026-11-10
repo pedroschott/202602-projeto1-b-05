@@ -659,3 +659,62 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
 .bulbe-detalhes p + p {
   margin-top: 6px;
 }
+
+/* ---------- Menu com ícones (no mesmo pop-up dos outros diálogos) ---------- */
+
+.menu-grupo {
+  margin: 12px 0 4px;
+  font-size: var(--bulbe-fs-legenda);
+  font-weight: 600;
+  color: var(--bulbe-muted);
+}
+
+.dialogo-menu--icones a {
+  display: grid;
+  grid-template-columns: 36px 1fr 16px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+/* Ícone visualmente à esquerda, mas depois do texto no HTML (nome acessível começa pelo título) */
+.dialogo-menu--icones .menu-icone {
+  grid-column: 1;
+  grid-row: 1;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--bulbe-blue-light);
+}
+
+.dialogo-menu--icones .menu-icone .bulbe-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dialogo-menu--icones .menu-texto {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.menu-seta {
+  grid-column: 3;
+  grid-row: 1;
+  width: 16px;
+  height: 16px;
+  color: var(--bulbe-muted);
+}
+
+.dialogo-menu--icones li:last-child a {
+  border-bottom: 0;
+}
+
+.dialogo-menu--icones a[aria-current="page"] .menu-icone {
+  background: var(--bulbe-primary);
+  color: #fff;
+}

@@ -14,7 +14,12 @@ const CAMINHOS_ICONES = {
   relogio: 'M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18',
   sol: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4',
   pergunta: 'M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17.5v.01M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18',
-  seta: 'M9 6l6 6-6 6'
+  seta: 'M9 6l6 6-6 6',
+  casa: 'M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5',
+  etapas: 'M9 6h11M9 12h11M9 18h11M4 5.5l1 1 2-2M4 11.5l1 1 2-2M4.5 18h.01',
+  calculadora: 'M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1M8 7h8v3H8zM8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01',
+  conferir: 'M9 3h6v3H9zM7 4.5H5.5A1.5 1.5 0 0 0 4 6v13.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H17M8.5 13.5l2.5 2.5 4.5-5',
+  conversa: 'M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5'
 };
 
 export function icone(nome, classe = '') {
@@ -90,24 +95,42 @@ export function consultasDoMenu(search = '', pathname = '') {
   return { comum: busca(comum), assistente: busca(assistente), conferencia: busca(conferencia) };
 }
 
+// Menu: itens agrupados, com ícone e a página atual destacada.
 function abrirMenu() {
   const raiz = document.body.dataset.raiz || './';
   const consultas = consultasDoMenu(window.location.search, window.location.pathname);
   const busca = escaparHTML(consultas.comum);
   const buscaAssistente = escaparHTML(consultas.assistente);
   const buscaConferencia = escaparHTML(consultas.conferencia);
-  abrirDialogo('Menu', `
-    <ul class="dialogo-menu">
-      <li><a href="${raiz}index.html${busca}">Início<small>Faturas e acompanhamento da economia</small></a></li>
-      <li><a href="${raiz}pages/acompanhamento.html${busca}">A caminho da economia<small>Etapas e previsão do primeiro benefício</small></a></li>
-      <li><a href="${raiz}pages/simulacao-economia.html${busca}">Simular economia<small>Projeção ilustrativa antes da contratação</small></a></li>
-      <li><a href="${raiz}pages/calculo-economia.html${buscaConferencia}">Conferir economia<small>Confira períodos e bases, sem cálculo oficial</small></a></li>
-      <li><a href="${raiz}pages/adesao.html">Acompanhar adesão<small>Etapas da contratação</small></a></li>
-      <li><a href="${raiz}pages/login.html">Acesso demonstrativo<small>Entrada visual, sem autenticação real</small></a></li>
-      <li><a href="${raiz}pages/boas-vindas.html">Conheça a Bulbe<small>Apresentação do serviço</small></a></li>
-      <li><a href="${raiz}pages/assistente.html${buscaAssistente}">Assistente virtual<small>Explicações e dúvidas sobre a cobrança</small></a></li>
-    </ul>
-  `);
+  const grupos = [
+    ['Sua conta', [
+      ['casa', 'index.html', busca, 'Início', 'Faturas e acompanhamento da economia'],
+      ['sol', 'pages/acompanhamento.html', busca, 'A caminho da economia', 'Etapas e previsão do primeiro benefício'],
+      ['etapas', 'pages/adesao.html', '', 'Acompanhar adesão', 'Etapas da contratação']
+    ]],
+    ['Economia', [
+      ['calculadora', 'pages/simulacao-economia.html', busca, 'Simular economia', 'Projeção ilustrativa antes da contratação'],
+      ['conferir', 'pages/calculo-economia.html', buscaConferencia, 'Conferir economia', 'Confira períodos e bases, sem cálculo oficial']
+    ]],
+    ['Ajuda', [
+      ['conversa', 'pages/assistente.html', buscaAssistente, 'Assistente virtual', 'Explicações e dúvidas sobre a cobrança']
+    ]]
+  ];
+  const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+  const htmlGrupos = grupos.map(([titulo, itens]) => `
+      <p class="menu-grupo">${titulo}</p>
+      <ul class="dialogo-menu dialogo-menu--icones">${itens.map(([nomeIcone, caminho, consulta, nome, descricao]) => {
+        const atual = caminho.endsWith(paginaAtual);
+        return `
+        <li><a href="${raiz}${caminho}${consulta}"${atual ? ' aria-current="page"' : ''}>
+          <span class="menu-texto">${nome}<small>${descricao}</small></span>
+          <span class="menu-icone">${icone(nomeIcone)}</span>
+          ${icone('seta', 'menu-seta')}
+        </a></li>`;
+      }).join('')}
+      </ul>`).join('');
+
+  abrirDialogo('Menu', htmlGrupos);
 }
 
 export function abrirSuporte(assunto) {

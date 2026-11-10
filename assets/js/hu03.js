@@ -65,30 +65,16 @@ function mostrar({ etapas, estado }) {
           '<div id="hu03-fill" class="hu03-fill"></div></div>' +
         etapasHTML +
       '</div>' +
-      '<div class="hu03-legend" aria-label="Significado dos indicadores">' +
-        '<span><i class="hu03-legend-dot is-done" aria-hidden="true"></i>Concluído</span>' +
-        '<span><i class="hu03-legend-dot is-current" aria-hidden="true"></i>Etapa atual</span>' +
-        '<span><i class="hu03-legend-dot is-waiting" aria-hidden="true"></i>Aguardando</span>' +
-      '</div>' +
       '<p class="hu03-hint">Toque em uma etapa para ver os detalhes.</p>' +
     '</section>' +
-    '<section class="hu03-status" aria-labelledby="hu03-situacao">' +
-      '<div class="hu03-status-icon">' + icone('check') + '</div>' +
-      '<div><p class="hu03-overline">Situação atual</p>' +
-        '<h2 id="hu03-situacao"></h2><p id="hu03-resumo-atual"></p>' +
-      '</div></section>' +
+    // Um único card: a etapa selecionada (a atual, ao abrir a tela).
     '<section class="hu03-card hu03-details" aria-live="polite">' +
       '<p class="hu03-overline" id="hu03-detalhe-modo"></p>' +
       '<h2 id="hu03-titulo"></h2><p id="hu03-descricao"></p>' +
+      '<div id="hu03-acao"></div>' +
     '</section>' +
-    '<section class="hu03-card hu03-next">' +
-      '<div class="hu03-next-icon">' + icone('seta') + '</div><div>' +
-        '<p class="hu03-overline">Seu próximo passo</p>' +
-        '<h2 id="hu03-proxima"></h2><p id="hu03-orientacao"></p>' +
-        '<div id="hu03-acao"></div>' +
-      '</div></section>' +
     '<section class="hu03-card hu03-pendency" aria-labelledby="hu03-pendencia-titulo">' +
-      '<p class="hu03-overline">PENDÊNCIAS E AÇÕES</p>' +
+      '<p class="hu03-overline">Ação necessária</p>' +
       '<h2 id="hu03-pendencia-titulo"></h2>' +
       '<p id="hu03-pendencia-detalhe"></p>' +
     '</section>' +
@@ -111,27 +97,17 @@ function mostrar({ etapas, estado }) {
   // Os elementos de andamento real são preenchidos uma única vez.
   // Consultar qualquer outra etapa não altera esta informação.
   preenchimento.style.width = (etapaAtual / (etapas.length - 1) * 100) + '%';
-  alvo.querySelector('#hu03-situacao').textContent = estado.statusAtual;
-  alvo.querySelector('#hu03-resumo-atual').textContent = estado.resumoAtual;
   const pendencia = estado.pendencia || null;
-  alvo.querySelector('#hu03-proxima').textContent = pendencia
-    ? 'Ação necessária: ' + pendencia.titulo
-    : etapaAtual === 4
-      ? 'Consultar sua primeira fatura'
-      : 'Próxima etapa: ' + etapas[etapaAtual].proxima;
-  alvo.querySelector('#hu03-orientacao').textContent = pendencia
-    ? pendencia.acao
-    : etapas[etapaAtual].orientacao;
   alvo.querySelector('#hu03-update-texto').textContent = estado.ultimaAtualizacao;
 
+  // A pendência só aparece quando existe uma ação a fazer.
   const secaoPendencia = alvo.querySelector('.hu03-pendency');
   secaoPendencia.classList.toggle('is-action-required', Boolean(pendencia));
-  alvo.querySelector('#hu03-pendencia-titulo').textContent = pendencia
-    ? pendencia.titulo : 'Nenhuma pendência informada';
-  alvo.querySelector('#hu03-pendencia-detalhe').textContent = pendencia
-    ? pendencia.detalhe
-    : 'Neste cenário demonstrativo, não há ação pendente registrada. ' +
-      'Continue acompanhando as atualizações.';
+  secaoPendencia.hidden = !pendencia;
+  if (pendencia) {
+    alvo.querySelector('#hu03-pendencia-titulo').textContent = pendencia.titulo;
+    alvo.querySelector('#hu03-pendencia-detalhe').textContent = pendencia.detalhe + ' ' + pendencia.acao;
+  }
   // Orientação de espera não é mostrada no cenário da fatura já disponível.
   alvo.querySelector('.hu03-cemig').hidden = etapaAtual === 4;
 
@@ -153,12 +129,10 @@ function mostrar({ etapas, estado }) {
       botao.querySelector('.hu03-circle').innerHTML =
         indice < etapaAtual ? icone('check', 'bulbe-icon--pequeno') : String(indice + 1);
     });
-    const consultandoAtual = etapaSelecionada === etapaAtual;
-    alvo.querySelector('#hu03-detalhe-modo').textContent = consultandoAtual
-      ? 'Detalhes da etapa atual'
-      : 'Etapa consultada · ' + situacaoEtapa(etapaSelecionada).toLowerCase();
+    alvo.querySelector('#hu03-detalhe-modo').textContent = situacaoEtapa(etapaSelecionada);
     alvo.querySelector('#hu03-titulo').textContent = etapa.titulo;
     alvo.querySelector('#hu03-descricao').textContent = etapa.descricao;
+    alvo.querySelector('#hu03-acao').hidden = etapaSelecionada !== 4 || etapaAtual !== 4;
   }
 
   botoes.forEach((botao) =>
