@@ -59,11 +59,18 @@ export function obterFaturaHU01(dados, contexto) {
 }
 
 export function validarFAQHU01(dados) {
-  if (!dados || !Array.isArray(dados.perguntas)) throw new Error('FAQ inválida');
+  if (!dados || !Array.isArray(dados.perguntas)) {
+    throw new Error('FAQ inválida');
+  }
   if (!dados.perguntas.length) return null;
   const items = [...dados.perguntas, dados.semResposta];
   if (items.some(p => !p || typeof p.pergunta !== 'string' || typeof p.resposta !== 'string' || typeof p.acao !== 'string' || !DESTINOS_VALIDOS.has(p.destino))) throw new Error('Resposta inválida');
-  if (typeof dados.aviso !== 'string' || dados.perguntas.some(p => typeof p.id !== 'string')) throw new Error('FAQ incompleta');
+  if (
+    typeof dados.aviso !== 'string'
+    || dados.perguntas.some(p => typeof p.id !== 'string')
+  ) {
+    throw new Error('FAQ incompleta');
+  }
   return dados;
 }
 
