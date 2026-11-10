@@ -20,8 +20,6 @@ const CAMINHOS_ICONES = {
   calculadora: 'M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1M8 7h8v3H8zM8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01',
   conferir: 'M9 3h6v3H9zM7 4.5H5.5A1.5 1.5 0 0 0 4 6v13.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H17M8.5 13.5l2.5 2.5 4.5-5',
   conversa: 'M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5',
-  estrela: 'M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z',
-  entrar: 'M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l4-4-4-4M14 12H4',
   fechar: 'M6 6l12 12M18 6L6 18'
 };
 
@@ -58,7 +56,7 @@ function pegarDialogo() {
         fecharDialogo();
       }
     });
-    // No menu lateral, arrastar para a esquerda também fecha.
+    // No menu, arrastar para cima também fecha.
     let inicioToque = null;
     dialogo.addEventListener('touchstart', (evento) => {
       const toque = evento.touches[0];
@@ -72,7 +70,7 @@ function pegarDialogo() {
       const dx = toque.clientX - inicioToque.x;
       const dy = toque.clientY - inicioToque.y;
       inicioToque = null;
-      if (dx < -60 && Math.abs(dx) > Math.abs(dy)) {
+      if (dy < -60 && Math.abs(dy) > Math.abs(dx)) {
         fecharDialogo();
       }
     });
@@ -87,7 +85,7 @@ function pegarDialogo() {
   return dialogo;
 }
 
-// Fecha o diálogo; o menu lateral desliza para fora antes de fechar.
+// Fecha o diálogo; o menu sobe antes de fechar.
 function fecharDialogo() {
   if (!dialogo?.open) {
     return;
@@ -144,7 +142,7 @@ export function consultasDoMenu(search = '', pathname = '') {
   return { comum: busca(comum), assistente: busca(assistente), conferencia: busca(conferencia) };
 }
 
-// Menu lateral (hambúrguer): itens agrupados, com ícone e a página atual destacada.
+// Menu hambúrguer: desce do topo, com itens agrupados, ícones e a página atual destacada.
 function abrirMenu() {
   const raiz = document.body.dataset.raiz || './';
   const consultas = consultasDoMenu(window.location.search, window.location.pathname);
@@ -162,9 +160,7 @@ function abrirMenu() {
       ['conferir', 'pages/calculo-economia.html', buscaConferencia, 'Conferir economia', 'Confira períodos e bases, sem cálculo oficial']
     ]],
     ['Ajuda', [
-      ['conversa', 'pages/assistente.html', buscaAssistente, 'Assistente virtual', 'Explicações e dúvidas sobre a cobrança'],
-      ['estrela', 'pages/boas-vindas.html', '', 'Conheça a Bulbe', 'Apresentação do serviço'],
-      ['entrar', 'pages/login.html', '', 'Acesso demonstrativo', 'Entrada visual, sem autenticação real']
+      ['conversa', 'pages/assistente.html', buscaAssistente, 'Assistente virtual', 'Explicações e dúvidas sobre a cobrança']
     ]]
   ];
   const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
@@ -185,9 +181,9 @@ function abrirMenu() {
   caixa.classList.add('dialogo--menu');
   caixa.innerHTML = `
     <div class="menu-topo">
+      <button class="bulbe-icon-btn" type="button" data-fechar aria-label="Fechar menu">${icone('fechar')}</button>
       <img class="bulbe-logo" src="${raiz}assets/img/logo-clara.png" alt="Bulbe">
       <h2 id="dialogo-titulo" class="sr-only">Menu</h2>
-      <button class="bulbe-icon-btn" type="button" data-fechar aria-label="Fechar menu">${icone('fechar')}</button>
     </div>
     <nav class="menu-corpo" aria-label="Menu">${htmlGrupos}</nav>`;
   if (!caixa.open) {

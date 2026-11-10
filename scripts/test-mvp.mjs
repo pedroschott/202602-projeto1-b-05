@@ -87,8 +87,7 @@ try {
   for (const [nome, pronto] of [
     ['Início', '.card-espera'], ['A caminho da economia', '.linha-tempo'],
     ['Simular economia', '#hu05-form'], ['Conferir economia', '#hu05-form'],
-    ['Acompanhar adesão', '#hu03-titulo'], ['Conheça a Bulbe', '#slide article'],
-    ['Acesso demonstrativo', '#entrar-demonstracao'],
+    ['Acompanhar adesão', '#hu03-titulo'],
     ['Assistente virtual', '.hu01-perguntas']
   ]) {
     await abrir('/index.html', '.card-espera');
