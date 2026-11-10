@@ -1,4 +1,5 @@
 import { iniciarLayout, formatarMoeda, formatarData } from './layout.js';
+import { buscarEconomiaHU05 } from './api.js';
 
 const CENARIOS_VALIDOS = new Set([
   'aguardando-creditos',
@@ -119,9 +120,7 @@ export function configuracaoValida(configuracao) {
 }
 
 export async function buscarConfiguracaoHU05(fetcher = fetch) {
-  const resposta = await fetcher(new URL('../../data/hu05-economia.json', import.meta.url), { cache: 'no-store' });
-  if (!resposta.ok) throw new Error('Falha ao carregar conferência: HTTP ' + resposta.status);
-  const configuracao = await resposta.json();
+  const configuracao = await buscarEconomiaHU05(fetcher);
   if (!configuracaoValida(configuracao)) throw new Error('JSON de conferência inválido');
   return configuracao;
 }

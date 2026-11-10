@@ -4,15 +4,8 @@
   Regra do grupo: mudanças de cores, cabeçalho, logo ou navegação entram aqui,
   e não no CSS de cada história.
 */
-/* 1ª via: Poppins servida pelo Google Fonts. */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-/*
-  2ª via: cópia local da Poppins (mesmos arquivos woff2 do Google Fonts,
-  subconjunto latin, que cobre o português). Só é usada se a 1ª via falhar
-  (sem internet, Google bloqueado ou arquivo não carregado).
-  Licença: assets/fonts/poppins/OFL.txt.
-*/
+/* Poppins local: sem dependência de rede para a apresentação.
+   Licença: assets/fonts/poppins/OFL.txt. */
 @font-face {
   font-family: 'Poppins Local';
   font-style: normal;
@@ -59,8 +52,8 @@
   --bulbe-success: #16804a;
   --bulbe-error: #b42318;
   --bulbe-warning-bg: #fff4e6;
-  /* Ordem: Google (1ª via) → cópia local (2ª via) → fonte do sistema. */
-  --bulbe-font: 'Poppins', 'Poppins Local', sans-serif;
+  /* Fonte local; fonte do sistema se o arquivo não estiver disponível. */
+  --bulbe-font: 'Poppins Local', sans-serif;
   --bulbe-header-height: 64px;
   --bulbe-nav-height: 72px;
   --bulbe-page-padding: 24px;
@@ -288,7 +281,8 @@ p {
   padding: 4px 12px calc(4px + env(safe-area-inset-bottom, 0px));
   flex: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   border-top: 1px solid var(--bulbe-border);
   background: #fff;
 }

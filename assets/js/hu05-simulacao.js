@@ -197,9 +197,6 @@ function iniciar() {
   document.querySelector('#hu05-back').addEventListener('click', () => {
     if (etapaAtual === 3 && resultado) mostrarEtapa(2);
   });
-  document.querySelector('#hu05-contract').addEventListener('click', () => {
-    if (etapaAtual === 3 && resultado) window.location.href = 'https://bulbeenergia.com.br/';
-  });
 
   iniciarLayout();
   carregarRegras();

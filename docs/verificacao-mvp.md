@@ -33,7 +33,7 @@ Rodrigo também ajustou o mobile HU03. Correções posteriores assistidas são i
 
 - **HU04:** A tela de acesso é demonstrativa. Primeiro acesso → carrossel → acesso demonstrativo → home; Pular/falha também levam ao acesso. Sem autenticação real, cadastro ou coleta de credenciais. Os critérios originais ficam preservados, com aceite humano pendente.
 - **HU05:** conferência não calcula economia oficial. Bases/durações diferentes geram avisos. O simulador pré-contratação separado aplica até 15% como hipótese acadêmica, sem oferta, garantia ou validação de economia realizada.
-- **Produto:** sem pagamentos, envio de atendimento, backend, IA generativa ou dados de produção. Consumo e Indicações indisponíveis.
+- **Produto:** sem pagamentos, envio de atendimento, backend, IA generativa ou dados de produção. Consumo e Indicações fora da navegação; simulador preservado como exercício extra, não parte do recorte principal.
 - **Aceite:** sem feedback de clientes, aprovação da Bulbe ou redução de inadimplência comprovada. CI e revisão assistida não substituem revisão humana.
 
 ## Evidências e cobertura atual

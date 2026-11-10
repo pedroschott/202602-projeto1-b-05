@@ -52,7 +52,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 **Atualização de 10/11:** os PRs [#43](https://github.com/pedroschott/202602-projeto1-b-05/pull/43) (pendências HU03 e orientação Cemig), [#44](https://github.com/pedroschott/202602-projeto1-b-05/pull/44) (padronização visual), [#46](https://github.com/pedroschott/202602-projeto1-b-05/pull/46) (teclado no carrossel) e [#47](https://github.com/pedroschott/202602-projeto1-b-05/pull/47) (fonte local) também estão integrados. A [CI da main `df276b1`](https://github.com/pedroschott/202602-projeto1-b-05/actions/runs/42608108121), executada em 09/11, passou sintaxe, três testes Node e quatro grupos de smoke Chromium. Esse resultado não substitui a conferência manual nem certifica alterações posteriores.
 
-**Pendente:** autenticação real, telas de Consumo e Indicações (a navegação avisa que estão pendentes), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
+**Pendente:** autenticação real (fora do frontend acadêmico), revisão do conteúdo da HU01, metodologia de cálculo da HU05, revisão do squad e validação das regras com a Bulbe.
 
 - **Histórias de usuário:** [docs/historias.md](docs/historias.md)
 - **Wireframes:** [docs/wireframes/](docs/wireframes/)
@@ -61,6 +61,8 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 ## 4. Tecnologias
 
 - HTML, CSS e JavaScript puro (vanilla)
+- Sem biblioteca de interface no aplicativo. React em `docs/base-visual/` é referência do Figma Make, não runtime. Playwright/Node são ferramentas de teste, não dependências para abrir o app.
+- Fonte Poppins local, sem chamada ao Google Fonts no aplicativo. [Conformidade, autoria e pendências](docs/conformidade-entrega.md)
 - Dados fictícios em JSON, lidos com `fetch` (pasta [`data/`](data/))
 - Git e GitHub (Issues, Projects e Pull Requests)
 
@@ -78,11 +80,11 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 **Alternativa sem extensão:** com Python 3 instalado, abra o terminal na pasta clonada, execute `python3 -m http.server 4173 --bind 127.0.0.1` (no Windows, `py -m http.server 4173 --bind 127.0.0.1`) e acesse http://127.0.0.1:4173. Mantenha o terminal aberto; `Ctrl+C` encerra o servidor. O aplicativo não exige instalação de pacotes npm: as dependências abaixo são apenas para os testes.
 
-Na primeira visita, a home abre as boas-vindas. Use **Pular apresentação** ou **Começar** para abrir o acesso demonstrativo e então **Entrar na demonstração**. Nas visitas seguintes do mesmo navegador, a home abre diretamente. O menu permite revisitar todas as cinco HUs. Consumo e Indicações são atalhos informativos indisponíveis, não telas concluídas.
+Na primeira visita, a home abre as boas-vindas. Use **Pular apresentação** ou **Começar** para abrir o acesso demonstrativo e então **Entrar na demonstração**. Nas visitas seguintes do mesmo navegador, a home abre diretamente. O menu permite revisitar todas as cinco HUs. Atalhos de Consumo e Indicações, sem funcionalidade no MVP, foram retirados da navegação. O simulador foi preservado como exercício extra identificado, separado da conferência HU05.
 
 ### Testes
 
-Use Node.js 22. Na raiz, verifique a sintaxe e os três testes essenciais sem navegador:
+Use Node.js 22. Na raiz, verifique a sintaxe e os cinco testes essenciais sem navegador:
 
 ```bash
 for arquivo in assets/js/*.js scripts/*.mjs tests/*.mjs; do node --check "$arquivo" || exit 1; done
@@ -99,7 +101,7 @@ python3 -m http.server 4173 --bind 127.0.0.1
 
 Em outro terminal na raiz: `node scripts/test-mvp.mjs`. Em Linux sem bibliotecas do navegador, use `npx playwright install --with-deps chromium` onde houver permissão para instalar dependências.
 
-A CI executa sintaxe, Node e quatro grupos de smoke Chromium. Em falha, guarda `artifacts/falha.png`, sem commits automáticos. A suíte foi reduzida aos fluxos essenciais; não cobre todas as variantes, falhas e dispositivos. Consulte [verificação do MVP](docs/verificacao-mvp.md) para resultados vinculados ao commit e limitações.
+A CI executa sintaxe, cinco testes Node e quatro grupos de smoke Chromium. Em falha, guarda `artifacts/falha.png`, sem commits automáticos. A suíte foi reduzida aos fluxos essenciais; não cobre todas as variantes, falhas e dispositivos. Consulte [verificação do MVP](docs/verificacao-mvp.md) para resultados vinculados ao commit e limitações.
 
 ## 6. Estrutura do repositório
 
