@@ -64,25 +64,23 @@ try {
   }
   await page.locator('[data-etapa="4"]').click();
   assert.equal(await page.locator('.hu03-step.is-selected').getAttribute('data-etapa'), '4');
-  // Cenário com pendência: o próximo passo deve indicar a ação necessária,
-  // sem mudar a etapa atual quando o usuário consulta uma etapa futura.
+  // Cenário com pendência: a ação aparece em destaque e consultar uma etapa
+  // futura não muda a etapa atual.
   await abrir('/pages/adesao.html?cenario=pendencia-cliente', '#hu03-pendencia-titulo');
   assert.match(await page.locator('#hu03-pendencia-titulo').innerText(), /Confirmar dados de contato/);
-  assert.match(await page.locator('#hu03-proxima').innerText(), /Ação necessária/);
-  assert.match(await page.locator('#hu03-orientacao').innerText(), /canais oficiais da Bulbe/);
+  assert.match(await page.locator('#hu03-pendencia-detalhe').innerText(), /canais oficiais da Bulbe/);
   assert.match(await page.locator('.hu03-cemig').innerText(), /continuar pagando a Cemig/);
-  const situacaoPendente = await page.locator('#hu03-situacao').innerText();
+  assert.equal(await page.locator('.hu03-step.is-selected').getAttribute('data-etapa'), '1');
   await page.locator('[data-etapa="4"]').click();
-  assert.equal(await page.locator('#hu03-situacao').innerText(), situacaoPendente);
   assert.equal(await page.locator('.hu03-step.is-current').getAttribute('data-etapa'), '1');
-  assert.match(await page.locator('#hu03-proxima').innerText(), /Ação necessária/);
+  assert.equal(await page.locator('.hu03-step.is-selected').getAttribute('data-etapa'), '4');
   for (const width of [320, 360, 431]) {
     await page.setViewportSize({ width, height: 844 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
   }
   // Cenário sem pendência e sem orientação de espera na etapa de primeira fatura.
-  await abrir('/pages/adesao.html?cenario=primeira-fatura', '#hu03-pendencia-titulo');
-  assert.match(await page.locator('#hu03-pendencia-titulo').innerText(), /Nenhuma pendência/);
+  await abrir('/pages/adesao.html?cenario=primeira-fatura', '#hu03-titulo');
+  assert.equal(await page.locator('.hu03-pendency').isVisible(), false);
   assert.equal(await page.locator('.hu03-cemig').isVisible(), false);
   assert.equal(await page.getByRole('link', { name: 'Consultar faturas' }).count(), 1);
   // Todas as telas do menu devem abrir, permitir retorno e caber no celular.

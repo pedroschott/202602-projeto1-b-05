@@ -169,6 +169,7 @@
 .card-espera-rodape a {
   flex: none;
   min-height: 44px;
+  margin-bottom: -10px; /* área de toque de 44px sem sobrar espaço embaixo do card */
   display: inline-flex;
   align-items: center;
   gap: 2px;
