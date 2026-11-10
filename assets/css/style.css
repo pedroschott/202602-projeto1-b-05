@@ -660,115 +660,46 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
   margin-top: 6px;
 }
 
-/* ---------- Menu hambúrguer: desce do topo, na largura do app ---------- */
-
-.dialogo--menu {
-  width: min(430px, 100vw);
-  max-width: none;
-  max-height: 100dvh;
-  margin: 0 auto auto;
-  padding: 0 0 8px;
-  border-radius: 0 0 20px 20px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.dialogo--menu[open] {
-  animation: menu-entra 0.22s ease-out;
-}
-
-.dialogo--menu.saindo {
-  transform: translateY(-100%);
-  transition: transform 0.18s ease-in;
-}
-
-.dialogo--menu.saindo::backdrop {
-  opacity: 0;
-  transition: opacity 0.18s ease-in;
-}
-
-@keyframes menu-entra {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dialogo--menu[open] { animation: none; }
-}
-
-/* Mesmo desenho do cabeçalho: o ícone de menu vira X no mesmo lugar. */
-.menu-topo {
-  flex: none;
-  height: var(--bulbe-header-height);
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
-  align-items: center;
-  background: var(--bulbe-primary);
-  color: #fff;
-}
-
-.menu-topo :focus-visible {
-  outline-color: #fff;
-  box-shadow: 0 0 0 3px var(--bulbe-primary);
-}
-
-.menu-corpo {
-  flex: 1;
-  overflow-y: auto;
-  padding: 8px 12px 24px;
-}
+/* ---------- Menu com ícones (no mesmo pop-up dos outros diálogos) ---------- */
 
 .menu-grupo {
-  margin: 16px 8px 4px;
+  margin: 12px 0 4px;
   font-size: var(--bulbe-fs-legenda);
   font-weight: 600;
   color: var(--bulbe-muted);
 }
 
-.dialogo--menu .dialogo-menu a {
+.dialogo-menu--icones a {
   display: grid;
-  grid-template-columns: 40px 1fr 16px;
+  grid-template-columns: 36px 1fr 16px;
   align-items: center;
   gap: 12px;
-  padding: 10px 8px;
-  border: 0;
-  border-radius: var(--bulbe-radius);
-  color: var(--bulbe-primary);
-  font-size: var(--bulbe-fs-corpo);
-  font-weight: 500;
+  padding: 10px 0;
   line-height: 1.3;
   text-decoration: none;
 }
 
 /* Ícone visualmente à esquerda, mas depois do texto no HTML (nome acessível começa pelo título) */
-.dialogo--menu .menu-icone {
+.dialogo-menu--icones .menu-icone {
   grid-column: 1;
   grid-row: 1;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
   border-radius: 10px;
   background: var(--bulbe-blue-light);
 }
 
-.dialogo--menu .menu-icone .bulbe-icon {
-  width: 22px;
-  height: 22px;
+.dialogo-menu--icones .menu-icone .bulbe-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.dialogo--menu .menu-texto {
+.dialogo-menu--icones .menu-texto {
   grid-column: 2;
   grid-row: 1;
   min-width: 0;
-}
-
-.dialogo--menu .dialogo-menu small {
-  margin-top: 2px;
-  font-size: var(--bulbe-fs-legenda);
-  line-height: 1.35;
 }
 
 .menu-seta {
@@ -779,15 +710,11 @@ input:focus-visible { outline: 3px solid var(--bulbe-primary); outline-offset: 3
   color: var(--bulbe-muted);
 }
 
-.dialogo--menu .dialogo-menu a:hover {
-  background: var(--bulbe-surface);
+.dialogo-menu--icones li:last-child a {
+  border-bottom: 0;
 }
 
-.dialogo--menu .dialogo-menu a[aria-current="page"] {
-  background: var(--bulbe-blue-light);
-}
-
-.dialogo--menu .dialogo-menu a[aria-current="page"] .menu-icone {
+.dialogo-menu--icones a[aria-current="page"] .menu-icone {
   background: var(--bulbe-primary);
   color: #fff;
 }

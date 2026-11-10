@@ -19,8 +19,7 @@ const CAMINHOS_ICONES = {
   etapas: 'M9 6h11M9 12h11M9 18h11M4 5.5l1 1 2-2M4 11.5l1 1 2-2M4.5 18h.01',
   calculadora: 'M6 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1M8 7h8v3H8zM8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01',
   conferir: 'M9 3h6v3H9zM7 4.5H5.5A1.5 1.5 0 0 0 4 6v13.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H17M8.5 13.5l2.5 2.5 4.5-5',
-  conversa: 'M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5',
-  fechar: 'M6 6l12 12M18 6L6 18'
+  conversa: 'M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5'
 };
 
 export function icone(nome, classe = '') {
@@ -44,69 +43,23 @@ function pegarDialogo() {
     dialogo.className = 'dialogo';
     dialogo.setAttribute('aria-labelledby', 'dialogo-titulo');
     document.body.appendChild(dialogo);
-    const foraDaCaixa = (evento) => {
-      const caixa = dialogo.getBoundingClientRect();
-      return evento.clientX < caixa.left || evento.clientX > caixa.right ||
-        evento.clientY < caixa.top || evento.clientY > caixa.bottom;
-    };
-    // Clicar ou tocar no fundo escuro, ou em [data-fechar], fecha o diálogo.
-    // O fundo (::backdrop) pertence ao próprio <dialog>, por isso o alvo é ele.
     dialogo.addEventListener('click', (evento) => {
-      if ((evento.target === dialogo && foraDaCaixa(evento)) || evento.target.closest('[data-fechar]')) {
-        fecharDialogo();
-      }
-    });
-    // No menu, arrastar para cima também fecha.
-    let inicioToque = null;
-    dialogo.addEventListener('touchstart', (evento) => {
-      const toque = evento.touches[0];
-      inicioToque = { x: toque.clientX, y: toque.clientY };
-    }, { passive: true });
-    dialogo.addEventListener('touchend', (evento) => {
-      if (!inicioToque || !dialogo.classList.contains('dialogo--menu')) {
-        return;
-      }
-      const toque = evento.changedTouches[0];
-      const dx = toque.clientX - inicioToque.x;
-      const dy = toque.clientY - inicioToque.y;
-      inicioToque = null;
-      if (dy < -60 && Math.abs(dy) > Math.abs(dx)) {
-        fecharDialogo();
-      }
-    });
-    // Esc também passa pela animação de saída do menu.
-    dialogo.addEventListener('cancel', (evento) => {
-      if (dialogo.classList.contains('dialogo--menu')) {
-        evento.preventDefault();
-        fecharDialogo();
+      // clicar no fundo escuro (fora da caixa) ou em [data-fechar] fecha o diálogo
+      const caixa = dialogo.getBoundingClientRect();
+      const foraDaCaixa = evento.target === dialogo && (
+        evento.clientX < caixa.left || evento.clientX > caixa.right ||
+        evento.clientY < caixa.top || evento.clientY > caixa.bottom);
+      if (foraDaCaixa || evento.target.closest('[data-fechar]')) {
+        dialogo.close();
       }
     });
   }
   return dialogo;
 }
 
-// Fecha o diálogo; o menu sobe antes de fechar.
-function fecharDialogo() {
-  if (!dialogo?.open) {
-    return;
-  }
-  const animar = dialogo.classList.contains('dialogo--menu') &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!animar) {
-    dialogo.close();
-    return;
-  }
-  dialogo.classList.add('saindo');
-  setTimeout(() => {
-    dialogo.classList.remove('saindo');
-    dialogo.close();
-  }, 180);
-}
-
 // titulo: texto simples. conteudoHTML: HTML já escapado pela página.
 export function abrirDialogo(titulo, conteudoHTML) {
   const caixa = pegarDialogo();
-  caixa.classList.remove('dialogo--menu');
   caixa.innerHTML = `
     <h2 id="dialogo-titulo">${escaparHTML(titulo)}</h2>
     ${conteudoHTML}
@@ -142,7 +95,7 @@ export function consultasDoMenu(search = '', pathname = '') {
   return { comum: busca(comum), assistente: busca(assistente), conferencia: busca(conferencia) };
 }
 
-// Menu hambúrguer: desce do topo, com itens agrupados, ícones e a página atual destacada.
+// Menu: itens agrupados, com ícone e a página atual destacada.
 function abrirMenu() {
   const raiz = document.body.dataset.raiz || './';
   const consultas = consultasDoMenu(window.location.search, window.location.pathname);
@@ -166,7 +119,7 @@ function abrirMenu() {
   const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
   const htmlGrupos = grupos.map(([titulo, itens]) => `
       <p class="menu-grupo">${titulo}</p>
-      <ul class="dialogo-menu">${itens.map(([nomeIcone, caminho, consulta, nome, descricao]) => {
+      <ul class="dialogo-menu dialogo-menu--icones">${itens.map(([nomeIcone, caminho, consulta, nome, descricao]) => {
         const atual = caminho.endsWith(paginaAtual);
         return `
         <li><a href="${raiz}${caminho}${consulta}"${atual ? ' aria-current="page"' : ''}>
@@ -177,18 +130,7 @@ function abrirMenu() {
       }).join('')}
       </ul>`).join('');
 
-  const caixa = pegarDialogo();
-  caixa.classList.add('dialogo--menu');
-  caixa.innerHTML = `
-    <div class="menu-topo">
-      <button class="bulbe-icon-btn" type="button" data-fechar aria-label="Fechar menu">${icone('fechar')}</button>
-      <img class="bulbe-logo" src="${raiz}assets/img/logo-clara.png" alt="Bulbe">
-      <h2 id="dialogo-titulo" class="sr-only">Menu</h2>
-    </div>
-    <nav class="menu-corpo" aria-label="Menu">${htmlGrupos}</nav>`;
-  if (!caixa.open) {
-    caixa.showModal();
-  }
+  abrirDialogo('Menu', htmlGrupos);
 }
 
 export function abrirSuporte(assunto) {
