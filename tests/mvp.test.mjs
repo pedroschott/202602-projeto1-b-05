@@ -43,7 +43,7 @@ test('HU05 usa a leitura compartilhada e rejeita HTTP/JSON inválidos', async ()
   await assert.rejects(buscarConfiguracaoHU05(async () => ({ ok: true, json: async () => ({ tipo: 'outro' }) })), /inválido/);
 });
 
-test('runtime mantém fetch centralizado, fonte local e navegação sem atalhos vazios', async () => {
+test('runtime mantém fetch centralizado, fallback de fonte e navegação sem atalhos vazios', async () => {
   const { readFile, readdir } = await import('node:fs/promises');
   const raiz = new URL('../', import.meta.url);
   for (const nome of await readdir(new URL('assets/js/', raiz))) {
@@ -52,7 +52,7 @@ test('runtime mantém fetch centralizado, fonte local e navegação sem atalhos 
     assert.doesNotMatch(codigo, /from\s+['"](?:react|vue|@angular)/);
   }
   const css = await readFile(new URL('assets/css/style.css', raiz), 'utf8');
-  assert.doesNotMatch(css, /fonts\.googleapis\.com/);
+  assert.match(css, /fonts\.googleapis\.com/);
   assert.match(css, /poppins-400\.woff2/);
   for (const arquivo of ['index.html', ... (await readdir(new URL('pages/', raiz))).filter(n => n.endsWith('.html')).map(n => 'pages/' + n)]) {
     const html = await readFile(new URL(arquivo, raiz), 'utf8');

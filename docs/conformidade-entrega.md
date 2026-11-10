@@ -4,7 +4,7 @@ Atualização documental de 10/11/2026. Referências: [enunciado da Etapa 2](htt
 
 ## Aplicativo e ferramentas
 
-O aplicativo em `index.html`, `pages/` e `assets/` usa HTML, CSS e módulos JavaScript nativos. Toda leitura de JSON passa por `assets/js/api.js`; a HU05 valida a configuração depois de recebê-la. `fetch`, DOM, URLSearchParams, localStorage e Clipboard são APIs do navegador, não frameworks. Não há backend, IA generativa ou pagamento real. A fonte Poppins é servida localmente.
+O aplicativo em `index.html`, `pages/` e `assets/` usa HTML, CSS e módulos JavaScript nativos. Toda leitura de JSON passa por `assets/js/api.js`; a HU05 valida a configuração depois de recebê-la. `fetch`, DOM, URLSearchParams, localStorage e Clipboard são APIs do navegador, não frameworks. Não há backend, IA generativa ou pagamento real. A fonte Poppins usa Google Fonts como primeira opção, cópia local como fallback e, por último, a fonte do sistema. Essa configuração original foi preservada.
 
 Playwright, Node e GitHub Actions só verificam o projeto. Não são carregados pelo navegador do cliente. O React de `docs/base-visual/BulbeLayout.tsx` é uma referência do Figma Make, não parte do aplicativo; permanece no repositório para conservar a origem do material. O enunciado proíbe frameworks e bibliotecas de interface na solução, mas não proíbe ferramentas de teste nem estabelece limite de linhas de código.
 
@@ -32,4 +32,4 @@ Cada integrante deve conseguir demonstrar sua história e explicar: origem do JS
 
 ## Verificações desta correção
 
-Sintaxe dos scripts, cinco testes Node e verificação de whitespace passaram localmente. Os novos testes cobrem carregamento HU05 pela API comum, erro HTTP/configuração inválida, ausência de atalhos vazios, fonte local e ausência de imports React no runtime. O smoke Chromium ganhou verificações do simulador extra e retorno ao acompanhamento. A execução local do Chromium foi bloqueada antes de abrir por restrição de sockets do ambiente; consultar a CI do head desta PR para o resultado do navegador. Não houve inspeção visual local concluída nesta rodada.
+Sintaxe dos scripts, cinco testes Node e verificação de whitespace passaram localmente. Os novos testes cobrem carregamento HU05 pela API comum, erro HTTP/configuração inválida, ausência de atalhos vazios, fallback de fonte e ausência de imports React no runtime. O smoke Chromium ganhou verificações do simulador extra e retorno ao acompanhamento. A execução local do Chromium foi bloqueada antes de abrir por restrição de sockets do ambiente; consultar a CI do head desta PR para o resultado do navegador. Não houve inspeção visual local concluída nesta rodada.

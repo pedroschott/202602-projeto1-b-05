@@ -62,7 +62,7 @@ Cenários de demonstração da HU02, escolhidos pelo endereço: `index.html` (ag
 
 - HTML, CSS e JavaScript puro (vanilla)
 - Sem biblioteca de interface no aplicativo. React em `docs/base-visual/` é referência do Figma Make, não runtime. Playwright/Node são ferramentas de teste, não dependências para abrir o app.
-- Fonte Poppins local, sem chamada ao Google Fonts no aplicativo. [Conformidade, autoria e pendências](docs/conformidade-entrega.md)
+- Poppins via Google Fonts, com cópia local como fallback, conforme a configuração original. [Conformidade, autoria e pendências](docs/conformidade-entrega.md)
 - Dados fictícios em JSON, lidos com `fetch` (pasta [`data/`](data/))
 - Git e GitHub (Issues, Projects e Pull Requests)
 
