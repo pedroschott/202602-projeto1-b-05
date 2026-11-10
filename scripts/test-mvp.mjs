@@ -40,6 +40,7 @@ try {
   await page.locator('#proximo').click();
   await page.locator('#entrar-demonstracao').click();
   await page.locator('.card-espera').waitFor();
+  assert.equal(await page.locator('[data-pendente]').count(), 0, 'Sem atalhos sem implementação na home');
   await page.reload();
   await page.locator('.card-espera').waitFor();
   await abrir('/pages/boas-vindas.html', '#slide article');
@@ -126,11 +127,15 @@ try {
 
   // 4. Simulação ilustrativa de três contas.
   await abrir('/pages/simulacao-economia.html', '#hu05-form');
+  assert.match(await page.locator('main').innerText(), /fora do MVP/, 'Simulador identificado como extra');
   await preencher({ valor1: '100', periodo1: '2026-07', valor2: '100', periodo2: '2026-08', valor3: '100', periodo3: '2026-09' });
   await enviar();
   assert.match(await page.locator('#hu05-saving').innerText(), /15,00/);
   assert.match(await page.locator('#hu05-percent').innerText(), /Até 15%/);
-  console.log('OK: simulador acadêmico');
+  await page.locator('#hu05-details').click();
+  await page.getByRole('link', { name: 'Voltar ao acompanhamento' }).click();
+  await page.locator('.card-espera').waitFor();
+  console.log('OK: simulador acadêmico extra, sem convite comercial, com retorno ao acompanhamento');
   assert.deepEqual(erros, [], 'Sem erros JS, console ou recursos locais nos fluxos testados');
 } catch (erro) {
   await page.screenshot({ path: 'artifacts/falha.png' }).catch(() => {});

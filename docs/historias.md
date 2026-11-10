@@ -2,6 +2,8 @@
 
 > Cada história nasce de uma oportunidade do mapa de jornada e vira uma Issue com o label `historia`.
 
+**Recorte de entrega:** o MVP apoia o pagamento da primeira fatura. O simulador pré-contratação é um exercício acadêmico adicional, não substitui a conferência HU05 nem conta como história extra para completar o MVP. Critérios não comprovados abaixo continuam pendentes. [Conformidade e pendências factuais](conformidade-entrega.md).
+
 | ID | História | Oportunidade de origem | Prioridade | Issue |
 | --- | --- | --- | --- | --- |
 | HU01 | Como Renata, cliente que recebeu sua primeira fatura e não compreende a cobrança, quero acessar explicações em linguagem simples por um assistente dentro do aplicativo para entender os valores e saber qual próximo passo realizar. | #3 (com apoio de #2) | Alta (proposta) | #5 |
@@ -148,7 +150,9 @@ O PR #33 relata verificações técnicas e uma revisão independente, mas o chec
 
 ### Indicador e validação
 
-**Indicador principal pretendido:** inadimplência da segunda fatura — número de segundas faturas não quitadas integralmente até o vencimento dividido pelo total de segundas faturas com vencimento no período observado. Aguardar uma janela completa de conciliação para classificar os pagamentos pela data efetiva. Não reutilizar a taxa histórica da primeira fatura como taxa da segunda.
+**Indicador principal do projeto:** pagamento da primeira fatura, conforme o enunciado. A HU02 apoia esse objetivo ao explicar a espera desde a adesão; seu cenário da segunda fatura é uma extensão exploratória, não a evidência principal da entrega. Nenhuma melhoria foi medida.
+
+**Indicador exploratório da HU02:** inadimplência da segunda fatura — número de segundas faturas não quitadas integralmente até o vencimento dividido pelo total de segundas faturas com vencimento no período observado. Aguardar uma janela completa de conciliação para classificar os pagamentos pela data efetiva. Não reutilizar a taxa histórica da primeira fatura como taxa da segunda.
 
 Em produção, comparar grupos equivalentes com e sem o card, separando clientes cujo desconto já começou daqueles que ainda aguardam. Definir com a Bulbe a identificação do segundo ciclo, janela de observação, tamanho da amostra e meta. Acompanhar também compreensão e procura por atendimento; nenhum efeito foi medido.
 
@@ -209,7 +213,7 @@ Esta HU03 trata exclusivamente do acompanhamento da adesão durante o cadastro e
 
 ## HU04 — Conhecer a Bulbe pelo carrossel antes do login
 
-**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Começar/Pular abrem a tela `pages/login.html`, que explica o acesso demonstrativo e permite entrar na home. O PR #41 inclui controle de primeiro acesso local pela home e fallback quando o armazenamento não está disponível, além de ajustes de teclado/gesto. A tela de acesso demonstrativa completa o fluxo visual, sem backend. Não há autenticação real, cadastro ou coleta de credenciais; a revisão humana do PR continua pendente.
+**Status:** primeira versão de implementação: três slides em JSON via `fetch`, botões de avançar/voltar, gesto no celular, indicador e opção de pular. Acesso pelo menu “Conheça a Bulbe” e por [pages/boas-vindas.html](../pages/boas-vindas.html). Começar/Pular abrem a tela `pages/login.html`, que explica o acesso demonstrativo e permite entrar na home. O PR #41 inclui controle de primeiro acesso local pela home e fallback quando o armazenamento não está disponível, além de ajustes de teclado/gesto. A tela de acesso demonstrativa completa o fluxo visual, sem backend. Não há autenticação real, cadastro ou coleta de credenciais; o PR #41 foi aprovado por Rodrigo e integrado em 05/11. Essa revisão não equivale ao aceite de todos os critérios nem à validação com clientes.
 **Responsável:** Rodrigo Araujo Rigotto (@rodrigorigotto)  
 **Persona de origem:** [Renata Alves](personas/vinicius-gorini.md)  
 **Momento da jornada:** primeiro acesso ao app, antes do login  
@@ -248,7 +252,7 @@ A HU04 apresenta o serviço antes da entrada e não é uma história de explica�
 
 ## HU05 — Calcular e conferir a economia
 
-**Status:** implementação em revisão no PR #41, com cronologia/sobreposição, carga/retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes geram avisos na comparação. O protótipo apresenta valores, bases e períodos informados, mas bloqueia cálculo oficial. A conferência é distinta do simulador pré-contratação. Aceite dos critérios pendente; evidências em [verificação do MVP](verificacao-mvp.md).
+**Status:** implementação integrada pelo PR #41 em 05/11, com cronologia/sobreposição, carga/retentativa, foco, rolagem interna e retorno contextual. Bases ou durações diferentes geram avisos na comparação. O protótipo apresenta valores, bases e períodos informados, mas bloqueia cálculo oficial. A conferência é distinta do simulador pré-contratação. Aceite dos critérios pendente; evidências em [verificação do MVP](verificacao-mvp.md).
 **Responsável:** Sophia Miranda (@sophiacmiranda)
 **Persona de referência:** [P2 — Renata Alves](personas/consolidadas.md#p2--renata-alves-compreender-e-conferir)
 **Momento da jornada:** conferência da primeira fatura e avaliação da economia

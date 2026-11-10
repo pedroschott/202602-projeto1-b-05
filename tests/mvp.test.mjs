@@ -28,3 +28,35 @@ test('simulador aplica a premissa acadêmica apenas a três meses válidos', () 
   contas[1].periodo = contas[0].periodo;
   assert.notEqual(validarContasSimulacao(contas), '');
 });
+
+test('HU05 usa a leitura compartilhada e rejeita HTTP/JSON inválidos', async () => {
+  const { buscarConfiguracaoHU05 } = await import('../assets/js/hu05.js');
+  let chamada;
+  const dados = await buscarConfiguracaoHU05(async (url, opcoes) => {
+    chamada = { url, opcoes };
+    return { ok: true, json: async () => ({ tipo: 'conferencia_economia' }) };
+  });
+  assert.equal(dados.tipo, 'conferencia_economia');
+  assert.match(chamada.url.pathname, /\/data\/hu05-economia\.json$/);
+  assert.deepEqual(chamada.opcoes, { cache: 'no-store' });
+  await assert.rejects(buscarConfiguracaoHU05(async () => ({ ok: false, status: 503 })), /503/);
+  await assert.rejects(buscarConfiguracaoHU05(async () => ({ ok: true, json: async () => ({ tipo: 'outro' }) })), /inválido/);
+});
+
+test('runtime mantém fetch centralizado, fallback de fonte e navegação sem atalhos vazios', async () => {
+  const { readFile, readdir } = await import('node:fs/promises');
+  const raiz = new URL('../', import.meta.url);
+  for (const nome of await readdir(new URL('assets/js/', raiz))) {
+    const codigo = await readFile(new URL('assets/js/' + nome, raiz), 'utf8');
+    if (nome !== 'api.js') assert.doesNotMatch(codigo, /(?:fetch|fetcher)\s*\(\s*new URL/);
+    assert.doesNotMatch(codigo, /from\s+['"](?:react|vue|@angular)/);
+  }
+  const css = await readFile(new URL('assets/css/style.css', raiz), 'utf8');
+  assert.match(css, /fonts\.googleapis\.com/);
+  assert.match(css, /poppins-400\.woff2/);
+  for (const arquivo of ['index.html', ... (await readdir(new URL('pages/', raiz))).filter(n => n.endsWith('.html')).map(n => 'pages/' + n)]) {
+    const html = await readFile(new URL(arquivo, raiz), 'utf8');
+    assert.doesNotMatch(html, /data-pendente="(?:Consumo|Indicações)"/);
+    assert.doesNotMatch(html, /BulbeLayout\.tsx|node_modules/);
+  }
+});

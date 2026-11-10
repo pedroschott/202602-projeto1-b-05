@@ -4,8 +4,8 @@
 
 const BASE = new URL('../../data/', import.meta.url);
 
-async function lerJSON(arquivo) {
-  const resposta = await fetch(new URL(arquivo, BASE));
+async function lerJSON(arquivo, fetcher = fetch, opcoes) {
+  const resposta = await fetcher(new URL(arquivo, BASE), opcoes);
   if (!resposta.ok) {
     throw new Error(`Erro ao carregar ${arquivo}: ${resposta.status}`);
   }
@@ -51,8 +51,8 @@ export function buscarAcompanhamentoHU03() {
 }
 
 // HU05: configuração da conferência restaurada, separada do simulador.
-export function buscarEconomiaHU05() {
-  return lerJSON('hu05-economia.json');
+export function buscarEconomiaHU05(fetcher = fetch) {
+  return lerJSON('hu05-economia.json', fetcher, { cache: 'no-store' });
 }
 
 // HU05: premissas ilustrativas para simulação antes da contratação.

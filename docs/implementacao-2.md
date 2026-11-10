@@ -43,7 +43,7 @@ A orientação foi concentrar os novos blocos em **Rodrigo e Vinicius**, deixar 
 | Sophia / HU05 | Cronologia/sobreposição, carga/retentativa, foco e rolagem; manter cálculo bloqueado | Integração de Pedro |
 | Pedro / HU02 | Reunir commits, resolver conflitos, regressões essenciais, CI, documentos e PR único | Bloco de Sophia |
 
-A revisão assistida não substitui revisão humana nem autoriza merge. Não há medição de horas ou percentuais de esforço. O gráfico de contribuições deve usar o histórico real, informar período e tratamento dos merges, sem fabricar commits ou redistribuir autoria para equilibrar contagens.
+A revisão assistida não substitui revisão humana nem autoriza merge. As correções de conformidade e lacunas que dependem do grupo estão em [conformidade da entrega](conformidade-entrega.md). Não há medição de horas ou percentuais de esforço. O gráfico de contribuições deve usar o histórico real, informar período e tratamento dos merges, sem fabricar commits ou redistribuir autoria para equilibrar contagens.
 
 ## Processo do PR único
 

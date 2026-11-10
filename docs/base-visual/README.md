@@ -1,5 +1,7 @@
 # Kit Bulbe compartilhado
 
+> Referência de design, fora do aplicativo entregue. O `BulbeLayout.tsx` usa React somente no Figma Make. Não é importado por `index.html`, `pages/` ou `assets/js/`, não é necessário para rodar o MVP e não deve ser apresentado como implementação da disciplina. A entrega executável é HTML/CSS/JavaScript puro. O arquivo é preservado para registrar a origem da referência, sem substituir a autoria ou os commits reais.
+
 Abra `docs/base-visual/index.html` com Live Server para comparar os três modelos. Esta pasta é uma referência compartilhada para prototipação; não substitui a implementação em `pages/` e `assets/`. Também há onboarding.html, app.html e detail.html isolados. A faixa de conteúdo tracejada é um guia e deve sair quando vocês inserirem sua tela.
 
 ## Para usar no Figma Make
