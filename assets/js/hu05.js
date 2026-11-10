@@ -147,7 +147,8 @@ function prepararRetorno() {
   const link = document.querySelector('#hu05-retorno');
   const contexto = lerContextoAssistente(window.location.search);
   link.href = montarRetornoAssistente(contexto);
-  link.textContent = contexto ? 'Voltar ao assistente' : 'Voltar ao início';
+  // A seta do cabeçalho leva de volta à origem; o nome acessível acompanha o destino.
+  link.setAttribute('aria-label', contexto ? 'Voltar ao assistente' : 'Voltar para o início');
 }
 
 function iniciar() {
